@@ -49,7 +49,7 @@ export default function App() {
       <header className="nav">
         <div className="nav__left">
           <img src="/logo-mark.png" alt="Logo" className="logoMark" />
-          <span className="brand">Capstone Capital</span>
+          <span className="brand">Keystone Quarters</span>
         </div>
         <nav className="nav__center">
           <a href="#owners" className="nav__link nav__link--active">For Owners & Agents</a>
@@ -58,7 +58,7 @@ export default function App() {
           <a href="#contact" className="nav__link">Contact</a>
         </nav>
         <div className="nav__right">
-          <a className="btn btn--ghost small" href="mailto:properties@capstonecapital.com">properties@capstonecapital.com</a>
+          <a className="btn btn--ghost small" href="mailto:properties@keystonequarters.com">properties@keystonequarters.com</a>
           <a className="btn small" href="#contact">Get an Appraisal</a>
         </div>
       </header>
@@ -95,7 +95,7 @@ export default function App() {
       {/* VALUE PROPS */}
       <section id="owners" className="section alt">
         <div className="container">
-          <h2 className="section-title-2">Why partner with Capstone Capital?</h2>
+          <h2 className="section-title-2">Why partner with Keystone Quarters?</h2>
           <div className="cards3">
             <article className="vcard">
               <div className="vicon" />
@@ -198,13 +198,13 @@ export default function App() {
             </form>
 
             <div className="contactAlt">
-              Or email us: <a href="mailto:property@capstonecapital.com">property@capstonecapital.com</a>
+              Or email us: <a href="mailto:property@keystonequarters.com">property@keystonequarters.com</a>
             </div>
           </div>
 
           {/* RIGHT: about card */}
           <aside className="contactCard">
-            <div className="miniTitle">About Capstone Capital</div>
+            <div className="miniTitle">About Keystone Quarters</div>
             <p>
               Sydney-based short-stay operator focused on clean, reliable, and
               compliant hosting. We treat your property like a professional asset,
@@ -226,7 +226,7 @@ export default function App() {
       {/* FOOTER */}
       <footer className="footer">
         <div className="container footerFlex">
-          <span>© {currentYear} Capstone Capital</span>
+          <span>© {currentYear} Keystone Quarters</span>
           <div className="footerLinks">
             <a href="#compliance">Compliance</a>
           </div>
