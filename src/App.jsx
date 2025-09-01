@@ -47,10 +47,12 @@ export default function App() {
     <div className="site">
       {/* NAV */}
       <header className="nav">
-        <div className="nav__left">
+      <div className="nav__left">
+        <a href="#top" className="brand-link">
           <img src="/logo-mark.png" alt="Logo" className="logoMark" />
-          <span className="brand">Keystone Quarters</span>
-        </div>
+          <span className="brand">Blackstone Quarters</span>
+        </a>
+      </div>
         <nav className="nav__center">
           <a href="#owners" className="nav__link nav__link--active">For Owners & Agents</a>
           <a href="#how" className="nav__link">How it Works</a>
@@ -58,7 +60,7 @@ export default function App() {
           <a href="#contact" className="nav__link">Contact</a>
         </nav>
         <div className="nav__right">
-          <a className="btn btn--ghost small" href="mailto:properties@keystonequarters.com">properties@keystonequarters.com</a>
+          <a className="btn btn--ghost small" href="mailto:properties@blackstonequarters.com">properties@blackstonequarters.com</a>
           <a className="btn small" href="#contact">Get an Appraisal</a>
         </div>
       </header>
@@ -95,7 +97,7 @@ export default function App() {
       {/* VALUE PROPS */}
       <section id="owners" className="section alt">
         <div className="container">
-          <h2 className="section-title-2">Why partner with Keystone Quarters?</h2>
+          <h2 className="section-title-2">Why partner with Blackstone Quarters?</h2>
           <div className="cards3">
             <article className="vcard">
               <div className="vicon" />
@@ -198,13 +200,13 @@ export default function App() {
             </form>
 
             <div className="contactAlt">
-              Or email us: <a href="mailto:property@keystonequarters.com">property@keystonequarters.com</a>
+              Or email us: <a href="mailto:property@blackstonequarters.com">property@blackstonequarters.com</a>
             </div>
           </div>
 
           {/* RIGHT: about card */}
           <aside className="contactCard">
-            <div className="miniTitle">About Keystone Quarters</div>
+            <div className="miniTitle">About Blackstone Quarters</div>
             <p>
               Sydney-based short-stay operator focused on clean, reliable, and
               compliant hosting. We treat your property like a professional asset,
@@ -226,7 +228,7 @@ export default function App() {
       {/* FOOTER */}
       <footer className="footer">
         <div className="container footerFlex">
-          <span>© {currentYear} Keystone Quarters</span>
+          <span>© {currentYear} Blackstone Quarters</span>
           <div className="footerLinks">
             <a href="#compliance">Compliance</a>
           </div>
