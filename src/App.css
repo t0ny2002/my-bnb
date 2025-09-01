@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:wght@400;500;600&display=swap');
+
 
 :root {
   --bg:#0b0b0c; 
@@ -75,18 +76,33 @@ img{ display:block; max-width:100% }
   padding:14px 20px; background:rgba(11,11,12,.75); backdrop-filter: blur(8px);
   border-bottom:1px solid var(--border);
 }
-.nav__left{ display:flex; align-items:center; gap:10px }
+.nav__left {
+  display: flex;
+  align-items: center;   /* ensures vertical centering */
+  gap: 12px;             /* spacing between logo and text */
+}
 .logoMark {
-  width: 70px;   /* make bigger (default was 28px) */
-  height: 70px;
-  object-fit: contain;
-  border-radius: 8px; /* keep it rounded if needed */
+  height: 80px;          /* scale logo up/down consistently */
+  width: auto;           /* keep proportions */
+  display: block;
 }
 .brand {
-  font-family: 'DM Serif Display', serif;
-  font-size: 22px;
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;       /* bump up from ~20px */
+  font-weight: 700;
+}
+.brand {
+  line-height: 1;        /* removes extra font baseline padding */
+}
+.nav__link {
+  font-family: 'Poppins', sans-serif;
+  font-size: 17px;       /* default was ~15–16px */
   font-weight: 600;
-  letter-spacing: 0.5px;
+}
+.nav__right a {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
 }
 .nav__center{ display:flex; gap:16px; align-items:center }
 .nav__right{ display:flex; gap:10px; align-items:center }

@@ -54,7 +54,7 @@ export default function App() {
         </a>
       </div>
         <nav className="nav__center">
-          <a href="#owners" className="nav__link nav__link--active">For Owners & Agents</a>
+          <a href="#owners" className="nav__link">For Owners & Agents</a>
           <a href="#how" className="nav__link">How it Works</a>
           <a href="#compliance" className="nav__link">Compliance</a>
           <a href="#contact" className="nav__link">Contact</a>
