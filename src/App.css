@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@400;600;700&display=swap');
+
 :root {
   --bg:#0b0b0c; 
   --bg-2:#0f0f12;          /* mid-dark */
@@ -74,8 +76,18 @@ img{ display:block; max-width:100% }
   border-bottom:1px solid var(--border);
 }
 .nav__left{ display:flex; align-items:center; gap:10px }
-.logoMark{ width:28px; height:28px; border-radius:6px; }
-.brand{ font-weight:800; font-size:20px }
+.logoMark {
+  width: 70px;   /* make bigger (default was 28px) */
+  height: 70px;
+  object-fit: contain;
+  border-radius: 8px; /* keep it rounded if needed */
+}
+.brand {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
 .nav__center{ display:flex; gap:16px; align-items:center }
 .nav__right{ display:flex; gap:10px; align-items:center }
 .nav__link{ padding:8px 10px; border-radius:999px; color:#d6d6db; transition:all .2s ease; }

@@ -60,14 +60,14 @@ export default function App() {
           <a href="#contact" className="nav__link">Contact</a>
         </nav>
         <div className="nav__right">
-          <a className="btn btn--ghost small" href="mailto:properties@blackstonequarters.com">properties@blackstonequarters.com</a>
+          <a className="btn btn--ghost small" href="mailto:parternships@blackstonequarters.com">parternships@blackstonequarters.com</a>
           <a className="btn small" href="#contact">Get an Appraisal</a>
         </div>
       </header>
 
       {/* HERO */}
       <section className="hero ownerHero">
-        <img src="/aussiehouse1.jpg" alt="Home exterior" className="hero__bg" />
+        <img src="/aussiehouse1.jpeg" alt="Home exterior" className="hero__bg" />
         <div className="hero__overlay" />
         <div className="hero__content">
           <h1>Professional short-stay management for your property</h1>
@@ -189,7 +189,7 @@ export default function App() {
               projected nightly rates, seasonality, and the best agreement type for you.
             </p>
 
-            <form className="contactForm" onSubmit={handleSubmit}>
+            <form className="contactForm" onSubmit={handleSubmit}   action="https://formspree.io/f/meolzrga" method="POST">
               <div className="row">
                 <input name="name" placeholder="Full name" value={form.name} onChange={handleChange} required />
                 <input name="phone" placeholder="Phone" value={form.phone} onChange={handleChange} />
@@ -200,7 +200,7 @@ export default function App() {
             </form>
 
             <div className="contactAlt">
-              Or email us: <a href="mailto:property@blackstonequarters.com">property@blackstonequarters.com</a>
+              Or email us: <a href="mailto:parternships@blackstonequarters.com">parternships@blackstonequarters.com</a>
             </div>
           </div>
 
