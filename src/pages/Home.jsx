@@ -349,7 +349,7 @@ export default function Home() {
               <div className="kpi__num">${gross.toLocaleString()}</div>
             </article>
             <article className="kpi">
-              <h4>Your payout (Management)</h4>
+              <h4>Owner Management</h4>
               <div className="kpi__num">${mgmtOwner.toLocaleString()}</div>
               <p className="tiny muted">after a {fee}% fee</p>
             </article>
