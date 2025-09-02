@@ -27,13 +27,7 @@ export default function Navbar() {
         </nav>
 
         <div className="nav__right">
-          <a
-            className="btn btn--ghost small"
-            href="mailto:crownstone@crownstonequarters.com"
-          >
-            properties@crownstonequarters.com
-          </a>
-          <Link className="btn small" to="/about">
+          <Link className="btn small" to="/contact">
             Get an Appraisal
           </Link>
         </div>
