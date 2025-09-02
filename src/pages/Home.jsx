@@ -397,11 +397,6 @@ export default function Home() {
           ))}
         </div>
       </section>
-
-      {/* Sticky bottom CTA */}
-      <a href="/contact" className="stickyCTA" aria-label="Get an appraisal">
-        Get an Appraisal ↗
-      </a>
     </main>
   );
 }

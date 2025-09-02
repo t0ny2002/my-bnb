@@ -8,7 +8,7 @@ export default function About() {
       id: 'alex',
       name: 'Tony Ding',
       role: 'Operations & Guest Experience',
-      img: '/default.jpg',
+      img: '/tony.jpg',
     },
     {
       id: 'jamie',

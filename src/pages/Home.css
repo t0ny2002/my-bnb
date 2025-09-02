@@ -172,3 +172,27 @@
     .btn-primary, .card--hover, .timeline__card, .stickyCTA { transition:none; }
   }
   
+  /* Hero CTA override (blue, trustworthy) */
+.home--warm .hero__ctas .btn-primary {
+    background:  #cc1919;   /* blue gradient */
+    color: #fff;
+    border: 1px solid rgba(59,130,246,.35);
+    box-shadow: 0 10px 22px rgba(37,99,235,.35);
+    transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+  }
+  
+  .home--warm .hero__ctas .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(37,99,235,.45);
+    filter: none; /* disable the brightness() from the old rule */
+  }
+  
+  .home--warm .hero__ctas .btn-primary:active {
+    transform: translateY(0);
+  }
+  
+  .home--warm .hero__ctas .btn-primary:focus-visible {
+    outline: 2px solid #93c5fd;   /* accessible focus ring */
+    outline-offset: 2px;
+  }
+  

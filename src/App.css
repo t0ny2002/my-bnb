@@ -92,6 +92,12 @@ header.nav,
   padding-top: calc(var(--nav-pad-y) + env(safe-area-inset-top, 0));
 }
 .nav__left{ display:flex; align-items:center; gap:12px; }
+/* Smaller CTA button just in the navbar */
+.nav__right {
+  padding: 4px 12px;      /* shrink top/bottom + left/right */
+  font-size: 13px;        /* reduce text size */
+  border-radius: 8px;     /* slightly smaller rounding */
+}
 .logoMark{ height: var(--logo-h); width:auto; }
 .brand{
   font-family:'Playfair Display', serif;
