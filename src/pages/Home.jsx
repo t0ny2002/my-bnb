@@ -1,5 +1,6 @@
 // src/pages/Home.jsx
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Home.css';
 
 function useReveal(selector = '[data-reveal]') {
@@ -141,9 +142,9 @@ export default function Home() {
           </p>
 
           <div className="hero__ctas">
-            <a href="/contact" className="btn btn-primary">
+            <Link to="/contact" className="btn btn-primary">
               Request a Free Appraisal
-            </a>
+            </Link>
             <a href="#how" className="btn btn-ghost">
               See How it Works
             </a>
