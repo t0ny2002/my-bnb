@@ -302,7 +302,7 @@ export default function Home() {
         <div className="calc__grid">
           <div className="calc__inputs">
             <div className="field">
-              <label>Avg nightly rate (A$)</label>
+              <label>Avg nightly AirBNB rate (A$)</label>
               <input
                 type="range"
                 min="120"
