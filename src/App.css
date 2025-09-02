@@ -291,3 +291,212 @@ a:focus {
   color: #fff;
   text-decoration: none;
 }
+
+/* ============================= */
+/*        MOBILE FIXES           */
+/* ============================= */
+@media (max-width: 640px) {
+  /* Navbar */
+  .nav {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+  .logoMark { width: 26px; height: 26px; }
+  .brand {
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  /* Turn center links into a horizontal pill scroller (no wrapping) */
+  .nav__center {
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;           /* Firefox */
+    gap: 8px;
+    white-space: nowrap;
+  }
+  .nav__center::-webkit-scrollbar {  /* Hide scrollbar (WebKit) */
+    display: none;
+  }
+  .nav__link {
+    display: inline-block;
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 999px;
+  }
+
+  /* Keep the CTA; hide the long email chip */
+  .nav__right .btn--ghost { display: none; }
+  .nav__right .btn {
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 10px;
+  }
+
+  /* Anchor offset for a shorter bar on mobile */
+  html { scroll-padding-top: 64px; }
+
+  /* Hero spacing / sizing */
+  .ownerHero { margin-top: 56px; } /* smaller bar, smaller offset */
+  .hero h1 { font-size: clamp(24px, 7vw, 34px); }
+  .lead { font-size: 14px; }
+  .heroActions { gap: 8px; }
+  .heroActions .btn { width: 100%; }
+
+  /* Trust badges: 1 per row, bigger tap area */
+  .trustbar {
+    grid-template-columns: 1fr !important;
+    gap: 10px;
+  }
+  .trustItem { padding: 12px; }
+
+  /* Value cards / steps / assurance grid stack */
+  .cards3,
+  .steps,
+  .assurance {
+    grid-template-columns: 1fr !important;
+    gap: 12px;
+  }
+
+  /* General card spacing & tap size */
+  .vcard,
+  .step,
+  .assuranceItem,
+  .faqRow {
+    padding: 14px;
+    border-radius: 14px;
+  }
+  .vicon { width: 32px; height: 32px; }
+
+  /* Section titles tighter on mobile */
+  .section-title,
+  .section-title-2 {
+    font-size: clamp(22px, 6.2vw, 28px);
+    margin-bottom: 14px;
+  }
+
+  /* FAQ summary tap target */
+  .faqRow summary { font-size: 16px; }
+
+  /* Contact card / form */
+  .contact { padding: 56px 0; }
+  .contactGrid { grid-template-columns: 1fr; gap: 16px; }
+  .contactForm .row { grid-template-columns: 1fr; }
+  .contactForm input,
+  .contactForm textarea {
+    font-size: 16px;         /* iOS zoom prevention */
+    padding: 12px 14px;
+  }
+  .contactForm button {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+  }
+
+  /* Footer spacing */
+  .footerFlex {
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+}
+
+/* Slightly larger phones / phablets */
+@media (min-width: 641px) and (max-width: 820px) {
+  .nav__center { gap: 10px; }
+  .hero h1 { font-size: clamp(28px, 5.2vw, 42px); }
+  .trustbar { grid-template-columns: 1fr 1fr; }
+  .cards3,
+  .steps,
+  .assurance { grid-template-columns: 1fr 1fr; }
+}
+
+/* ==== Fixed-header offset (desktop + mobile) ==== */
+:root {
+  --nav-h: 72px;              /* desktop header height */
+}
+
+/* Shorter header on small phones */
+@media (max-width: 640px) {
+  :root { --nav-h: 64px; }
+}
+
+/* Your fixed nav already exists; just ensure it sits on top */
+.nav {
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  z-index: 50;
+  /* Optional: account for iOS notch */
+  padding-top: calc(10px + env(safe-area-inset-top, 0));
+}
+
+/* Push the entire page down by the nav height */
+.site {
+  padding-top: var(--nav-h);
+}
+
+/* Make anchor links scroll to the right spot */
+html {
+  scroll-padding-top: var(--nav-h);
+}
+
+/* Let the hero fill the remaining viewport (prevents “under the nav” look) */
+.hero {
+  min-height: calc(100dvh - var(--nav-h));
+}
+
+/* Remove any manual hero offset so we don't double space */
+.ownerHero { margin-top: 0 !important; }
+
+:root{
+  --nav-h: clamp(56px, env(safe-area-inset-top) + 52px, 66px);
+}
+
+/* 2) Make the nav use that height consistently */
+.nav{
+  height: var(--nav-h);
+  padding-block: 10px;                /* keeps hit targets comfy */
+}
+
+/* 3) Ensure the hero starts AFTER the nav and fills visible viewport */
+.ownerHero{ 
+  margin-top: var(--nav-h);
+}
+.hero{
+  min-height: calc(100svh - var(--nav-h)); /* svh = “small viewport” height (no URL bar jump) */
+}
+
+/* 4) Tighten layout for very narrow screens */
+@media (max-width: 380px){
+  .hero__content{ padding-top: 6px; }  /* tiny nudge down so the first line never hides */
+  .hero h1{
+    font-size: clamp(22px, 7.8vw, 34px);
+    line-height: 1.18;
+    letter-spacing: .1px;
+  }
+  .lead{
+    font-size: 13.5px;
+    line-height: 1.45;
+    max-width: 28ch;
+  }
+
+  /* Buttons: full-width and comfy */
+  .heroActions{ gap: 10px; }
+  .heroActions .btn{ 
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 15px;
+  }
+
+  /* Cards & trust items stack cleanly on small screens */
+  .trustbar{ grid-template-columns: 1fr; }
+  .vcard, .step, .assuranceItem, .faqRow{ padding: 14px; }
+}
+
+/* 5) Ultra-narrow Android (Galaxy 360px) */
+@media (max-width: 360px){
+  .hero h1{ font-size: clamp(20px, 8.8vw, 32px); }
+  .lead{ font-size: 13px; }
+}

@@ -50,7 +50,7 @@ export default function App() {
       <div className="nav__left">
         <a href="#top" className="brand-link">
           <img src="/logo-mark.png" alt="Logo" className="logoMark" />
-          <span className="brand">Blackstone Quarters</span>
+          <span className="brand">Crownstone Quarters</span>
         </a>
       </div>
         <nav className="nav__center">
@@ -60,7 +60,7 @@ export default function App() {
           <a href="#contact" className="nav__link">Contact</a>
         </nav>
         <div className="nav__right">
-          <a className="btn btn--ghost small" href="mailto:parternships@blackstonequarters.com">parternships@blackstonequarters.com</a>
+          <a className="btn btn--ghost small" href="mailto:properties@crownstonequarters.com">properties@crownstonequarters.com</a>
           <a className="btn small" href="#contact">Get an Appraisal</a>
         </div>
       </header>
@@ -97,7 +97,7 @@ export default function App() {
       {/* VALUE PROPS */}
       <section id="owners" className="section alt">
         <div className="container">
-          <h2 className="section-title-2">Why partner with Blackstone Quarters?</h2>
+          <h2 className="section-title-2">Why partner with Crownstone Quarters?</h2>
           <div className="cards3">
             <article className="vcard">
               <div className="vicon" />
@@ -200,13 +200,13 @@ export default function App() {
             </form>
 
             <div className="contactAlt">
-              Or email us: <a href="mailto:parternships@blackstonequarters.com">parternships@blackstonequarters.com</a>
+              Or email us: <a href="mailto:properties@crownstonequarters.com">properties@crownstonequarters.com</a>
             </div>
           </div>
 
           {/* RIGHT: about card */}
           <aside className="contactCard">
-            <div className="miniTitle">About Blackstone Quarters</div>
+            <div className="miniTitle">About Crownstone Quarters</div>
             <p>
               Sydney-based short-stay operator focused on clean, reliable, and
               compliant hosting. We treat your property like a professional asset,
@@ -228,7 +228,7 @@ export default function App() {
       {/* FOOTER */}
       <footer className="footer">
         <div className="container footerFlex">
-          <span>© {currentYear} Blackstone Quarters</span>
+          <span>© {currentYear} Crownstone Quarters</span>
           <div className="footerLinks">
             <a href="#compliance">Compliance</a>
           </div>
