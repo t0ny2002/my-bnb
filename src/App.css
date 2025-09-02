@@ -1,14 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:wght@400;500;600&display=swap');
-
-
 :root {
   --bg:#0b0b0c; 
   --bg-2:#0f0f12;          /* mid-dark */
   --bg-3:#1c1f26;          /* slate dark */
   --card:#121214; 
   --card-2:#16171b; 
-  --muted:#cfd2da; 
-  --text:#f3f4f6;
+  --muted:#000000; 
+  --text:#000000;
   --primary:#ff385c; 
   --ring:rgba(255,56,92,.35); 
   --border:#25262b;
@@ -73,8 +71,8 @@ img{ display:block; max-width:100% }
 .nav{
   position:fixed; inset-inline:0; top:0; z-index:50;
   display:flex; align-items:center; justify-content:space-between;
-  padding:14px 20px; background:rgba(11,11,12,.75); backdrop-filter: blur(8px);
-  border-bottom:1px solid var(--border);
+  padding:35px 32px; background:rgba(11,11,12,.75); backdrop-filter: blur(8px);
+  border-bottom:1px solid var(--border); height: auto;
 }
 .nav__left {
   display: flex;
@@ -82,7 +80,7 @@ img{ display:block; max-width:100% }
   gap: 12px;             /* spacing between logo and text */
 }
 .logoMark {
-  height: 80px;          /* scale logo up/down consistently */
+  height: 140px;          /* scale logo up/down consistently */
   width: auto;           /* keep proportions */
   display: block;
 }
@@ -460,12 +458,15 @@ html {
   padding-block: 10px;                /* keeps hit targets comfy */
 }
 
-/* 3) Ensure the hero starts AFTER the nav and fills visible viewport */
-.ownerHero{ 
-  margin-top: var(--nav-h);
+/* Kill the margin pushing the hero down */
+.ownerHero {
+  margin-top: 0 !important;
 }
-.hero{
-  min-height: calc(100svh - var(--nav-h)); /* svh = “small viewport” height (no URL bar jump) */
+
+/* Let the hero fill exactly the viewport minus nav */
+.hero {
+  min-height: 100dvh; /* full viewport height */
+  padding-top: var(--nav-h); /* account for navbar height */
 }
 
 /* 4) Tighten layout for very narrow screens */
@@ -499,4 +500,37 @@ html {
 @media (max-width: 360px){
   .hero h1{ font-size: clamp(20px, 8.8vw, 32px); }
   .lead{ font-size: 13px; }
+}
+
+/* Remove the top padding on the home page wrapper */
+.home.section { padding-top: 0 !important; }
+
+/* ===== NAV SIZE – FINAL OVERRIDE ===== */
+:root{
+  /* tweak these 2 numbers only */
+  --logo-h: 100px;            /* logo image height */
+  --nav-pad-y: 0px;         /* vertical padding (top & bottom) */
+
+  --nav-h: calc(var(--logo-h) + var(--nav-pad-y) * 2);
+}
+
+/* grow the logo and nav together */
+.logoMark { height: var(--logo-h); width: auto; display:block; }
+
+header.nav,
+.nav {
+  padding-block: var(--nav-pad-y) !important;  /* vertical spacing */
+  padding-inline: 70px;                        /* left/right */
+  height: var(--nav-h) !important;             /* total bar height */
+  background: rgba(11,11,12,.80);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+
+/* make the page/hero align with the fixed nav height */
+.site { padding-top: 0 !important; }
+.ownerHero { margin-top: 0 !important; }
+.hero {
+  padding-top: var(--nav-h);
+  min-height: calc(100dvh - var(--nav-h));
 }

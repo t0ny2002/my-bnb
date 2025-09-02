@@ -1,0 +1,162 @@
+/* Scoped Contact page (warm charcoal theme). Works with your existing .section/.container */
+
+.contact {
+    --bg: #141618;
+    --panel: #1a1d22;
+    --panel-hi: #20242b;
+    --line: #2a2f38;
+    --text: #eceff3;
+    --muted: #c3c8d2;
+    --accent: #ff4669;
+    --ring: rgba(255,70,105,.35);
+    background:
+      radial-gradient(1200px 600px at 18% -10%, rgba(255,70,105,.06), transparent 60%),
+      var(--bg);
+    color: var(--text);
+  }
+  
+  .contact__wrap {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: 1fr;
+  }
+  
+  @media (min-width: 980px) {
+    .contact__wrap {
+      grid-template-columns: 1.05fr 1fr;
+      gap: 28px;
+    }
+  }
+  
+  /* Left column */
+  .contact__header .lead { color: var(--muted); max-width: 720px; }
+  
+  .contact__cards {
+    list-style: none;
+    padding: 0;
+    margin: 18px 0 6px;
+    display: grid;
+    gap: 12px;
+  }
+  
+  .card {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 12px;
+    align-items: center;
+    padding: 14px 16px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--panel);
+    box-shadow: 0 12px 24px rgba(0,0,0,.18);
+  }
+  .card__icon {
+    display: grid; place-items: center;
+    inline-size: 40px; block-size: 40px;
+    border-radius: 12px;
+    background: var(--panel-hi);
+    font-size: 20px;
+  }
+  .card h3 { margin: 0 0 4px 0; }
+  .link { color: var(--text); text-decoration: none; font-weight: 600; }
+  .link:hover { text-decoration: underline; }
+  .muted { color: var(--muted); margin: 2px 0 0; }
+  
+  .contact__badges {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px;
+  }
+  .badge {
+    border: 1px solid var(--line);
+    background: var(--panel);
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: .9rem;
+    color: var(--text);
+  }
+  
+  /* Right column: form */
+  .contact__form form {
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: var(--panel);
+    padding: 16px;
+    box-shadow: 0 16px 28px rgba(0,0,0,.22);
+  }
+  
+  .field { margin-bottom: 14px; }
+  .fieldGrid { display: grid; gap: 12px; grid-template-columns: 1fr; }
+  @media (min-width: 620px) { .fieldGrid { grid-template-columns: 1fr 1fr; } }
+  
+  label, legend { display: block; font-weight: 600; margin-bottom: 6px; }
+  input, textarea {
+    width: 100%;
+    color: var(--text);
+    background: var(--panel-hi);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 12px 12px;
+    outline: none;
+    transition: border-color 140ms ease, box-shadow 140ms ease, background 140ms ease;
+  }
+  input::placeholder, textarea::placeholder { color: #9aa3af; }
+  input:focus, textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px var(--ring);
+  }
+  
+  .err {
+    margin-top: 6px;
+    color: #ff9aa8;
+    font-size: .92rem;
+  }
+  .hp { position: absolute; left: -200vw; opacity: 0; }
+  
+  /* chips (radio) */
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    cursor: pointer;
+    user-select: none;
+    padding: 8px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--panel-hi);
+    font-weight: 600;
+    transition: border-color 140ms ease, background 140ms ease, transform 140ms ease;
+  }
+  .chip input { display: none; }
+  .chip:hover { transform: translateY(-1px); }
+  .chip.is-active {
+    border-color: var(--accent);
+    background: linear-gradient(0deg, rgba(255,70,105,.08), rgba(255,70,105,.08)), var(--panel-hi);
+  }
+  
+  /* actions */
+  .actions { display: flex; align-items: center; gap: 12px; margin-top: 6px; flex-wrap: wrap; }
+  
+  .btn.btn-primary {
+    display: inline-block;
+    padding: 12px 18px;
+    border-radius: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    background: var(--accent);
+    color: #0b0b0b;
+    transition: transform 140ms ease, filter 140ms ease;
+    border: none;
+    cursor: pointer;
+  }
+  .btn.btn-primary:hover { transform: translateY(-1px); filter: brightness(1.05); }
+  .btn.btn-primary:disabled { filter: grayscale(.3); opacity: .7; cursor: not-allowed; }
+  
+  .status { min-height: 1.25rem; font-weight: 600; }
+  .status.idle { color: var(--muted); }
+  .status.error { color: #ff9aa8; }
+  .status.success { color: #9cffbe; }
+  
+  .tiny { color: var(--muted); font-size: .9rem; margin-top: 8px; }
+  
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .chip, .btn.btn-primary, input, textarea { transition: none; }
+  }
+  

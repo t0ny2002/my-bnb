@@ -1,0 +1,308 @@
+/* HowItWorks.css — scoped, or paste into App.css and keep `.how` namespace */
+
+.how .how__header { max-width: 860px; }
+
+.how .lead { max-width: 820px; }
+
+.how {
+  --card-bg: rgba(255,255,255,0.03);
+  --card-brd: rgba(255,255,255,0.10);
+  --card-brd-hover: rgba(255,255,255,0.16);
+  --accent: #ff365f; /* brand accent */
+}
+
+/* Layout: sticky nav + content */
+.how__nav {
+  position: sticky;
+  top: 72px;            /* keep under your header */
+  z-index: 2;
+  margin: 10px 0 16px;
+  background: transparent;
+}
+
+.stepper {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 6px 2px;
+  list-style: none;
+  margin: 0;
+  scrollbar-width: thin;
+}
+
+@media (min-width: 920px) {
+  .how__nav { float: left; width: 270px; margin-right: 24px; }
+  .stepper { grid-auto-flow: row; }
+}
+
+.stepper__item {}
+
+.stepper__btn {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-brd);
+  border-radius: 12px;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 140ms ease, border-color 140ms ease, background 140ms ease;
+}
+
+.stepper__btn:hover,
+.stepper__btn:focus-visible {
+  border-color: var(--card-brd-hover);
+  transform: translateY(-1px);
+}
+
+.stepper__num {
+  display: grid;
+  place-items: center;
+  inline-size: 28px;
+  block-size: 28px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.08);
+  font-weight: 700;
+}
+
+.stepper__label {
+  font-weight: 600;
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.is-active .stepper__btn {
+  border-color: var(--accent);
+  background: linear-gradient(0deg, rgba(255,54,95,0.06), rgba(255,54,95,0.06)), var(--card-bg);
+}
+.is-active .stepper__num { background: var(--accent); color: #0b0b0b; }
+
+/* Grid containing cards */
+.how__grid {
+  display: grid;
+  gap: 14px;
+}
+
+@media (min-width: 920px) {
+  .how__grid { margin-left: 294px; } /* offset for sticky nav */
+}
+
+/* Cards */
+.howCard {
+  border: 1px solid var(--card-brd);
+  border-radius: 16px;
+  background: var(--card-bg);
+  overflow: hidden;
+  transition: border-color 140ms ease, background 140ms ease, box-shadow 140ms ease;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+}
+
+.howCard.is-open {
+  border-color: var(--card-brd-hover);
+  background: rgba(255,255,255,0.045);
+}
+
+.howCard__header {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  cursor: pointer;
+  outline: none;
+}
+
+.howCard__header:focus-visible { box-shadow: 0 0 0 2px var(--accent) inset; border-radius: 16px; }
+
+.howCard__badge {
+  display: grid;
+  place-items: center;
+  inline-size: 32px;
+  block-size: 32px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.10);
+  font-weight: 800;
+}
+
+.howCard__title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.howCard__panel {
+  overflow: hidden;
+  transition: max-height 260ms ease;
+}
+
+.howCard__body {
+  padding: 0 18px 14px 18px;
+  line-height: 1.65;
+}
+
+/* Optional bullets per step */
+.miniList {
+  padding: 0 18px 18px 36px;
+  margin: 0;
+  line-height: 1.55;
+}
+.miniList li { margin-bottom: 8px; }
+.miniList li:last-child { margin-bottom: 0; }
+
+/* CTA */
+.how__cta {
+  display: grid;
+  place-items: center;
+  margin: 26px 0 4px;
+}
+
+.btn.btn-primary {
+  display: inline-block;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  background: var(--accent);
+  color: #0b0b0b;
+  transition: transform 140ms ease, filter 140ms ease;
+}
+.btn.btn-primary:hover { transform: translateY(-1px); filter: brightness(1.05); }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .howCard__panel,
+  .stepper__btn,
+  .howCard { transition: none; }
+}
+
+/* ---------- THEMES ---------- */
+
+/* Warm, hospitality dark (charcoal, not black) */
+.how--warm {
+  /* page + ink */
+  --page-bg: #141618;          /* charcoal */
+  --text:    #eceff3;          /* soft white */
+  --muted:   #c3c8d2;          /* muted copy */
+  --line:    #2a2f38;          /* separators */
+  --accent:  #ff4669;          /* your brand pink/red */
+
+  /* panels */
+  --panel:   #1a1d22;          /* cards/stepper bg */
+  --panel-hi:#20242b;          /* hover/active */
+  --ring:    rgba(255,70,105,.35);
+}
+
+/* Light, clean (if you prefer bright) */
+.how--light {
+  --page-bg: #f7f7f9;
+  --text:    #0f1216;
+  --muted:   #39424d;
+  --line:    #e5e7ee;
+  --accent:  #ff4669;
+
+  --panel:   #ffffff;
+  --panel-hi:#fcfcfe;
+  --ring:    rgba(255,70,105,.30);
+}
+
+/* Apply theme background + base text */
+.how--warm,
+.how--light {
+  background: radial-gradient(1200px 600px at 20% -10%, rgba(255,70,105,.06), transparent 60%),
+              var(--page-bg);
+  color: var(--text);
+}
+.how--warm .lead,
+.how--light .lead { color: var(--muted); }
+
+/* ---------- STEPPER ---------- */
+.stepper__btn {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  color: var(--text);
+  box-shadow: 0 8px 18px rgba(0,0,0,.15);
+}
+.stepper__btn:hover,
+.stepper__btn:focus-visible {
+  border-color: var(--ring);
+  background: var(--panel-hi);
+}
+.is-active .stepper__btn {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent) inset, 0 12px 24px rgba(0,0,0,.18);
+  background: linear-gradient(0deg, color-mix(in oklab, var(--accent) 10%, transparent), var(--panel));
+}
+.stepper__num { background: color-mix(in oklab, var(--text) 10%, transparent); }
+.is-active .stepper__num { background: var(--accent); color: #0b0b0b; }
+.stepper__label { color: var(--text); opacity: .94; }
+
+/* ---------- CARDS ---------- */
+.howCard {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--text);
+  box-shadow: 0 10px 22px rgba(0,0,0,.22);
+}
+.howCard.is-open { background: var(--panel-hi); border-color: var(--ring); }
+.howCard__title { color: var(--text); }
+.howCard__body { color: var(--muted); }
+
+/* keep the rest of your layout rules as-is */
+
+/* ===== How it Works – spacing + animations (keeps your existing design) ===== */
+
+/* Page scope + top spacing so the title isn't hugging the navbar */
+.howPage .container { padding-top: clamp(14px, 2.2vw, 28px); }
+
+/* Title + lead: subtle rise-in on load */
+.howPage .section-title-2 {
+  animation: how-rise 520ms cubic-bezier(.22,.9,.24,1) both;
+}
+.howPage .lead {
+  animation: how-rise 520ms cubic-bezier(.22,.9,.24,1) 80ms both;
+  color: var(--muted, #c6cbd6);      /* safe if you use tokens */
+}
+
+/* Stepper: stagger each item a hair */
+.howPage .stepper__item .stepper__btn { animation: how-float 420ms ease-out both; }
+.howPage .stepper__item:nth-child(1) .stepper__btn { animation-delay: 60ms; }
+.howPage .stepper__item:nth-child(2) .stepper__btn { animation-delay: 90ms; }
+.howPage .stepper__item:nth-child(3) .stepper__btn { animation-delay: 120ms; }
+.howPage .stepper__item:nth-child(4) .stepper__btn { animation-delay: 150ms; }
+.howPage .stepper__item:nth-child(5) .stepper__btn { animation-delay: 180ms; }
+.howPage .stepper__item:nth-child(6) .stepper__btn { animation-delay: 210ms; }
+
+/* Cards: gentle reveal + tiny elevation when active */
+.howPage .howCard { animation: how-float 460ms ease-out 60ms both; }
+.howPage .howCard.is-open {
+  box-shadow: 0 0 0 1px var(--accent, #ff4669) inset, 0 18px 32px rgba(0,0,0,.26);
+}
+
+/* Slightly more room under each card body for breathing space */
+.howPage .howCard__copy { line-height: 1.65; }
+.howPage .howCard__list li { margin-bottom: 8px; }
+.howPage .howCard__panel { transition: max-height .26s ease; }
+
+/* Keyframes */
+@keyframes how-rise {
+  from { opacity: 0; transform: translateY(12px) scale(.99); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes how-float {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  .howPage .section-title-2,
+  .howPage .lead,
+  .howPage .stepper__item .stepper__btn,
+  .howPage .howCard { animation: none !important; }
+}

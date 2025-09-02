@@ -2,6 +2,7 @@ import { NavLink, Routes, Route, Link } from 'react-router-dom';
 import Home from '../pages/Home';
 import About from '../pages/About';
 import HowItWorks from '../pages/HowItWorks';
+import Contact from '../pages/Contact';
 
 export default function Navbar() {
   return (
@@ -10,9 +11,6 @@ export default function Navbar() {
         <div className="nav__left">
           <Link to="/" className="logoLink" aria-label="Go to homepage">
             <img src="/logo-mark.png" alt="" className="logoMark" />
-          </Link>
-          <Link to="/" className="brand">
-            Blackstone Quarters
           </Link>
         </div>
 
@@ -31,9 +29,9 @@ export default function Navbar() {
         <div className="nav__right">
           <a
             className="btn btn--ghost small"
-            href="mailto:properties@blackstonequarters.com"
+            href="mailto:crownstone@crownstonequarters.com"
           >
-            properties@blackstonequarters.com
+            properties@crownstonequarters.com
           </a>
           <Link className="btn small" to="/about">
             Get an Appraisal
@@ -45,8 +43,7 @@ export default function Navbar() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/how" element={<HowItWorks />} />
-        {/* Add this later if you split Contact into a page */}
-        {/* <Route path="/contact" element={<Contact />} /> */}
+        <Route path="/contact" element={<Contact />} />
       </Routes>
     </div>
   );

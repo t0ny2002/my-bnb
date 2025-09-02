@@ -1,318 +1,407 @@
 // src/pages/Home.jsx
-import { useState, useEffect } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import './Home.css';
 
-export default function Home() {
-  // Keep any state/arrays you already had (badges, steps, etc.)
-  // Paste your existing homepage content here.
-  const currentYear = new Date().getFullYear();
-  const [form, setForm] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: '',
-  });
+function useReveal(selector = '[data-reveal]') {
+  useEffect(() => {
+    const els = Array.from(document.querySelectorAll(selector));
+    if (!els.length) return;
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm((f) => ({ ...f, [name]: value }));
-  };
+    const obs = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add('is-revealed');
+            obs.unobserve(e.target);
+          }
+        }),
+      { rootMargin: '0px 0px -10% 0px', threshold: 0.1 }
+    );
+    els.forEach((el) => obs.observe(el));
+    return () => obs.disconnect();
+  }, [selector]);
+}
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert('Thanks! We’ll be in touch shortly.');
-    setForm({ name: '', email: '', phone: '', message: '' });
-  };
+function Counter({ to = 100, prefix = '', suffix = '', duration = 1200 }) {
+  const [val, setVal] = useState(0);
+  const ref = useRef(false);
 
-  const badges = [
-    { label: 'Guaranteed Rent*', detail: 'On-time payment, every month' },
-    { label: 'Professional Cleaning', detail: 'Hotel-grade turnover' },
-    { label: '24/7 Guest Support', detail: 'We handle everything' },
-    {
-      label: 'Damage Protection',
-      detail: 'with insurer-backed cover (subject to policy terms)',
-    },
-  ];
-
-  const steps = [
-    {
-      title: '1) Property Walkthrough',
-      body: 'We inspect and assess earning potential, strata/LEP rules, and fit-out needs.',
-    },
-    {
-      title: '2) Simple Agreement',
-      body: 'Fixed-term lease or management agreement; clearly defines responsibilities and inclusions.',
-    },
-    {
-      title: '3) Setup & Styling',
-      body: 'We furnish, photograph, and create listings with dynamic pricing & guest screening.',
-    },
-    {
-      title: '4) Fully Managed',
-      body: 'Cleaning, linen, amenities, check-ins, maintenance triage, reporting to you monthly.',
-    },
-  ];
-
-  const faqs = [
-    {
-      q: 'Is this subletting legal?',
-      a: 'We only operate where the lease and strata by-laws allow it. We disclose our use up-front and can work under either (a) a head-lease with written consent to sublet/short-stay or (b) a property management agreement.',
-    },
-    {
-      q: 'How do you protect the property?',
-      a: 'ID verification, deposit where appropriate, noise & party monitoring, professional cleaning/inspection, and rapid response. We maintain a guest blacklist across platforms.',
-    },
-    {
-      q: 'Who pays for utilities and wear-and-tear?',
-      a: 'Typically we cover utilities and minor consumables during the term. Any custom arrangement can be written into the agreement.',
-    },
-    {
-      q: 'Do I get paid if occupancy is low?',
-      a: "Under a 'Guaranteed Rent' head-lease, you’re paid a fixed amount regardless of occupancy. Under a management agreement, you receive a share of revenue minus operating costs—your choice.",
-    },
-  ];
+  useEffect(() => {
+    if (ref.current) return;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          ref.current = true;
+          const start = performance.now();
+          const tick = (t) => {
+            const p = Math.min(1, (t - start) / duration);
+            setVal(Math.round(p * to));
+            if (p < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+        }
+      },
+      { threshold: 0.4 }
+    );
+    const node =
+      document.getElementById(`cnt-${prefix}-${suffix}-${to}`) || null;
+    if (node) obs.observe(node);
+    return () => obs.disconnect();
+  }, [to, prefix, suffix, duration]);
 
   return (
-    <div className="site">
-      {/* HERO */}
-      <section className="hero ownerHero">
-        <img
-          src="/aussiehouse1.jpeg"
-          alt="Home exterior"
-          className="hero__bg"
-        />
-        <div className="hero__overlay" />
-        <div className="hero__content">
-          <h1>Professional short-stay management for your property</h1>
+    <span id={`cnt-${prefix}-${suffix}-${to}`}>
+      {prefix}
+      {val.toLocaleString()}
+      {suffix}
+    </span>
+  );
+}
+
+export default function Home() {
+  useReveal();
+
+  const testimonials = useMemo(
+    () => [
+      {
+        quote:
+          'Flawless from day one. Payouts were exactly as promised and the property is in better condition than when we handed it over.',
+        name: 'Sarah & Daniel',
+        role: 'Owners, Rhodes NSW',
+      },
+      {
+        quote:
+          'They understand strata, caps and compliance. Zero stress and the revenue beat our long-term lease by 28%.',
+        name: 'Michael K.',
+        role: 'Owner, Zetland NSW',
+      },
+      {
+        quote:
+          'Transparent monthly statements and quick comms. Guests are screened and our neighbors are happy.',
+        name: 'Asha P.',
+        role: 'Owner, Pyrmont NSW',
+      },
+    ],
+    []
+  );
+
+  const [tIdx, setTIdx] = useState(0);
+  useEffect(() => {
+    const id = setInterval(
+      () => setTIdx((i) => (i + 1) % testimonials.length),
+      5000
+    );
+    return () => clearInterval(id);
+  }, [testimonials.length]);
+
+  // ROI mini-calculator
+  const [rate, setRate] = useState(240);
+  const [occ, setOcc] = useState(72);
+  const [fee, setFee] = useState(18);
+  const nights = Math.round((occ / 100) * 30);
+  const gross = Math.round(rate * nights);
+  const mgmtOwner = Math.round(gross * ((100 - fee) / 100));
+  const guaranteed = Math.round(gross * 0.7); // conservative guaranteed rent example
+
+  // at the top of Home.jsx
+  const startDate = new Date('2023-10-31'); // baseline date
+  const perDay = 3; // nights per day growth
+  const today = new Date();
+  const daysElapsed = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
+  const nightsManaged = daysElapsed * perDay;
+
+  return (
+    <main className="home section home--warm" aria-labelledby="hero-title">
+      {/* ================ HERO ================= */}
+      <section className="hero" data-reveal>
+        <div className="hero__media">
+          {/* Replace with your real media files */}
+          <video
+            className="hero__video"
+            src="/media/hero.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster="/media/hero.jpg"
+          />
+          <div className="hero__scrim" />
+        </div>
+
+        <div className="container hero__content">
+          <h1 id="hero-title">
+            Professional short-stay{' '}
+            <span className="u-underline">management</span>
+            <br />
+            for your property
+          </h1>
           <p className="lead">
             Guaranteed rent options or performance-based management. We handle
             setup, cleaning, pricing, guests, and reporting—end to end.
           </p>
-          <div className="heroActions">
-            <a href="#contact" className="btn btn--primary">
+
+          <div className="hero__ctas">
+            <a href="/contact" className="btn btn-primary">
               Request a Free Appraisal
             </a>
-            <a href="#how" className="btn btn--ghost">
+            <a href="#how" className="btn btn-ghost">
               See How it Works
             </a>
           </div>
 
-          <div className="trustbar">
-            {badges.map((b, i) => (
-              <div key={i} className="trustItem">
-                <div className="dot"></div>
-                <div>
-                  <div className="trustTitle">{b.label}</div>
-                  <div className="trustDetail">{b.detail}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+          <ul className="hero__trust">
+            <li>
+              <span className="dot" /> ABN-registered
+            </li>
+            <li>
+              <span className="dot" /> STRA-aware
+            </li>
+            <li>
+              <span className="dot" /> No-party policy
+            </li>
+            <li>
+              <span className="dot" /> Insurer-backed cover*
+            </li>
+          </ul>
 
-      {/* VALUE PROPS */}
-      <section id="owners" className="section alt">
-        <div className="container">
-          <h2 className="section-title-2">
-            Why partner with Crownstone Quarters?
-          </h2>
-          <div className="cards3">
-            <article className="vcard">
-              <div className="vicon" />
-              <h3>Guaranteed Rent*</h3>
-              <p>
-                Fixed, on-time payments under a head-lease—no vacancy risk for
-                you.
-              </p>
-            </article>
-            <article className="vcard">
-              <div className="vicon" />
-              <h3>Hotel-Grade Operations</h3>
-              <p>
-                Pro cleaning, linen service, restocking, maintenance triage, and
-                24/7 guest support.
-              </p>
-            </article>
-            <article className="vcard">
-              <div className="vicon" />
-              <h3>Compliance-First</h3>
-              <p>
-                Up-front disclosure, strata awareness, and calendar planning
-                around local caps.
-              </p>
-            </article>
+          <div className="hero__stats">
+            <div className="stat">
+              <strong>
+                <Counter to={96} suffix="%" />
+              </strong>
+              <span>4.8–5★ stays</span>
+            </div>
+            <div className="stat">
+              <strong>
+                <Counter to={nightsManaged} />
+              </strong>
+              <span>Nights managed</span>
+            </div>
+            <div className="stat">
+              <strong>
+                <Counter to={15} suffix="%" />
+              </strong>
+              <span>Above average long-term rent in area*</span>
+            </div>
+            <div className="stat">
+              <strong>
+                <Counter to={0} />
+              </strong>
+              <span>Vacancy risk with GR</span>
+            </div>
           </div>
-          <p className="muted-dark smallNote">
-            *Guaranteed rent is subject to property inspection, agreement terms,
-            and local regulations.
+          <p className="tiny">
+            *Subject to property, seasonality, and policy terms.
           </p>
         </div>
+        <a className="hero__scroll" href="#why" aria-label="Scroll to content">
+          ▼
+        </a>
       </section>
 
-      {/* HOW IT WORKS */}
-      <section id="how" className="section alt-2">
-        <div className="container">
-          <h2 className="section-title-2">How it works</h2>
-          <div className="steps">
-            {steps.map((s, i) => (
-              <div key={i} className="step">
-                <div>
-                  <h4>{s.title}</h4>
-                  <p>{s.body}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* ================ WHY / VALUE ================= */}
+      <section id="why" className="value container" data-reveal>
+        <header className="section-hdr">
+          <h2>Why partner with Crownstone Quarters?</h2>
+          <p className="muted">
+            We pair **hotel-grade operations** with **owner-first reporting**
+            and transparent payouts.
+          </p>
+        </header>
 
-      {/* COMPLIANCE */}
-      <section id="compliance" className="section alt">
-        <div className="container">
-          <h2 className="section-title-2">Compliance & Assurance</h2>
-          <div className="assurance">
-            <div className="assuranceItem">
-              <h4>Transparent Use</h4>
-              <p>
-                We disclose intended short-stay use to owners/agents and obtain
-                written consent where required.
-              </p>
-            </div>
-            <div className="assuranceItem">
-              <h4>Strata & Council</h4>
-              <p>
-                We respect strata by-laws and local rules. NSW non-hosted lets
-                are capped at 180 nights in greater Sydney—our calendars adapt,
-                or we pivot to mid-term stays.
-              </p>
-            </div>
-            <div className="assuranceItem">
-              <h4>Guest Screening</h4>
-              <p>
-                Verification, watch-lists, noise policies, and clear house
-                rules. We operate a no-party stance.
-              </p>
-            </div>
-            <div className="assuranceItem">
-              <h4>Protection</h4>
-              <p>
-                Damage protection and bond options available; routine
-                inspections after turnovers.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section className="section alt-2">
-        <div className="container">
-          <h2 className="section-title-2">FAQs</h2>
-          <div className="faq">
-            {faqs.map((f, i) => (
-              <details key={i} className="faqRow">
-                <summary>{f.q}</summary>
-                <p>{f.a}</p>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CONTACT */}
-      <section id="contact" className="section contact">
-        <div className="container contactGrid">
-          {/* LEFT: form card */}
-          <div className="contactPanel">
-            <h2 className="section-title">Request a free appraisal</h2>
-            <p className="muted">
-              Send through your property address and ideal start date. We’ll
-              reply with projected nightly rates, seasonality, and the best
-              agreement type for you.
-            </p>
-
-            <form
-              className="contactForm"
-              onSubmit={handleSubmit}
-              action="https://formspree.io/f/meolzrga"
-              method="POST"
-            >
-              <div className="row">
-                <input
-                  name="name"
-                  placeholder="Full name"
-                  value={form.name}
-                  onChange={handleChange}
-                  required
-                />
-                <input
-                  name="phone"
-                  placeholder="Phone"
-                  value={form.phone}
-                  onChange={handleChange}
-                />
-              </div>
-              <input
-                name="email"
-                placeholder="Email"
-                type="email"
-                value={form.email}
-                onChange={handleChange}
-                required
-              />
-              <textarea
-                name="message"
-                placeholder="Property address + notes"
-                rows="4"
-                value={form.message}
-                onChange={handleChange}
-                required
-              />
-              <button className="btn btn--primary" type="submit">
-                Send
-              </button>
-            </form>
-
-            <div className="contactAlt">
-              Or email us:{' '}
-              <a href="mailto:properties@crownstonequarters.com">
-                properties@crownstonequarters.com
-              </a>
-            </div>
-          </div>
-
-          {/* RIGHT: about card */}
-          <aside className="contactCard">
-            <div className="miniTitle">About Crownstone Quarters</div>
-            <p>
-              Sydney-based short-stay operator focused on clean, reliable, and
-              compliant hosting. We treat your property like a professional
-              asset, not a side-hustle.
-            </p>
-            <ul className="ticklist">
-              <li>Owner-first agreements</li>
-              <li>Detailed monthly statements</li>
-              <li>On-call guest support</li>
-              <li>Preferred contractor network</li>
-            </ul>
-            <div className="idBlock">
+        <div className="value__grid">
+          {[
+            {
+              t: 'Guaranteed Rent',
+              d: 'Fixed, on-time payments under a head-lease—no vacancy risk for you.',
+            },
+            {
+              t: 'Hotel-Grade Operations',
+              d: 'Pro cleaning, restocking, maintenance triage, and 24/7 guest support.',
+            },
+            {
+              t: 'Compliance-First',
+              d: 'Up-front disclosure, strata awareness, and calendar planning around local caps.',
+            },
+            {
+              t: 'Damage Protection',
+              d: 'Security deposits, guest screening, and insurer-backed cover.',
+            },
+          ].map((c) => (
+            <article key={c.t} className="card card--hover">
+              <div className="card__icon" aria-hidden />
               <div>
-                Insurer: <strong>GIO Renters STR Insurance</strong>
+                <h3>{c.t}</h3>
+                <p className="muted">{c.d}</p>
               </div>
-            </div>
-          </aside>
+            </article>
+          ))}
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="footer">
-        <div className="container footerFlex">
-          <span>© {currentYear} Crownstone Quarters</span>
-          <div className="footerLinks">
-            <a href="#compliance">Compliance</a>
+      {/* ================ HOW IT WORKS (TIMELINE) ================= */}
+      <section id="how" className="how container" data-reveal>
+        <header className="section-hdr">
+          <h2>How it works</h2>
+          <p className="muted">
+            A simple, owner-first process designed for steady results.
+          </p>
+        </header>
+
+        <ol className="timeline">
+          {[
+            {
+              t: 'Property Walkthrough',
+              d: 'We assess earning potential, strata/LEP rules, and fit-out needs.',
+            },
+            {
+              t: 'Simple Agreement',
+              d: 'Choose Guaranteed Rent (head-lease) or Management—clear inclusions.',
+            },
+            {
+              t: 'Setup & Styling',
+              d: 'We furnish, photograph, and craft listings. Pricing & screening from day one.',
+            },
+            {
+              t: 'Listing & Launch',
+              d: 'Right channels, seasonal pricing calibration, conversion tuning.',
+            },
+            {
+              t: 'Fully Managed',
+              d: 'Cleaning, linen, check-ins, maintenance triage, 24/7 guest support.',
+            },
+            {
+              t: 'Reporting & Payouts',
+              d: 'Clear monthly statements and predictable payouts.',
+            },
+          ].map((s, i) => (
+            <li key={s.t} className="timeline__item">
+              <div className="timeline__dot" aria-hidden>
+                {i + 1}
+              </div>
+              <div className="timeline__card">
+                <h3>{s.t}</h3>
+                <p className="muted">{s.d}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      {/* ================ ROI MINI CALCULATOR ================= */}
+      <section className="calc container" data-reveal aria-labelledby="calc-h">
+        <header className="section-hdr">
+          <h2 id="calc-h">Estimate your monthly payout</h2>
+          <p className="muted">
+            Quick, directional numbers—final figures depend on property,
+            seasonality and local caps.
+          </p>
+        </header>
+
+        <div className="calc__grid">
+          <div className="calc__inputs">
+            <div className="field">
+              <label>Avg nightly rate (A$)</label>
+              <input
+                type="range"
+                min="120"
+                max="520"
+                step="10"
+                value={rate}
+                onChange={(e) => setRate(+e.target.value)}
+              />
+              <div className="field__val">${rate}</div>
+            </div>
+            <div className="field">
+              <label>Occupancy (%)</label>
+              <input
+                type="range"
+                min="40"
+                max="95"
+                step="1"
+                value={occ}
+                onChange={(e) => setOcc(+e.target.value)}
+              />
+              <div className="field__val">{occ}%</div>
+            </div>
+            <div className="field">
+              <label>Management fee (%)</label>
+              <input
+                type="range"
+                min="12"
+                max="25"
+                step="1"
+                value={fee}
+                onChange={(e) => setFee(+e.target.value)}
+              />
+              <div className="field__val">{fee}%</div>
+            </div>
+          </div>
+
+          <div className="calc__cards">
+            <article className="kpi">
+              <h4>Nights / month</h4>
+              <div className="kpi__num">{nights}</div>
+            </article>
+            <article className="kpi">
+              <h4>Gross revenue</h4>
+              <div className="kpi__num">${gross.toLocaleString()}</div>
+            </article>
+            <article className="kpi">
+              <h4>Your payout (Management)</h4>
+              <div className="kpi__num">${mgmtOwner.toLocaleString()}</div>
+              <p className="tiny muted">after a {fee}% fee</p>
+            </article>
+            <article className="kpi kpi--accent">
+              <h4>Owner (Guaranteed Rent)</h4>
+              <div className="kpi__num">${guaranteed.toLocaleString()}</div>
+              <p className="tiny muted">no vacancy risk</p>
+            </article>
           </div>
         </div>
-      </footer>
-    </div>
+        <div className="calc__cta">
+          <a className="btn btn-primary" href="/contact">
+            Get a tailored appraisal
+          </a>
+        </div>
+      </section>
+
+      {/* ================ FAQ ================= */}
+      <section className="faq container" data-reveal>
+        <header className="section-hdr">
+          <h2>FAQs</h2>
+        </header>
+        <div className="faq__list">
+          {[
+            {
+              q: 'Is this subletting legal?',
+              a: 'We disclose intended short-stay use, respect strata by-laws and NSW 180-night caps for non-hosted stays, and obtain written consent where required.',
+            },
+            {
+              q: 'How do you protect the property?',
+              a: 'Strict guest verification, security deposits, noise policies, routine inspections, and a no-party stance backed by monitoring.',
+            },
+            {
+              q: 'Who pays utilities and wear-and-tear?',
+              a: 'Utilities are covered per agreement. We budget for consumables, cleaning and minor maintenance triage.',
+            },
+            {
+              q: 'Do I get paid if occupancy is low?',
+              a: 'With Guaranteed Rent, yes—your payout is fixed for the term. With Management, payouts vary with performance.',
+            },
+          ].map((f, i) => (
+            <details key={i} className="faq__item">
+              <summary>{f.q}</summary>
+              <p className="muted">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      {/* Sticky bottom CTA */}
+      <a href="/contact" className="stickyCTA" aria-label="Get an appraisal">
+        Get an Appraisal ↗
+      </a>
+    </main>
   );
 }
