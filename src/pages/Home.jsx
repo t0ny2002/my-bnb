@@ -71,63 +71,8 @@ export default function Home() {
     },
   ];
 
-  const comingSoon = [
-    {
-      id: 1,
-      title: 'Modern 1BR • Parramatta',
-      tag: 'Coming Soon',
-      image: '/aussiehouse1.jpg',
-    },
-    {
-      id: 2,
-      title: 'Garden Studio • Newtown',
-      tag: 'Under Review',
-      image: '/aussiehouse1.jpg',
-    },
-    {
-      id: 3,
-      title: 'Harbour View • Kirribilli',
-      tag: 'Owner Onboarded',
-      image: '/aussiehouse1.jpg',
-    },
-  ];
   return (
     <div className="site">
-      {/* NAV */}
-      <header className="nav">
-        <div className="nav__left">
-          <a href="#top" className="brand-link">
-            <img src="/logo-mark.png" alt="Logo" className="logoMark" />
-            <span className="brand">Crownstone Quarters</span>
-          </a>
-        </div>
-        <nav className="nav__center">
-          <a href="#owners" className="nav__link">
-            For Owners & Agents
-          </a>
-          <a href="#how" className="nav__link">
-            How it Works
-          </a>
-          <a href="#compliance" className="nav__link">
-            Compliance
-          </a>
-          <a href="#contact" className="nav__link">
-            Contact
-          </a>
-        </nav>
-        <div className="nav__right">
-          <a
-            className="btn btn--ghost small"
-            href="mailto:properties@crownstonequarters.com"
-          >
-            properties@crownstonequarters.com
-          </a>
-          <a className="btn small" href="#contact">
-            Get an Appraisal
-          </a>
-        </div>
-      </header>
-
       {/* HERO */}
       <section className="hero ownerHero">
         <img
