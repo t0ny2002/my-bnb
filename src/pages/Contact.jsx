@@ -41,30 +41,44 @@ export default function Contact() {
     setTouched({ name: true, email: true, phone: true, message: true });
 
     if (form.company) return; // honeypot
-
     if (hasErrors) {
       setStatus({ state: 'error', msg: 'Please fix the highlighted fields.' });
       return;
     }
 
-    // TODO: Wire to your backend, Formspree, or Resend
-    // Example fake delay:
     setStatus({ state: 'loading', msg: 'Sending...' });
-    await new Promise((r) => setTimeout(r, 900));
 
-    setStatus({
-      state: 'success',
-      msg: 'Thanks! We’ll be in touch shortly.',
-    });
-    setForm({
-      name: '',
-      email: '',
-      phone: '',
-      inquiry: 'Appraisal',
-      message: '',
-      company: '',
-    });
-    setTouched({});
+    try {
+      const res = await fetch('https://formspree.io/f/meolzrga', {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: new FormData(e.currentTarget), // send all fields
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data?.errors?.[0]?.message || `Error ${res.status}`);
+      }
+
+      setStatus({
+        state: 'success',
+        msg: 'Thanks! We’ll be in touch shortly.',
+      });
+      setForm({
+        name: '',
+        email: '',
+        phone: '',
+        inquiry: 'Appraisal',
+        message: '',
+        company: '',
+      });
+      setTouched({});
+    } catch (err) {
+      setStatus({
+        state: 'error',
+        msg: err.message || 'Something went wrong.',
+      });
+    }
   };
 
   return (
@@ -134,8 +148,10 @@ export default function Contact() {
         <section className="contact__form">
           <form
             noValidate
-            onSubmit={handleSubmit}
             aria-describedby="form-status"
+            action="https://formspree.io/f/meolzrga"
+            method="POST"
+            onSubmit={handleSubmit}
           >
             {/* Honeypot */}
             <input

@@ -93,23 +93,27 @@ export default function About() {
           whileHover={{ scale: 1.05 }}
           transition={{ type: 'spring', stiffness: 200 }}
         >
-          <h3>How We Operate</h3>
+          <h3>How Do We Protect Your Property</h3>
           <ul>
             <li>
-              <strong>Compliance-first:</strong> strata & council awareness,
-              upfront disclosure.
+              <strong>2-Night Minimum Stays:</strong> Prevents quick party-style
+              bookings and encourages genuine travelers.
             </li>
             <li>
-              <strong>Smart calendars:</strong> planning around local caps to
-              protect yield.
+              <strong>Noise Monitoring:</strong> Smart decibel meters alert us
+              to disturbances early so we can act fast.
             </li>
             <li>
-              <strong>No-party policy:</strong> strict verification &
-              monitoring.
+              <strong>Entry Cameras:</strong> Exterior cameras track guest
+              numbers and prevent overcrowding, never inside.
             </li>
             <li>
-              <strong>Owner-first:</strong> transparent comms and predictable
-              payouts.
+              <strong>Guest Screening:</strong> Every booking is ID-verified and
+              cross-checked through trusted platforms.
+            </li>
+            <li>
+              <strong>Insurance & Compliance:</strong> Full coverage plus
+              council and strata-friendly practices.
             </li>
           </ul>
         </motion.div>
@@ -149,7 +153,7 @@ export default function About() {
           Our Team
         </h2>
         <p className="teamSimple__lead">
-          Accommodation operations run by our crew.
+          Accommodation operations are all run by our crew:
         </p>
 
         <motion.div
