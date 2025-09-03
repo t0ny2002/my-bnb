@@ -104,10 +104,6 @@ export default function About() {
               to disturbances early so we can act fast.
             </li>
             <li>
-              <strong>Entry Cameras:</strong> Exterior cameras track guest
-              numbers and prevent overcrowding, never inside.
-            </li>
-            <li>
               <strong>Guest Screening:</strong> Every booking is ID-verified and
               cross-checked through trusted platforms.
             </li>
