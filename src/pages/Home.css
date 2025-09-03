@@ -196,3 +196,90 @@
     outline-offset: 2px;
   }
   
+  .faq__item summary {
+    cursor: pointer;
+    padding: 1rem;
+    border-radius: 10px;
+    transition: background 0.3s ease;
+  }
+  .faq__item[open] summary {
+    background: var(--panel-hi);
+  }
+  
+  .faq__item p {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.3s ease;
+  }
+  
+  .faq__item[open] p {
+    max-height: 180px; /* adjust for your longest answer */
+    opacity: 1;
+  }
+
+  .faq__item summary {
+    position: relative;
+    list-style: none;
+  }
+  
+  .faq__item summary::after {
+    content: "▶";
+    position: absolute;
+    right: 0;
+    transition: transform 0.3s ease;
+  }
+  
+  .faq__item[open] summary::after {
+    transform: rotate(90deg);
+  }
+
+/* Make details behave like a card */
+.faq__item {
+    border-radius: 12px;
+    background: var(--panel);
+    margin-bottom: 1rem;
+    transition: transform 0.25s ease, box-shadow 0.3s ease, background 0.3s ease;
+    overflow: hidden; /* keeps smooth edges */
+  }
+  
+  /* Entire card lifts on hover */
+  .faq__item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+    background: var(--panel-hi);
+  }
+  
+  /* Style the summary inside */
+  .faq__item summary {
+    cursor: pointer;
+    padding: 1rem 1.5rem;
+    font-weight: 600;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* Rotate arrow when opened */
+  .faq__item summary::after {
+    content: "▶";
+    transition: transform 0.3s ease;
+  }
+  .faq__item[open] summary::after {
+    transform: rotate(90deg);
+  }
+  
+  /* Animate answer text */
+  .faq__item p {
+    padding: 0 1.5rem 1rem;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.3s ease;
+  }
+  .faq__item[open] p {
+    max-height: 300px;
+    opacity: 1;
+  }
+  
