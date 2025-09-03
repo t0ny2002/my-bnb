@@ -152,9 +152,6 @@ export default function Home() {
 
           <ul className="hero__trust">
             <li>
-              <span className="dot" /> ABN-registered
-            </li>
-            <li>
               <span className="dot" /> STRA-aware
             </li>
             <li>
