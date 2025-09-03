@@ -306,7 +306,7 @@ export default function Home() {
               <input
                 type="range"
                 min="120"
-                max="520"
+                max="700"
                 step="10"
                 value={rate}
                 onChange={(e) => setRate(+e.target.value)}
