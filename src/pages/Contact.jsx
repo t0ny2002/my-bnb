@@ -82,10 +82,10 @@ export default function Contact() {
   };
 
   return (
-    <main className="section contact" aria-labelledby="contact-title">
+    <main className="section contact data-load" aria-labelledby="contact-title">
       <div className="container contact__wrap">
         {/* Left: Info */}
-        <section className="contact__info">
+        <section className="contact__info data-load">
           <header className="contact__header">
             <h1 id="contact-title" className="section-title-2">
               Contact
@@ -145,7 +145,7 @@ export default function Contact() {
         </section>
 
         {/* Right: Form */}
-        <section className="contact__form">
+        <section className="contact__form data-load">
           <form
             noValidate
             aria-describedby="form-status"
