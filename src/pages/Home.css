@@ -465,3 +465,88 @@
 .home section:last-of-type .section__scroll{ display:none; }
 
 /* enable snapping only on the Home page */
+
+/* Timeline base */
+.timeline {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 16px;
+  }
+  
+  .timeline__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  /* Number dot */
+  .timeline__dot {
+    flex: 0 0 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    font-weight: 700;
+    color: var(--ink, #eef2f7);
+    background: var(--panel-hi, #1c2026);
+    border: 1px solid var(--line, #2b3139);
+    transition: transform .25s ease, background .25s ease, color .25s ease, border-color .25s ease;
+  }
+  
+  /* Card */
+  .timeline__card {
+    flex: 1;
+    padding: 20px 24px;
+    border-radius: 12px;
+    background: var(--panel, #171a1f);
+    border: 1px solid var(--line, #2b3139);
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease;
+    will-change: transform, box-shadow;
+    position: relative;
+    isolation: isolate;
+  }
+  
+  .timeline__card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background: radial-gradient(600px 80px at 50% 0%, rgba(255,70,105,.12), transparent 60%);
+    opacity: 0;
+    transition: opacity .25s ease;
+    z-index: 0;
+  }
+  
+  /* Hover effect: lift, glow, accent border */
+  .timeline__item:hover .timeline__card {
+    transform: translateY(-2px);
+    border-color: var(--accent, #ff4669);
+    background: linear-gradient(180deg, var(--panel-hi, #1c2026) 0%, var(--panel, #171a1f) 100%);
+    box-shadow: 0 12px 30px rgba(0,0,0,.35);
+  }
+  .timeline__item:hover .timeline__card::after {
+    opacity: 1;
+  }
+  
+  /* Hover effect: dot pops */
+  .timeline__item:hover .timeline__dot {
+    transform: scale(1.06);
+    background: var(--accent, #ff4669);
+    color: #fff;
+    border-color: transparent;
+  }
+  
+  /* Headings & text */
+  .timeline__card h3 {
+    margin: 0 0 6px;
+    font-size: 1.1rem;
+    line-height: 1.2;
+    color: var(--ink, #eef2f7);
+  }
+  .timeline__card p {
+    margin: 0;
+    color: var(--muted, #c5cbd6);
+  }
