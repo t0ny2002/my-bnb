@@ -118,8 +118,8 @@ export default function Contact() {
               </div>
               <div className="card__body">
                 <h3>Phone</h3>
-                <a href="tel:+61431851428" className="link">
-                  +61 431 851 428
+                <a href="tel:+61449537675" className="link">
+                  0449 537 675
                 </a>
                 <p className="muted">Mon–Fri, 9am–6pm AEST</p>
               </div>
