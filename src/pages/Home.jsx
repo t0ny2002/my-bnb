@@ -60,6 +60,10 @@ function Counter({ to = 100, prefix = '', suffix = '', duration = 1200 }) {
 }
 
 export default function Home() {
+  useEffect(() => {
+    document.body.classList.add('home-snap');
+    return () => document.body.classList.remove('home-snap');
+  }, []);
   useReveal();
 
   const testimonials = useMemo(
@@ -247,6 +251,9 @@ export default function Home() {
             </article>
           ))}
         </div>
+        <a className="section__scroll" href="#how" aria-label="Next section">
+          ▾
+        </a>
       </section>
 
       {/* ================ HOW IT WORKS (TIMELINE) ================= */}
@@ -296,10 +303,18 @@ export default function Home() {
             </li>
           ))}
         </ol>
+        <a className="section__scroll" href="#calc" aria-label="Next section">
+          ▾
+        </a>
       </section>
 
       {/* ================ ROI MINI CALCULATOR ================= */}
-      <section className="calc container" data-reveal aria-labelledby="calc-h">
+      <section
+        id="calc"
+        className="calc container"
+        data-reveal
+        aria-labelledby="calc-h"
+      >
         <header className="section-hdr">
           <h2 id="calc-h">Estimate your monthly payout</h2>
           <p className="muted">
@@ -374,10 +389,13 @@ export default function Home() {
             Get a tailored appraisal
           </a>
         </div>
+        <a className="section__scroll" href="#faq" aria-label="Next section">
+          ▾
+        </a>
       </section>
 
       {/* ================ FAQ ================= */}
-      <section className="faq container" data-reveal>
+      <section id="faq" className="faq container" data-reveal>
         <header className="section-hdr">
           <h2>FAQs</h2>
         </header>

@@ -342,3 +342,139 @@
     .value .card__icon { inline-size: 56px; block-size: 56px; }
     .value .card__icon img { inline-size: 34px; block-size: 34px; }
   }
+
+  /* ===== Alternating full-bleed bands + roomy spacing ===== */
+
+/* tokens for subtle dark steps */
+:root{
+    --shade-900: #0c0f13;
+    --shade-875: #10141a;
+    --shade-850: #12161d;
+    --shade-825: #151a22;
+    --band-line: #232831;
+  }
+  
+  /* Make these sections generate a full-width background */
+  .value, .how, .calc, .faq {
+    position: relative;
+    isolation: isolate;                 /* keep bg behind content */
+    padding-block: clamp(72px, 8vw, 128px);
+  }
+  
+  /* full-bleed bg trick while content stays container-width */
+  .value::before,
+  .how::before,
+  .calc::before,
+  .faq::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    left:50%;
+    width:100vw;                         /* extend to viewport edges */
+    transform:translateX(-50%);
+    z-index:-1;
+    background: var(--band-bg, var(--shade-875));
+    box-shadow: inset 0 1px 0 var(--band-line), inset 0 -1px 0 var(--band-line);
+  }
+  
+  /* Alternate the shades (hero remains untouched) */
+  .value{ --band-bg: var(--shade-850); }
+  .how  { --band-bg: var(--shade-900); }
+  .calc { --band-bg: var(--shade-850); }
+  .faq  { --band-bg: var(--shade-900); }
+  
+  /* Optional: a faint vignette to add depth (remove if you prefer flat) */
+  .value::before,
+  .how::before,
+  .calc::before,
+  .faq::before{
+    background:
+      radial-gradient(1200px 600px at 15% -10%, rgba(255,70,105,.05), transparent 60%),
+      radial-gradient(900px 500px at 85% 120%, rgba(255,70,105,.035), transparent 60%),
+      var(--band-bg, var(--shade-875));
+  }
+  
+  /* Section header breathing room */
+  .section-hdr{
+    margin-bottom: clamp(28px, 4.5vw, 56px);
+  }
+  
+  /* Value cards: align + generous internal padding so they read well on darker bands */
+  .value .card{
+    padding: clamp(22px, 3vw, 32px);
+    border-radius: 20px;
+    border: 1px solid color-mix(in oklab, var(--band-line), #fff 10%);
+    background: #161b22;                 /* base dark */
+    box-shadow: 0 12px 26px rgba(0,0,0,.18);
+  }
+  
+  /* Alternate card backgrounds very subtly for extra rhythm */
+  .value .card:nth-child(odd){  background:#151a21; }
+  .value .card:nth-child(even){ background:#12161d; }
+  
+  /* Icon chip (white square) stays readable on dark bands */
+  .value .card__icon{
+    inline-size: 64px; block-size: 64px;
+    border-radius: 14px;
+    background:#fff !important;
+    border:1px solid #e6e9ef;
+    box-shadow:0 3px 10px rgba(0,0,0,.08);
+  }
+  .value .card__icon img{ inline-size:40px; block-size:40px; }
+  
+  /* Timeline & calc cards can also get subtle alternation if you like */
+  .timeline__card{ background:#161b22; border:1px solid color-mix(in oklab, var(--band-line), #fff 10%); }
+  .timeline__item:nth-child(even) .timeline__card{ background:#12161d; }
+  
+  .calc .kpi{ background:#161b22; border:1px solid color-mix(in oklab, var(--band-line), #fff 10%); }
+  .calc .kpi:nth-child(even){ background:#12161d; }
+  
+  /* make each section a positioning context */
+.home section { position: relative; }
+
+/* the little arrow button */
+.section__scroll{
+  position: absolute;
+  left: 50%;
+  bottom: -18px;                 /* hangs across the divider */
+  transform: translateX(-50%);
+  width: 32px; height: 32px;
+  display: grid; place-items: center;
+  border-radius: 999px;
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.18);
+  color: #e6eaf0;
+  text-decoration: none;
+  font-size: 18px;               /* chevron size */
+  line-height: 1;
+  box-shadow: 0 8px 18px rgba(0,0,0,.28);
+  backdrop-filter: blur(6px);
+  z-index: 2;                    /* above section ::before bands */
+  transition: transform .18s ease, background .2s ease, border-color .2s ease;
+}
+.section__scroll:hover{
+  transform: translateX(-50%) translateY(1px);
+  background: rgba(255,255,255,.12);
+  border-color: rgba(255,255,255,.28);
+}
+
+/* give sections a little extra bottom room so the arrow doesn't overlap text */
+.value, .how, .calc, .faq { padding-bottom: calc(clamp(56px, 8vw, 120px) + 18px); }
+
+/* hide on the very last section if you ever add one by default */
+.home section:last-of-type .section__scroll{ display:none; }
+
+/* enable snapping only on the Home page */
+body.home-snap {
+    /* the viewport is the scroll container */
+    scroll-snap-type: y proximity;      /* try 'mandatory' for stronger snap */
+    scroll-behavior: smooth;
+  }
+  
+  /* make each section a snap target */
+  .home > section {
+    scroll-snap-align: start;
+    /* align for fixed navbar height */
+    scroll-margin-top: var(--nav-h, 72px);
+  }
+  
