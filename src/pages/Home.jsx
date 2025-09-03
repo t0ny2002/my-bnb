@@ -23,6 +23,104 @@ function useReveal(selector = '[data-reveal]') {
   }, [selector]);
 }
 
+function useSmartSnap(
+  selector = '.home > section',
+  {
+    proximity = 140,
+    threshold = 160,
+    cooldown = 600,
+    headerVar = '--nav-h',
+  } = {}
+) {
+  useEffect(() => {
+    // skip for motion-sensitive users and touch devices
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.matchMedia('(pointer: coarse)').matches) return;
+
+    const sections = Array.from(document.querySelectorAll(selector));
+    if (!sections.length) return;
+
+    const getOffset = () => {
+      const v = getComputedStyle(document.documentElement).getPropertyValue(
+        headerVar
+      );
+      const n = parseFloat(v);
+      return Number.isFinite(n) ? n : 0;
+    };
+    const tops = () =>
+      sections.map((el) => el.getBoundingClientRect().top + window.scrollY);
+
+    // ✅ pick the active section as the LAST whose top is <= current scroll
+    const activeIndex = () => {
+      const y = window.scrollY + getOffset() + 1; // add header offset
+      const pos = tops();
+      let idx = 0;
+      for (let i = 0; i < pos.length; i++) {
+        if (pos[i] <= y) idx = i;
+        else break;
+      }
+      return idx;
+    };
+
+    const scrollToIndex = (i) => {
+      const target = tops()[i] - getOffset();
+      window.scrollTo({ top: target, behavior: 'smooth' });
+    };
+
+    let accum = 0;
+    let reset;
+    let locked = false;
+
+    const onWheel = (e) => {
+      if (locked) return;
+      const dy = e.deltaY;
+      const dir = Math.sign(dy);
+      if (!dir) return;
+
+      // accumulate a couple of "strong" ticks for intent
+      accum += dy;
+      clearTimeout(reset);
+      reset = setTimeout(() => (accum = 0), 180);
+
+      const idx = activeIndex();
+      const pos = tops();
+      const y = window.scrollY;
+      const off = getOffset();
+
+      const prevIdx = Math.max(0, idx - 1);
+      const nextIdx = Math.min(sections.length - 1, idx + 1);
+
+      // distance to nearest boundaries (in px)
+      const dNext = nextIdx > idx ? pos[nextIdx] - off - y : Infinity;
+      const dPrev = idx > 0 ? y - (pos[prevIdx] - off) : Infinity;
+
+      let targetIdx = null;
+
+      // boundary-based nudge (works both directions)
+      if (dir > 0 && dNext <= proximity) targetIdx = nextIdx;
+      if (dir < 0 && dPrev <= proximity) targetIdx = prevIdx;
+
+      // intent-based nudge if not near boundary
+      if (targetIdx === null && Math.abs(accum) > threshold) {
+        targetIdx = dir > 0 ? nextIdx : prevIdx;
+      }
+
+      if (targetIdx !== null && targetIdx !== idx) {
+        e.preventDefault(); // needs non-passive
+        locked = true;
+        accum = 0;
+        scrollToIndex(targetIdx);
+        setTimeout(() => {
+          locked = false;
+        }, cooldown);
+      }
+    };
+
+    window.addEventListener('wheel', onWheel, { passive: false });
+    return () => window.removeEventListener('wheel', onWheel);
+  }, [selector, proximity, threshold, cooldown, headerVar]);
+}
+
 function Counter({ to = 100, prefix = '', suffix = '', duration = 1200 }) {
   const [val, setVal] = useState(0);
   const ref = useRef(false);
@@ -60,11 +158,12 @@ function Counter({ to = 100, prefix = '', suffix = '', duration = 1200 }) {
 }
 
 export default function Home() {
-  useEffect(() => {
-    document.body.classList.add('home-snap');
-    return () => document.body.classList.remove('home-snap');
-  }, []);
   useReveal();
+  useSmartSnap('.home > section', {
+    proximity: 140,
+    threshold: 160,
+    cooldown: 600,
+  });
 
   const testimonials = useMemo(
     () => [

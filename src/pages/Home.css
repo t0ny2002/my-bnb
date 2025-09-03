@@ -465,16 +465,3 @@
 .home section:last-of-type .section__scroll{ display:none; }
 
 /* enable snapping only on the Home page */
-body.home-snap {
-    /* the viewport is the scroll container */
-    scroll-snap-type: y proximity;      /* try 'mandatory' for stronger snap */
-    scroll-behavior: smooth;
-  }
-  
-  /* make each section a snap target */
-  .home > section {
-    scroll-snap-align: start;
-    /* align for fixed navbar height */
-    scroll-margin-top: var(--nav-h, 72px);
-  }
-  
