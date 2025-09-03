@@ -212,22 +212,34 @@ export default function Home() {
             {
               t: 'Guaranteed Rent',
               d: 'Fixed, on-time payments under a head-lease—no vacancy risk for you.',
+              icon: '/rent.png',
             },
             {
               t: 'Hotel-Grade Operations',
               d: 'Pro cleaning, restocking, maintenance triage, and 24/7 guest support.',
+              icon: '/wipe.png',
             },
             {
               t: 'Compliance-First',
               d: 'Up-front disclosure, strata awareness, and calendar planning around local caps.',
+              icon: '/compliance.png',
             },
             {
               t: 'Damage Protection',
               d: 'Security deposits, guest screening, and insurer-backed cover.',
+              icon: '/insurance-icon.png',
             },
           ].map((c) => (
             <article key={c.t} className="card card--hover">
-              <div className="card__icon" aria-hidden />
+              <div className="card__icon" aria-hidden="true">
+                <img
+                  src={c.icon}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  className={c.invert ? 'icon--white' : undefined}
+                />
+              </div>
               <div>
                 <h3>{c.t}</h3>
                 <p className="muted">{c.d}</p>

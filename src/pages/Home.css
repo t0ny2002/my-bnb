@@ -282,4 +282,60 @@
     max-height: 300px;
     opacity: 1;
   }
+
+  /* Bigger icons in the Value grid */
+.value {
+  --icon-box: 60px;   /* wrapper size */
+  --icon-img: 50px;   /* image size inside */
+}
+
+@media (min-width: 1200px) {
+  .value { --icon-box: 72px; --icon-img: 44px; }
+}
+
+@media (max-width: 640px) {
+  .value { --icon-box: 56px; --icon-img: 34px; } /* still bigger than before on mobile */
+}
+
+/* ensure the card layout uses the new size */
+.value .card {
+  display: grid;
+  grid-template-columns: var(--icon-box) 1fr;
+  gap: 14px;
+  align-items: center;
+}
+
+/* ===== Value icons: white inner chip ===== */
+.value .card__icon {
+    inline-size: 64px;            /* chip size */
+    block-size: 64px;
+    border-radius: 14px;
+    background: #fff !important;  /* <- the white box */
+    border: 1px solid #e6e9ef;
+    box-shadow: 0 3px 10px rgba(0,0,0,.08);
+    display: grid; place-items: center;
+  }
   
+  /* make the icon itself a bit larger */
+  .value .card__icon img,
+  .value .card__icon .ic {
+    inline-size: 40px;
+    block-size: 40px;
+    object-fit: contain;
+    display: block;
+  }
+  
+  /* keep the chip white on hover/active highlight cards */
+  .value .card.card--hover:hover .card__icon {
+    background: #fff;
+    border-color: #dfe3ea;
+  }
+  
+  /* If you previously inverted black PNGs, neutralize it for white chips */
+  .value .card__icon img.icon--white { filter: none !important; }
+  
+  /* optional: responsive tweaks */
+  @media (max-width: 640px){
+    .value .card__icon { inline-size: 56px; block-size: 56px; }
+    .value .card__icon img { inline-size: 34px; block-size: 34px; }
+  }
