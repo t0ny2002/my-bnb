@@ -1,5 +1,6 @@
 // src/pages/HowItWorks.jsx
 import { useMemo, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './HowItWorks.css'; // comment out if you paste styles into App.css
 
 export default function HowItWorks() {
@@ -159,9 +160,9 @@ export default function HowItWorks() {
 
         {/* Bottom CTA */}
         <section className="how__cta" aria-label="Start">
-          <a className="btn btn-primary" href="/contact">
+          <Link className="btn btn-primary" to="/contact">
             Get an Appraisal
-          </a>
+          </Link>
           <p className="smallNote">Fast reply. Zero obligation.</p>
         </section>
       </div>
