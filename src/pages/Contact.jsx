@@ -20,7 +20,7 @@ export default function Contact() {
   const errors = {
     name: form.name.trim() ? '' : 'Please tell us your name.',
     email: emailOk(form.email) ? '' : 'Enter a valid email.',
-    phone: phoneOk(form.phone) ? '' : 'Phone looks off.',
+    phone: phoneOk(form.phone) ? '' : 'Enter a valid phone number.',
     message:
       form.message.trim().length >= 12
         ? ''

@@ -36,8 +36,6 @@
   .stepper { grid-auto-flow: row; }
 }
 
-.stepper__item {}
-
 .stepper__btn {
   width: 100%;
   display: grid;
