@@ -458,3 +458,33 @@ body.nav-open { overflow: hidden; }
   img.logoMark { width: auto !important; }
 }
 
+/* ===== Mobile navbar sizing & spacing ===== */
+@media (max-width: 979px){
+  /* Bigger logo + taller bar using your variable-driven system */
+  :root{
+    --logo-h-m: 34px;                 /* <- tweak size here */
+    --logo-h: var(--logo-h-m);
+    --nav-pad-y: 10px;                /* more vertical breathing room */
+  }
+
+  /* More horizontal padding on the bar */
+  .nav{ padding: 0 20px; }
+
+  /* Keep logo aspect ratio; align in the bar */
+  .logoLink{ display:flex; align-items:center; height: var(--nav-h); }
+  .logoMark{ height: var(--logo-h); width:auto; object-fit:contain; display:block; }
+}
+
+/* ===== Mobile drawer: push first item down under the header ===== */
+@media (max-width: 979px){
+  .mnav__drawer{
+    /* account for notch + header height, then add a little space */
+    padding-top: calc(env(safe-area-inset-top, 0) + var(--nav-h) + 12px);
+  }
+  .mnav__list{ margin-top: 6px; }     /* optional extra cushion */
+}
+
+/* Drawer stays above the header */
+.mnav__scrim{ z-index: 998; }
+.mnav__drawer{ z-index: 999; }
+.nav{ z-index: 997; }
