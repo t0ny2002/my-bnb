@@ -202,8 +202,8 @@ export default function Home() {
         <header className="section-hdr">
           <h2>Why partner with Crownstone Quarters?</h2>
           <p className="muted">
-            We pair **hotel-grade operations** with **owner-first reporting**
-            and transparent payouts.
+            We pair hotel-grade operations with owner-first reporting and
+            transparent payouts.
           </p>
         </header>
 
