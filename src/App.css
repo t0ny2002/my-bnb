@@ -5,9 +5,9 @@
 /* ============================= */
 :root{
   /* colors */
-  --bg:#18191d;   /* was #0b0b0c */
-  --bg-2:#1e2025; /* bump the mids */
-  --bg-3:#272a31; /* bump the darkest */
+  --bg:#18191d;
+  --bg-2:#1e2025;
+  --bg-3:#272a31;
   --card:#121214;
   --card-2:#16171b;
   --border:#25262b;
@@ -18,14 +18,24 @@
   --shadow:0 10px 30px rgba(0,0,0,.35);
   --radius:16px;
 
-  /* layout */
-  --logo-h: 90px;          /* logo image height (tweak me) */
-  --nav-pad-y: 5px;         /* vertical nav padding (tweak me) */
+  /* layout (desktop defaults) */
+  --logo-h-d: 90px;         /* desktop logo height */
+  --logo-h-m: 28px;         /* mobile logo height */
+  --nav-pad-y: 5px;
+
+  /* computed */
+  --logo-h: var(--logo-h-d);
   --nav-h: calc(var(--logo-h) + var(--nav-pad-y) * 2);
 
   /* page */
   --container-max: 1200px;
 }
+
+/* mobile: just switch the variable, everything else follows */
+@media (max-width: 979px){
+  :root{ --logo-h: var(--logo-h-m); }
+}
+
 
 /* ============================= */
 /*           BASE / LAYOUT       */
@@ -78,9 +88,9 @@ img{ display:block; max-width:100%; }
 /* ============================= */
 /*              NAV              */
 /* ============================= */
-header.nav,
-.nav{
-  position:fixed; inset-inline:0; top:0; z-index:50;
+/* NAV */
+header.nav, .nav{
+  position:fixed; inset-inline:0; top:0; z-index:997;
   display:flex; align-items:center; justify-content:space-between;
   padding-block: var(--nav-pad-y);
   padding-inline:70px;
@@ -88,9 +98,15 @@ header.nav,
   background:rgba(11,11,12,.80);
   backdrop-filter: blur(8px);
   border-bottom:1px solid var(--border);
-  /* iOS notch */
   padding-top: calc(var(--nav-pad-y) + env(safe-area-inset-top, 0));
 }
+
+/* logo keeps aspect ratio, height from variable */
+.logoMark{ height: var(--logo-h); width:auto; display:block; object-fit:contain; }
+
+/* overlay layers */
+.mnav__scrim{ z-index: 998; }
+.mnav__drawer{ z-index: 999; }
 .nav__left{ display:flex; align-items:center; gap:12px; }
 /* Smaller CTA button just in the navbar */
 .nav__right {
@@ -265,7 +281,6 @@ header.nav,
 
 @media (max-width:640px){
   .nav{ padding: 10px 12px; gap:8px; }
-  .logoMark{ width:26px; height:26px; } /* if you want the logo to shrink on small phones */
   .brand{ font-size:18px; line-height:1; }
 
   .nav__center{
@@ -323,3 +338,123 @@ header.nav,
 
 /* page-specific tweak */
 .home.section{ padding-top:0 !important; }
+
+/* Example: show your desktop nav only from 980px up */
+@media (max-width: 979px) {
+  .desktop-nav { display: none !important; }
+}
+
+
+/* ========== HAMBURGER (mobile only) ========== */
+.hamburger {
+  --bar: 22px; --thick: 2px;
+  inline-size: 44px; block-size: 44px;
+  display: none; /* hidden on desktop, shown on mobile below */
+  place-items: center;
+  background: transparent; border: 0; cursor: pointer; padding: 0;
+  border-radius: 10px;
+}
+.hamburger:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.hamburger span {
+  display: block; inline-size: var(--bar); block-size: var(--thick);
+  background: var(--ink, #eef2f7); border-radius: 10px;
+  transition: transform .25s ease, opacity .2s ease;
+}
+.hamburger span + span { margin-top: 5px; }
+.hamburger.is-active span:nth-child(1){ transform: translateY(7px) rotate(45deg); }
+.hamburger.is-active span:nth-child(2){ opacity: 0; }
+.hamburger.is-active span:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
+
+/* ========== MOBILE DRAWER/SCRIM ========== */
+.mnav__scrim {
+  position: fixed; inset: 0; z-index: 58;
+  background: rgba(0,0,0,.5);
+  opacity: 0; pointer-events: none; transition: opacity .25s ease;
+}
+.mnav__scrim.is-visible { opacity: 1; pointer-events: auto; }
+
+.mnav__drawer {
+  position: fixed; top: 0; right: 0; z-index: 59;
+  inline-size: min(88vw, 360px); block-size: 100dvh;
+  background: var(--panel, #191d22);
+  border-left: 1px solid var(--line, #2b3139);
+  box-shadow: -20px 0 40px rgba(0,0,0,.4);
+  transform: translateX(100%);
+  transition: transform .28s ease;
+  display: grid; grid-template-rows: 1fr auto;
+  padding: 16px;
+}
+.mnav__drawer.is-open { transform: translateX(0); }
+
+.mnav__list {
+  list-style: none; margin: 0; padding: 12px 4px 0;
+  display: grid; gap: 8px;
+}
+.mnav__link {
+  display: block; padding: 12px 10px; border-radius: 12px;
+  color: var(--ink, #eef2f7); text-decoration: none; font-weight: 700;
+  background: var(--panel, #191d22); border: 1px solid var(--line, #2b3139);
+  transition: transform .18s ease, box-shadow .25s ease, background .25s ease, border-color .25s ease;
+}
+.mnav__link:hover {
+  transform: translateY(-2px);
+  background: var(--panel-hi, #20252b);
+  border-color: color-mix(in oklab, var(--line), var(--accent) 28%);
+  box-shadow: 0 12px 24px rgba(0,0,0,.25);
+}
+.mnav__cta { padding: 10px 6px 14px; border-top: 1px solid var(--line, #2b3139); }
+body.nav-open { overflow: hidden; }
+
+/* ========== RESPONSIVE VISIBILITY ========== */
+/* Desktop layout unchanged above 980px */
+@media (min-width: 980px) {
+  .hamburger, .mnav__drawer, .mnav__scrim { display: none; }
+}
+
+/* Mobile: hide desktop links/cta, show hamburger */
+@media (max-width: 979px) {
+  .nav { display: grid; grid-template-columns: 1fr auto; align-items: center; height: var(--nav-h); padding: 0 16px; }
+  .nav__center, .nav__right { display: none !important; }
+  .hamburger { display: grid; justify-self: end; }
+}
+
+/* drawer layout */
+.mnav__drawer{
+  /* keep your existing props... */
+  display: flex;              /* instead of grid */
+  flex-direction: column;
+}
+
+/* list stacks tightly at the top */
+.mnav__list{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: stretch;
+  padding: 12px 4px 0;
+}
+
+/* CTA stays pinned at the bottom */
+.mnav__cta{ margin-top: auto; }
+
+/* Mobile-only logo sizing/fix */
+@media (max-width: 979px) {
+  .logoLink {
+    display: flex;
+    align-items: center;
+    height: var(--nav-h, 72px);
+  }
+
+  /* keep aspect ratio: set height only, let width auto */
+  .logoMark {
+    height: clamp(22px, 6vw, 28px);
+    width: auto;          /* important: prevents squish */
+    object-fit: contain;
+    display: block;
+    max-width: none;      /* defeats any global img { max-width:100% } */
+  }
+
+  /* hard override if a global rule is still forcing both dims */
+  img.logoMark { width: auto !important; }
+}
+
