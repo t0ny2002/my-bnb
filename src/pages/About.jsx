@@ -51,7 +51,7 @@ export default function About() {
           Edwin stepped in to bring structure to operations—compliance,
           screening and clear reporting—while Eden focused on guest care and
           communications. We learned that with the right systems and a personal
-          touch, hosting becomes predictable for everyone involved.
+          touch, hosting becomes seamless for everyone involved.
         </p>
         <p>
           That’s the approach we carry into every property today: calm
