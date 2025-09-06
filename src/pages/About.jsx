@@ -33,31 +33,63 @@ export default function About() {
     show: { y: 0, opacity: 1 },
   };
 
+  const storyWrap = {
+    hidden: { opacity: 1 },
+    show: {
+      opacity: 1,
+      transition: { staggerChildren: 0.12, delayChildren: 0.1 },
+    },
+  };
+
+  const storyItem = {
+    hidden: { opacity: 0, y: 18 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+    },
+  };
+
   return (
     <section className="about-container">
       {/* ---------- Our Story ---------- */}
-      <section className="our-story" id="story" aria-labelledby="story-heading">
-        <h2 id="story-heading" className="section-title-2 story-heading">
+      <motion.section
+        className="our-story"
+        id="story"
+        aria-labelledby="story-heading"
+        variants={storyWrap}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.3 }}
+      >
+        <motion.h2
+          id="story-heading"
+          className="section-title-2 story-heading"
+          variants={storyItem}
+        >
           Our Story
-        </h2>
-        <p>
+        </motion.h2>
+
+        <motion.p variants={storyItem}>
           Crownstone Quarters began in 2022 when Tony leased out his apartment
           in Zetland while travelling overseas. What started as a simple
           handover quickly revealed the real challenges of short-stay
           hosting—late-night guest messages, back-to-back turnovers, and keeping
           a home in top condition.
-        </p>
-        <p>
+        </motion.p>
+
+        <motion.p variants={storyItem}>
           Edwin stepped in to bring structure to operations—compliance,
           screening and clear reporting—while Eden focused on guest care and
           communications. We learned that with the right systems and a personal
           touch, hosting becomes seamless for everyone involved.
-        </p>
-        <p>
+        </motion.p>
+
+        <motion.p variants={storyItem}>
           That’s the approach we carry into every property today: calm
           operations, clear communication and consistently great stays.
-        </p>
-      </section>
+        </motion.p>
+      </motion.section>
       {/* ---------- /Our Story ---------- */}
       {/* Hero Heading */}
       <motion.h1
