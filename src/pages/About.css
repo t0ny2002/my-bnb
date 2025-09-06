@@ -357,3 +357,62 @@ body {
 }
 
 /* prefers-reduced-motion friendly (Framer handles visibility) */
+
+/* ============ About page — spacing & typography ============ */
+
+.about-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 84px 20px 120px;          /* more breathing room overall */
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  
+  .about-container p,
+  .about-container li {
+    line-height: 1.75;                 /* easier reading */
+    font-size: 1.05rem;
+    color: var(--muted);
+  }
+  
+  /* Titles */
+  .about-title {
+    font-size: clamp(44px, 6vw, 64px);   /* bigger than before */
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin: 96px 0 20px;
+    color: var(--ink);
+  }
+  .section-title-2 {
+    font-size: clamp(28px, 3.2vw, 36px);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    margin: 12px 0 14px;
+    color: var(--ink);
+    position: relative;
+  }
+  
+  .section-title-2::after {            /* underline accent */
+    content: "";
+    display: block;
+    width: 72px;
+    height: 4px;
+    margin-top: 10px;
+    background: var(--accent);
+    border-radius: 999px;
+  }
+  
+  .story-heading {
+    font-size: clamp(60px, 5.5vw, 56px);  /* bigger than the rest */
+  }
+
+  /* Our Story block */
+  .our-story {
+    margin-top: 50px;
+    margin-bottom: 72px;               /* space before “About…” */
+  }
+  
+  .our-story p {
+    max-width: 900px;
+    margin: 10px 0 0 0;
+  }

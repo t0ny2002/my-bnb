@@ -35,6 +35,30 @@ export default function About() {
 
   return (
     <section className="about-container">
+      {/* ---------- Our Story ---------- */}
+      <section className="our-story" id="story" aria-labelledby="story-heading">
+        <h2 id="story-heading" className="section-title-2 story-heading">
+          Our Story
+        </h2>
+        <p>
+          Crownstone Quarters began in 2022 when Tony leased out his apartment
+          in Zetland while travelling overseas. What started as a simple
+          handover quickly revealed the real challenges of short-stay
+          hosting—late-night guest messages, back-to-back turnovers, and keeping
+          a home in top condition.
+        </p>
+        <p>
+          Edwin stepped in to bring structure to operations—compliance,
+          screening and clear reporting—while Eden focused on guest care and
+          communications. We learned that with the right systems and a personal
+          touch, hosting becomes predictable for everyone involved.
+        </p>
+        <p>
+          That’s the approach we carry into every property today: calm
+          operations, clear communication and consistently great stays.
+        </p>
+      </section>
+      {/* ---------- /Our Story ---------- */}
       {/* Hero Heading */}
       <motion.h1
         className="about-title"
@@ -42,7 +66,7 @@ export default function About() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.7 }}
       >
-        About Crownstone Quarters
+        Where We Are Today
       </motion.h1>
 
       {/* Mission */}
@@ -71,8 +95,8 @@ export default function About() {
           <h3>What We Do</h3>
           <ul>
             <li>
-              <strong>Guaranteed Rent (Head-Lease)</strong> — fixed monthly
-              rent, zero vacancy risk.
+              <strong>Guaranteed Rent (Head-Lease)</strong> — fixed weekly rent,
+              zero vacancy risk.
             </li>
             <li>
               <strong>Management Agreement</strong> — performance-based income
