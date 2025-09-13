@@ -92,115 +92,121 @@ export default function About() {
       </motion.section>
       {/* ---------- /Our Story ---------- */}
       {/* Hero Heading */}
-      <motion.h1
-        className="about-title"
-        initial={{ y: -40, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.7 }}
-      >
-        Where We Are Today
-      </motion.h1>
-
-      {/* Mission */}
-      <motion.p
-        className="about-mission"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.4, duration: 0.8 }}
-      >
-        We’re a Sydney-based short-stay operator focused on{' '}
-        <span className="highlight">clean</span>,{' '}
-        <span className="highlight">reliable</span>, and{' '}
-        <span className="highlight">compliance-first</span> hosting. Our mission
-        is simple: treat your property like a professional asset, deliver
-        consistent, predictable returns, and protect your long-term value with
-        transparent reporting and world-class operations.
-      </motion.p>
-
-      {/* Cards Section */}
-      <div className="about-cards">
-        <motion.div
-          className="about-card"
-          whileHover={{ scale: 1.05 }}
-          transition={{ type: 'spring', stiffness: 200 }}
+      <section className="band">
+        <motion.h1
+          className="about-title"
+          initial={{ y: -40, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.7 }}
         >
-          <h3>What We Do</h3>
-          <ul>
-            <li>
-              <strong>Guaranteed Rent (Head-Lease)</strong> — fixed weekly rent,
-              zero vacancy risk.
-            </li>
-            <li>
-              <strong>Management Agreement</strong> — performance-based income
-              with full end-to-end management.
-            </li>
-          </ul>
-          <div className="tags">
-            <span>Setup & Styling</span>
-            <span>Listings & Pricing</span>
-            <span>Guest Screening</span>
-            <span>Hotel-grade Cleaning</span>
-            <span>Monthly Statements</span>
-          </div>
-        </motion.div>
+          Where We Are Today
+        </motion.h1>
 
-        <motion.div
-          className="about-card"
-          whileHover={{ scale: 1.05 }}
-          transition={{ type: 'spring', stiffness: 200 }}
+        {/* Mission */}
+        <motion.p
+          className="about-mission"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.8 }}
         >
-          <h3>How Do We Protect Your Property</h3>
-          <ul>
-            <li>
-              <strong>2-Night Minimum Stays:</strong> Prevents quick party-style
-              bookings and encourages genuine travelers.
-            </li>
-            <li>
-              <strong>Noise Monitoring:</strong> Smart decibel meters alert us
-              to disturbances early so we can act fast.
-            </li>
-            <li>
-              <strong>Guest Screening:</strong> Every booking is ID-verified and
-              cross-checked through trusted platforms.
-            </li>
-            <li>
-              <strong>Insurance & Compliance:</strong> Full coverage plus
-              council and strata-friendly practices.
-            </li>
-          </ul>
-        </motion.div>
-      </div>
+          We’re a Sydney-based short-stay operator focused on{' '}
+          <span className="highlight">clean</span>,{' '}
+          <span className="highlight">reliable</span>, and{' '}
+          <span className="highlight">compliance-first</span> hosting. Our
+          mission is simple: treat your property like a professional asset,
+          deliver consistent, predictable returns, and protect your long-term
+          value with transparent reporting and world-class operations.
+        </motion.p>
 
-      {/* Values Grid */}
-      <div className="values-grid">
-        {[
-          {
-            title: 'Transparency',
-            text: 'Clear reports, itemised statements, and open-book communication.',
-          },
-          {
-            title: 'Consistency',
-            text: 'Standardised operations that deliver repeatable, reliable outcomes.',
-          },
-          {
-            title: 'Protection',
-            text: 'Screened guests, security deposits, and proactive property care.',
-          },
-        ].map((val, idx) => (
+        {/* Cards Section */}
+        <div className="about-cards">
           <motion.div
-            key={idx}
-            className="value-card"
-            whileHover={{ y: -6 }}
-            transition={{ duration: 0.3 }}
+            className="about-card"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: 'spring', stiffness: 200 }}
           >
-            <h4>{val.title}</h4>
-            <p>{val.text}</p>
+            <h3>What We Do</h3>
+            <ul>
+              <li>
+                <strong>Guaranteed Rent (Head-Lease)</strong> — fixed weekly
+                rent, zero vacancy risk.
+              </li>
+              <li>
+                <strong>Management Agreement</strong> — performance-based income
+                with full end-to-end management.
+              </li>
+            </ul>
+            <div className="tags">
+              <span>Setup & Styling</span>
+              <span>Listings & Pricing</span>
+              <span>Guest Screening</span>
+              <span>Hotel-grade Cleaning</span>
+              <span>Monthly Statements</span>
+            </div>
           </motion.div>
-        ))}
-      </div>
+
+          <motion.div
+            className="about-card"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: 'spring', stiffness: 200 }}
+          >
+            <h3>How Do We Protect Your Property</h3>
+            <ul>
+              <li>
+                <strong>2-Night Minimum Stays:</strong> Prevents quick
+                party-style bookings and encourages genuine travelers.
+              </li>
+              <li>
+                <strong>Noise Monitoring:</strong> Smart decibel meters alert us
+                to disturbances early so we can act fast.
+              </li>
+              <li>
+                <strong>Guest Screening:</strong> Every booking is ID-verified
+                and cross-checked through trusted platforms.
+              </li>
+              <li>
+                <strong>Insurance & Compliance:</strong> Full coverage plus
+                council and strata-friendly practices.
+              </li>
+            </ul>
+          </motion.div>
+        </div>
+
+        {/* Values Grid */}
+        <div className="values-grid">
+          {[
+            {
+              title: 'Transparency',
+              text: 'Clear reports, itemised statements, and open-book communication.',
+            },
+            {
+              title: 'Consistency',
+              text: 'Standardised operations that deliver repeatable, reliable outcomes.',
+            },
+            {
+              title: 'Protection',
+              text: 'Screened guests, security deposits, and proactive property care.',
+            },
+          ].map((val, idx) => (
+            <motion.div
+              key={idx}
+              className="value-card"
+              whileHover={{ y: -6 }}
+              transition={{ duration: 0.3 }}
+            >
+              <h4>{val.title}</h4>
+              <p>{val.text}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
 
       {/* ---------- Our Team (simple, drop-in) ---------- */}
-      <section className="teamSimple" id="team" aria-labelledby="team-heading">
+      <section
+        className="teamSimple band"
+        id="team"
+        aria-labelledby="team-heading"
+      >
         <h2 id="team-heading" className="section-title-2">
           Our Team
         </h2>

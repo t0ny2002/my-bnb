@@ -1,0 +1,104 @@
+
+/* ============================================
+   LIGHT THEME (Cream/White) — drop in src/theme-light.css
+   Make sure it's imported AFTER App.css.
+   ============================================ */
+
+/* ---- Tokens (override dark defaults from App.css) ---- */
+:root{
+  /* page creams */
+  --cream-1:#ffe6c8; /* base cream */
+  --cream-2:#FFF3E6; /* slightly deeper */
+  --cream-3:#FFFAF1; /* very light / alt */
+
+  /* map to existing tokens used across the site */
+  --bg: var(--cream-1);
+  --bg-2: var(--cream-2);
+  --bg-3: var(--cream-3);
+  --card: #FFFFFF;     /* card white */
+  --card-2: #FFFFFF;   /* alt card white */
+  --border:#000000;    /* warm divider */
+
+  /* text */
+  --text:#111827;      /* near-black */
+  --muted:#6B7280;
+
+  /* brand */
+  --primary:#FF4669;
+  --primary-600:#E03C5A;
+
+  /* misc */
+  --shadow: 0 8px 24px rgba(17,24,39,0.06);
+  --nav-h: 72px;
+}
+
+/* ---- Global base (force over dark gradient) ---- */
+html, body{
+  background: var(--bg) !important;
+  color: var(--text) !important;
+}
+
+/* ---- NAV (your header has class "nav") ---- */
+header.nav, .nav{
+  background: var(--card) !important;
+  color: var(--text) !important;
+  border-bottom: 1px solid var(--border) !important;
+  backdrop-filter: none !important;
+}
+
+/* ---- Generic sections ---- */
+.section{ background: transparent; color: var(--text); }
+.section.alt{ background: var(--bg-2) !important; }
+.section.alt-2{ background: var(--bg-3) !important; }
+
+/* Home container: ensure a cream canvas instead of dark */
+.home--light{
+  color: var(--text) !important;
+  background: var(--bg) !important;
+}
+
+/* ---- HERO: remove dark scrims/filters ---- */
+.home--light .hero{ background: var(--bg) !important; color: var(--text) !important; }
+.home--light .hero::before{ background: none !important; }
+.home--light .hero__video{ filter: none !important; }
+.home--light .hero__scrim{ background: radial-gradient(1400px 700px at 16% -12%, rgba(255, 255, 255, 0.12), transparent 60%) !important; }
+.home--light .btn-primary{ background: var(--primary) !important; color:#fff !important; border:1px solid var(--primary) !important; }
+.home--light .btn-ghost{ background: transparent !important; border:1px solid var(--border) !important; color: var(--text) !important; }
+.home--light .stat{ background: #FFFFFF !important; border:1px solid var(--border) !important; color: var(--text) !important; box-shadow: var(--shadow); }
+
+/* ---- Alternating cream sections ---- */
+.home--light .value{ background: var(--cream-2) !important; }
+.home--light .how{   background: var(--cream-3) !important; }
+.home--light .calc{  background: var(--cream-2) !important; }
+.home--light .faq{   background: var(--cream-3) !important; }
+.home--light .about{ background: var(--cream-2) !important; }
+
+/* ---- Cards / KPIs on white ---- */
+.card,
+.timeline__card,
+.value .card,
+.kpi{
+  background: var(--card) !important;
+  border:1px solid var(--border) !important;
+  color:var(--text) !important;
+  box-shadow: var(--shadow);
+}
+/* value & calc had hard-coded darks — neutralize */
+.value .card:nth-child(odd),
+.value .card:nth-child(even),
+.calc .kpi:nth-child(even){
+  background: var(--card) !important;
+}
+
+/* ---- FAQ ---- */
+.faq__item{ background: var(--card) !important; border:1px solid var(--border) !important; color: var(--text) !important; }
+.faq__item[open]{ background: #FFFFFF !important; border-color: var(--primary) !important; }
+.faq__item p{ color: var(--muted) !important; }
+
+/* ---- Footer (if present) ---- */
+.site-footer{
+  background: var(--card) !important;
+  border-top: 1px solid var(--border) !important;
+  color: var(--muted) !important;
+}
+.site-footer a{ color: var(--text) !important; }

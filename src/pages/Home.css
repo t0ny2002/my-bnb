@@ -5,13 +5,13 @@
     --panel: #191d22;
     --panel-hi: #20252b;
     --line: #2b3139;
-    --ink: #eef2f7;
+    --ink: #000000;
     --muted: #c5cbd6;
     --accent: #ff4669;
     --ring: rgba(255,70,105,.35);
     color: var(--ink);
     background:
-      radial-gradient(1400px 800px at 12% -10%, rgba(255,70,105,.08), transparent 60%),
+      radial-gradient(1400px 800px at 12% -10%, rgb(255, 255, 255), transparent 60%),
       var(--bg);
   }
   
@@ -41,10 +41,7 @@
     text-align: center;
   }
   .hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.65); /* adjustable darkness */
+    content:none;
   }
   .hero-buttons {
     display: flex;
@@ -54,10 +51,9 @@
   }
   
   .hero__media { position:absolute; inset:0; overflow:hidden; border-bottom: 1px solid var(--line); }
-  .hero__video { width:100%; height:100%; object-fit: cover; filter: saturate(1.05) contrast(1.05) brightness(.78); }
-  .hero__scrim { position:absolute; inset:0; background:
-     linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.55)),
-     radial-gradient(1400px 700px at 16% -12%, rgba(255,70,105,.20), transparent 60%); }
+  .hero__video { filter:none; }
+  .hero__scrim { position:absolute; inset:0; background: radial-gradient(1400px 700px at 16% -12%, rgba(255,70,105,.12), transparent 60%);
+      }
   
   .hero__content { position:relative; z-index:1; }
   .hero h1 { font-size: clamp(36px, 5.6vw, 72px); line-height: 1.05; margin-bottom: 8px; }
@@ -383,15 +379,18 @@
   .calc { --band-bg: var(--shade-850); }
   .faq  { --band-bg: var(--shade-900); }
   
-  /* Optional: a faint vignette to add depth (remove if you prefer flat) */
+  /* TONY EDIT: this gets the background of the sections */
   .value::before,
+  .calc::before {
+    background: #FFF3E6 !important; /* cream-2 */
+    color: #161b22,
+  }
+  
+  /* How + FAQ sections */
   .how::before,
-  .calc::before,
-  .faq::before{
-    background:
-      radial-gradient(1200px 600px at 15% -10%, rgba(255,70,105,.05), transparent 60%),
-      radial-gradient(900px 500px at 85% 120%, rgba(255,70,105,.035), transparent 60%),
-      var(--band-bg, var(--shade-875));
+  .faq::before {
+    background: #FFFAF1 !important; /* cream-3 */
+    color: #161b22,
   }
   
   /* Section header breathing room */
@@ -441,7 +440,7 @@
   width: 32px; height: 32px;
   display: grid; place-items: center;
   border-radius: 999px;
-  background: rgba(255,255,255,.07);
+  background: rgb(230, 230, 230);
   border: 1px solid rgba(255,255,255,.18);
   color: #e6eaf0;
   text-decoration: none;
@@ -490,8 +489,8 @@
     border-radius: 50%;
     font-weight: 700;
     color: var(--ink, #eef2f7);
-    background: var(--panel-hi, #1c2026);
-    border: 1px solid var(--line, #2b3139);
+    background: var(--panel-hi, #000000);
+    border: 1px solid var(--line, #000000);
     transition: transform .25s ease, background .25s ease, color .25s ease, border-color .25s ease;
   }
   
@@ -544,7 +543,7 @@
     margin: 0 0 6px;
     font-size: 1.1rem;
     line-height: 1.2;
-    color: var(--ink, #eef2f7);
+    color: var(--ink, #000000);
   }
   .timeline__card p {
     margin: 0;

@@ -8,8 +8,8 @@ html, body, #root { height: 100%; }
 html, body {
   margin: 0;
   padding: 0;
-  background: #0C0F13;   /* site background */
-  color: #E8EDF3;        /* default text */
+  background: #0f0f0f;   /* cream page background */
+  color: #111827;        /* near-black text */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

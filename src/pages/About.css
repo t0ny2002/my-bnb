@@ -14,24 +14,6 @@
    --chip-bg    #202938
    --chip-brd   #334155
    ========================= */
-
-   :root {
-    --bg: #0C0F13;
-    --panel: #141922;
-    --surface: #1A212C;
-    --border: #2A3340;
-    --shadow: rgba(0,0,0,.45);
-  
-    --text: #E8EDF3;
-    --muted: #AAB7C8;
-  
-    --accent: #FF5A5F;
-    --accent-600: #E24C50;
-    --accent-200: #FFD4D6;
-  
-    --chip-bg: #202938;
-    --chip-brd: #334155;
-  }
   
   .about-container {
     --radius: 18px;
@@ -152,7 +134,7 @@
   .tags span:hover {
     color: var(--text);
     border-color: color-mix(in oklab, var(--chip-brd) 60%, var(--accent) 40%);
-    background: linear-gradient(180deg, #1E2633, #1A2330);
+    background: #ffe6c8;
     transform: translateY(-1px);
   }
   
@@ -205,23 +187,6 @@
   }
 
   /* Make the whole page keep the dark theme */
-body {
-    background: #0C0F13; /* matches your dark theme */
-    color: #E8EDF3;
-  }
-  
-  /* Ensure the section background flows through */
-  .about-container {
-    background: #0C0F13; /* same as body so no white gap */
-    padding-bottom: 6rem; /* so cards have breathing room */
-  }
-  
-  /* Values grid background fix */
-  .values-grid {
-    background: #0C0F13; /* removes that white patch */
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-  }
   /* === Our Team section enhancements (keeps your current aesthetic) === */
 .about .smallLead { color: var(--muted, #c6cbd6); margin: 4px 0 10px; }
 
@@ -327,7 +292,7 @@ body {
 
 .teamSimple__card {
   text-align: center;
-  background: rgba(255,255,255,0.03);
+  background: #ffe6c8;
   border: 1px solid rgba(255,255,255,0.10);
   border-radius: 16px;
   padding: 16px 14px;
@@ -346,12 +311,12 @@ body {
   border: 2px solid rgba(255,255,255,0.15);
   display: block; margin: 4px auto 10px;
 }
-.teamSimple__name { margin: 0 0 4px; font-size: 1.1rem; color: var(--ink, #eef2f7); }
+.teamSimple__name { margin: 0 0 4px; font-size: 1.1rem; color: var(--ink, #000000d4); }
 .teamSimple__role { margin: 0 0 10px; color: var(--muted, #c6cbd6); }
 
 .teamSimple__btn {
   border: 1px solid rgba(255,255,255,0.10);
-  color: var(--ink, #eef2f7);
+  color: var(--ink, #000000c8);
   background: color-mix(in oklab, var(--ink, #eef2f7) 2%, transparent);
   border-radius: 10px; padding: 8px 12px; text-decoration: none; font-weight: 600;
 }
@@ -410,9 +375,79 @@ body {
   .our-story {
     margin-top: 50px;
     margin-bottom: 72px;               /* space before “About…” */
+    background: #ffe6c8;
   }
   
   .our-story p {
     max-width: 900px;
     margin: 10px 0 0 0;
   }
+
+  /* Base container */
+.about-container {
+    background: var(--cream-1);
+    color: var(--text);
+  }
+  
+  /* Bands */
+  .about-container > section.band {
+    position: relative;
+    z-index: 0;
+    padding: 72px 0;              /* adjust to your spacing */
+    background: var(--cream-2);   /* default for the first band after "Our Story" */
+  }
+  
+  /* Alternate shades */
+  .about-container > section.band:nth-of-type(even) { background: var(--cream-3); }
+  .about-container > section.band:nth-of-type(odd)  { background: var(--cream-2); }
+  
+
+  
+  /* Keep cards white */
+  .about-container .about-card,
+  .about-container .value-card,
+  .about-container .teamSimple__card {
+    background: #fff !important;
+    border: 1px solid var(--border) !important;
+    box-shadow: var(--shadow);
+    color: var(--text);
+  }
+
+  /* ===== Full-bleed alternating bands on About ===== */
+.about-container { --band-pad: 72px; }
+
+.about-container > section.band {
+  position: relative;
+  padding: var(--band-pad) 0;
+  background: var(--cream-2);        /* default shade */
+  color: var(--text);
+}
+
+/* Alternate the shade */
+.about-container > section.band:nth-of-type(even) { background: var(--cream-3); }
+.about-container > section.band:nth-of-type(odd)  { background: var(--cream-2); }
+
+/* Full-bleed background that ignores the container’s max-width */
+.about-container > section.band::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 50%;
+  width: 100vw;       /* span the whole viewport */
+  height: 100%;
+  transform: translateX(-50%); /* center the strip */
+  background: inherit;         /* use the band's own background color */
+}
+
+/* Keep cards white on top */
+.about-container .about-card,
+.about-container .value-card,
+.about-container .teamSimple__card {
+  background: #fff;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  color: var(--text);
+}
+
+  

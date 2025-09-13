@@ -215,7 +215,7 @@ export default function Home() {
   const nightsManaged = daysElapsed * perDay;
 
   return (
-    <main className="home section home--warm" aria-labelledby="hero-title">
+    <main className="home section home--light" aria-labelledby="hero-title">
       {/* ================ HERO ================= */}
       <section className="hero" data-reveal>
         <div className="hero__media">

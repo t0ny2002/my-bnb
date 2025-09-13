@@ -1,12 +1,12 @@
 /* Scoped Contact page (warm charcoal theme). Works with your existing .section/.container */
 
 .contact {
-    --bg: #141618;
-    --panel: #1a1d22;
-    --panel-hi: #20242b;
+    --bg: #ffeedb;
+    --panel: #fbeddd;
+    --panel-hi: #ffffff;
     --line: #2a2f38;
-    --text: #eceff3;
-    --muted: #c3c8d2;
+    --text: #000000;
+    --muted: #1a1a1abb;
     --accent: #ff4669;
     --ring: rgba(255,70,105,.35);
     background:
@@ -109,7 +109,7 @@
   
   .err {
     margin-top: 6px;
-    color: #ff9aa8;
+    color: #ff2743;
     font-size: .92rem;
   }
   .hp { position: absolute; left: -200vw; opacity: 0; }

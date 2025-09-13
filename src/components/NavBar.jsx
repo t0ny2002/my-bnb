@@ -60,7 +60,11 @@ export default function Navbar() {
 
         {/* Desktop CTA */}
         <div className="nav__right">
-          <Link className="btn small" to="/contact">
+          <Link
+            class="btn small appraisal-button"
+            className="btn small"
+            to="/contact"
+          >
             Get an Appraisal
           </Link>
         </div>
