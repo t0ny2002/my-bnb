@@ -26,3 +26,13 @@ li::before { content: none; }
 img, svg, video, canvas { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 button, input, select, textarea { font: inherit; }
+
+::selection {
+  background: #f7cd4f;   /* highlight background */
+  color: #000000;        /* text color */
+}
+
+::-moz-selection {
+  background: #f7cd4f;
+  color: #000000;
+}
