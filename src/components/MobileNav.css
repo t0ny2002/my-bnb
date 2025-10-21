@@ -51,7 +51,7 @@
 .mnav__drawer {
   position: fixed; top: 0; right: 0; z-index: 59;
   inline-size: min(88vw, 360px); block-size: 100dvh;
-  background: var(--panel, #191d22);
+  background: #ffffff;
   border-left: 1px solid var(--line, #2b3139);
   box-shadow: -20px 0 40px rgba(0,0,0,.4);
   transform: translateX(100%);
@@ -67,9 +67,14 @@
   display: grid; gap: 8px;
 }
 .mnav__link {
-  display: block; padding: 12px 10px; border-radius: 12px;
-  color: var(--ink); text-decoration: none; font-weight: 700;
-  background: var(--panel); border: 1px solid var(--line);
+  display: block;
+  padding: 12px 10px;
+  border-radius: 12px;
+  color: #000000;
+  text-decoration: none;
+  font-weight: 700;
+  background: #ffffff;
+  border: 1px solid #000000;
   transition: transform .18s ease, box-shadow .25s ease, background .25s ease, border-color .25s ease;
 }
 .mnav__link:hover {
