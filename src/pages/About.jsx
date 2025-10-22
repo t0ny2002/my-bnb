@@ -20,7 +20,7 @@ export default function About() {
       id: 'sam',
       name: 'Eden Lin',
       role: 'Owners & Parternships',
-      img: '/default.jpg',
+      img: '/eden.jpg',
     },
   ];
 
