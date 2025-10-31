@@ -61,7 +61,6 @@ header.nav, .nav{
 .home--light .hero{ background: var(--bg) !important; color: var(--text) !important; }
 .home--light .hero::before{ background: none !important; }
 .home--light .hero__video{ filter: none !important; }
-.home--light .hero__scrim{ background: radial-gradient(1400px 700px at 16% -12%, rgba(255, 255, 255, 0.12), transparent 60%) !important; }
 .home--light .btn-primary{ background: var(--primary) !important; color:#fff !important; border:1px solid var(--primary) !important; }
 .home--light .btn-ghost{ background: transparent !important; border:1px solid var(--border) !important; color: var(--text) !important; }
 .home--light .stat{ background: #FFFFFF !important; border:1px solid var(--border) !important; color: var(--text) !important; box-shadow: var(--shadow); }

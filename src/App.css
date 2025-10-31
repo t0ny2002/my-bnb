@@ -10,7 +10,7 @@
   --bg-3:#272a31;
   --card:#121214;
   --card-2:#16171b;
-  --border:#25262b;
+  --border:#ffffff00;
   --text:#000000;
   --muted:#000000;
   --primary:#ff385c;
@@ -34,6 +34,25 @@
 /* mobile: just switch the variable, everything else follows */
 @media (max-width: 979px){
   :root{ --logo-h: var(--logo-h-m); }
+}
+/* 1) Remove any background-image gradients */
+html, body, #root, main, .hero, .wrap {
+  background-image: none !important;
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+}
+
+/* 2) Hide common overlay pseudos */
+body::before, body::after,
+.hero::before, .hero::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+}
+
+/* 3) Kill fake fades done with inset shadows */
+* {
+  box-shadow: none !important;
 }
 
 
