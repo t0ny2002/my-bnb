@@ -350,9 +350,9 @@ export default function Home() {
             </article>
           ))}
         </div>
-        <a className="section__scroll" href="#how" aria-label="Next section">
+        {/* <a className="section__scroll" href="#how" aria-label="Next section">
           ▾
-        </a>
+        </a> */}
       </section>
 
       {/* ================ HOW IT WORKS (TIMELINE) ================= */}
@@ -402,9 +402,9 @@ export default function Home() {
             </li>
           ))}
         </ol>
-        <a className="section__scroll" href="#calc" aria-label="Next section">
+        {/* <a className="section__scroll" href="#calc" aria-label="Next section">
           ▾
-        </a>
+        </a> */}
       </section>
 
       {/* ================ ROI MINI CALCULATOR ================= */}
@@ -488,9 +488,9 @@ export default function Home() {
             Get a tailored appraisal
           </a>
         </div>
-        <a className="section__scroll" href="#faq" aria-label="Next section">
+        {/* <a className="section__scroll" href="#faq" aria-label="Next section">
           ▾
-        </a>
+        </a> */}
       </section>
 
       {/* ================ FAQ ================= */}
