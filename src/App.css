@@ -376,7 +376,7 @@ header.nav, .nav{
 .hamburger:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .hamburger span {
   display: block; inline-size: var(--bar); block-size: var(--thick);
-  background: var(--ink, #eef2f7); border-radius: 10px;
+  background: var(--ink, #000000); border-radius: 10px;
   transition: transform .25s ease, opacity .2s ease;
 }
 .hamburger span + span { margin-top: 5px; }
