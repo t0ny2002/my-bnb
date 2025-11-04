@@ -1,0 +1,70 @@
+import { motion } from 'framer-motion';
+import './About.css';
+
+export default function Portfolio() {
+  const portfolio = [
+    {
+      id: 'pyrmont',
+      img: '/pyrmont-murray-st.jpg',
+      address: '813/50 Murray St, Pyrmont NSW',
+      alt: '',
+    },
+    {
+      id: 'pyrmont-2',
+      img: '/pyrmont-murray-st-2.jpg',
+      address: '709/50 Murray St, Pyrmont NSW',
+      alt: '',
+    },
+    {
+      id: 'pyrmont-3',
+      img: '/pyrmont-pyrmont-st.jpg',
+      address: '959/243 Pyrmont Street, Pyrmont NSW',
+      alt: '',
+    },
+  ];
+
+  const listAnim = {
+    hidden: { opacity: 1 },
+    show: { opacity: 1, transition: { staggerChildren: 0.08 } },
+  };
+
+  const itemAnim = {
+    hidden: { y: 14, opacity: 0 },
+    show: { y: 0, opacity: 1 },
+  };
+
+  return (
+    <motion.section
+      id="portfolio"
+      className="portfolio band"
+      aria-labelledby="portfolio-heading"
+      variants={listAnim}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.2 }}
+    >
+      <h2 id="portfolio-heading" className="section-title-2">
+        Our Portfolio
+      </h2>
+
+      <motion.div className="portfolio-grid" variants={listAnim}>
+        {portfolio.map((p) => (
+          <motion.figure
+            key={p.id}
+            className="portfolio-card"
+            variants={itemAnim}
+            whileHover={{ y: -4 }}
+          >
+            <img
+              className="portfolio-img"
+              src={p.img}
+              alt={p.alt}
+              loading="lazy"
+            />
+            <figcaption className="portfolio-caption">{p.address}</figcaption>
+          </motion.figure>
+        ))}
+      </motion.div>
+    </motion.section>
+  );
+}

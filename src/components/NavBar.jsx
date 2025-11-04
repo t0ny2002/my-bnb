@@ -6,6 +6,7 @@ import Home from '../pages/Home';
 import About from '../pages/About';
 import HowItWorks from '../pages/HowItWorks';
 import Contact from '../pages/Contact';
+import Portfolio from '../pages/Portfolio';
 
 export default function Navbar() {
   // Mobile drawer state
@@ -52,6 +53,9 @@ export default function Navbar() {
           </NavLink>
           <NavLink to="/how" className="nav__link">
             How it Works
+          </NavLink>
+          <NavLink to="/portfolio" className="nav__link">
+            Our Portfolio
           </NavLink>
           <NavLink to="/contact" className="nav__link">
             Contact
@@ -105,6 +109,11 @@ export default function Navbar() {
             </NavLink>
           </li>
           <li>
+            <NavLink to="/portfolio" className="mnav__link">
+              Our Portfolio
+            </NavLink>
+          </li>
+          <li>
             <NavLink to="/contact" className="mnav__link">
               Contact
             </NavLink>
@@ -123,6 +132,7 @@ export default function Navbar() {
         <Route path="/about" element={<About />} />
         <Route path="/how" element={<HowItWorks />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/portfolio" element={<Portfolio />} />
       </Routes>
     </div>
   );
