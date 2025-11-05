@@ -304,3 +304,27 @@
   .howPage .stepper__item .stepper__btn,
   .howPage .howCard { animation: none !important; }
 }
+
+/* ---------- THEMES ---------- */
+
+.how--warm {
+  --page-bg: #141618;
+  --text:    #eceff3;
+  --muted:   #c3c8d2;
+  --line:    #2a2f38;
+  --accent:  #ff4669;
+  --panel:   #1a1d22;
+  --panel-hi:#20242b;
+  --ring:    rgba(255,70,105,.35);
+}
+
+.how--light {
+  --page-bg: #f7f7f9;
+  --text:    #0f1216;
+  --muted:   #39424d;
+  --line:    #e5e7ee;
+  --accent:  #ff4669;
+  --panel:   #ffffff;
+  --panel-hi:#fcfcfe;
+  --ring:    rgba(255,70,105,.30);
+}

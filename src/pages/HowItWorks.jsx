@@ -70,7 +70,10 @@ export default function HowItWorks() {
   };
 
   return (
-    <main className="section alt howPage" aria-labelledby="how-title">
+    <main
+      className="section alt howPage how--light"
+      aria-labelledby="how-title"
+    >
       <div className="container how">
         <header className="how__header">
           <h1 id="how-title" className="section-title-2">
