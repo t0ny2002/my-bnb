@@ -1,0 +1,511 @@
+/* =========================
+   Crownstone Quarters — Dark Pro Theme
+   Palette (copy into your design doc):
+   --bg         #0C0F13  (charcoal / page)
+   --panel      #141922  (slate / cards)
+   --surface    #1A212C  (hover/raised)
+   --border     #2A3340
+   --shadow     rgba(0,0,0,.45)
+   --text       #E8EDF3   (primary text)
+   --muted      #AAB7C8   (secondary text)
+   --accent     #FF5A5F   (brand coral)
+   --accent-600 #E24C50   (hover/darker)
+   --accent-200 #FFD4D6   (soft tint)
+   --chip-bg    #202938
+   --chip-brd   #334155
+   ========================= */
+  
+   .about-container {
+    --radius: 18px;
+    --pad: 2rem;
+  
+    position: relative;
+    padding: 5rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    color: var(--text);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  }
+  
+  /* Subtle gradient backdrop so the panels “sit” on something */
+  .about-container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(900px 500px at 15% 0%, rgba(255,90,95,.13), transparent 60%),
+      radial-gradient(700px 400px at 85% 10%, rgba(111,130,255,.10), transparent 60%);
+    pointer-events: none;
+    z-index: -1;
+  }
+  
+  .about-title {
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+    text-align: left;
+    color: var(--text);
+    letter-spacing: .2px;
+    position: relative;
+  }
+  
+  .about-title::after {
+    content: "";
+    display: block;
+    height: 4px;
+    width: 92px;
+    margin-top: .9rem;
+    background: linear-gradient(90deg, var(--accent), var(--accent-600));
+    border-radius: 999px;
+    box-shadow: 0 0 0 1px rgba(255,90,95,.15);
+  }
+  
+  .about-mission {
+    max-width: 860px;
+    margin: 0 0 3rem 0;
+    font-size: 1.08rem;
+    line-height: 1.8;
+    color: var(--muted);
+  }
+  
+  .highlight { color: var(--accent); font-weight: 600; }
+  
+  /* ===== Cards Row ===== */
+  .about-cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+    margin-bottom: 3.6rem;
+  }
+  @media (max-width: 900px) {
+    .about-cards { grid-template-columns: 1fr; }
+  }
+  
+  .about-card {
+    background: var(--panel);
+    padding: var(--pad);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    box-shadow: 0 12px 30px var(--shadow);
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease;
+    will-change: transform;
+  }
+  .about-card:hover {
+    transform: translateY(-4px);
+    background: var(--surface);
+    border-color: color-mix(in oklab, var(--border) 70%, var(--accent) 30%);
+    box-shadow: 0 18px 38px var(--shadow);
+  }
+  
+  .about-card h3 {
+    font-size: 1.4rem;
+    margin: 0 0 .9rem 0;
+    color: var(--text);
+  }
+  
+  .about-card ul {
+    margin: 0 0 1.4rem 0;
+    padding-left: 1.1rem;
+    color: var(--text);
+  }
+  .about-card li {
+    margin: .55rem 0;
+    line-height: 1.65;
+    color: var(--text);
+  }
+  .about-card li strong { color: var(--text); }
+  
+  /* ===== Chips ===== */
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .6rem;
+  }
+  .tags span {
+    background: var(--chip-bg);
+    color: var(--muted);
+    font-size: .86rem;
+    padding: .44rem .8rem;
+    border-radius: 999px;
+    border: 1px solid var(--chip-brd);
+    transition: background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease;
+    user-select: none;
+  }
+  .tags span:hover {
+    color: var(--text);
+    border-color: color-mix(in oklab, var(--chip-brd) 60%, var(--accent) 40%);
+    background: #ffe6c8;
+    transform: translateY(-1px);
+  }
+  
+  /* ===== Values Grid ===== */
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem;
+  }
+  @media (max-width: 1000px) {
+    .values-grid { grid-template-columns: 1fr; }
+  }
+  
+  .value-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    text-align: center;
+    transition: transform .25s ease, border-color .25s ease, background .25s ease, box-shadow .25s ease;
+    box-shadow: 0 10px 26px var(--shadow);
+  }
+  .value-card:hover {
+    transform: translateY(-6px);
+    border-color: color-mix(in oklab, var(--border) 65%, var(--accent) 35%);
+    background: var(--surface);
+    box-shadow: 0 18px 38px var(--shadow);
+  }
+  
+  .value-card h4 {
+    font-size: 1.15rem;
+    margin-bottom: .5rem;
+    letter-spacing: .2px;
+    color: var(--accent);
+  }
+  .value-card p {
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 46ch;
+    margin: 0 auto;
+  }
+  
+  /* ===== Little polish touches ===== */
+  a { color: var(--accent); }
+  a:hover { color: var(--accent-600); }
+  
+  ::selection {
+    background: var(--accent-600);
+    color: #fff;
+  }
+
+  /* Make the whole page keep the dark theme */
+  /* === Our Team section enhancements (keeps your current aesthetic) === */
+.about .smallLead { color: var(--muted, #c6cbd6); margin: 4px 0 10px; }
+
+.about .teamGrid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 1fr;
+  margin-top: 12px;
+}
+@media (min-width: 720px) { .about .teamGrid { grid-template-columns: repeat(3, minmax(0,1fr)); } }
+
+.about .member {
+  text-align: center;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 14px 14px 16px;
+  cursor: pointer;
+  transition: transform .16s ease, border-color .16s ease, background .16s ease;
+  animation: about-pop .46s ease var(--delay, 0ms) both;
+}
+.about .member:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent, #ff4669);
+  background: rgba(255,255,255,0.045);
+}
+
+.about .member__media { position:relative; width: 116px; height: 116px; margin: 6px auto 10px; }
+.about .member__media img {
+  width:100%; height:100%; object-fit: cover; border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.15);
+  filter: saturate(1.02) contrast(1.02) brightness(.98);
+}
+.about .member__ring {
+  position:absolute; left: 6px; right: 6px; bottom: -2px; height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent, #ff4669), #ff7a93);
+  opacity: .7;
+}
+
+.about .pillLink {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.04);
+  font-weight: 600;
+}
+
+/* Reveal on scroll */
+.about [data-reveal] { opacity: 0; transform: translateY(12px); transition: opacity .5s ease, transform .5s ease; }
+.about .is-revealed { opacity: 1; transform: none; }
+@keyframes about-pop { from{opacity:0; transform: translateY(8px);} to{opacity:1; transform:none;} }
+
+/* === Team modal === */
+.aboutModal { position: fixed; inset: 0; display: grid; place-items: center; background: rgba(0,0,0,.6); z-index: 40; padding: 22px; }
+.aboutModal__card {
+  width: min(720px, 96vw);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 18px;
+  background: rgba(26,29,34,1);
+  box-shadow: 0 24px 44px rgba(0,0,0,.36);
+  padding: 16px;
+  animation: modal-in .28s ease both;
+  color: #eef2f7;
+}
+.aboutModal__head { display: flex; gap: 12px; align-items: center; margin-bottom: 6px; }
+.aboutModal__head img { width:56px; height:56px; border-radius: 12px; object-fit: cover; border: 1px solid rgba(255,255,255,0.12); }
+.modalBio { color: #c6cbd6; margin: 8px 0 10px; }
+
+.aboutModal__actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.aboutModal__close {
+  position: absolute; inset: 12px 16px auto auto;
+  background: transparent; border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px; color: #eef2f7; padding: 4px 8px; cursor: pointer;
+}
+
+@keyframes modal-in { from { opacity:0; transform: translateY(10px) scale(.98); } to { opacity:1; transform:none; } }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .about [data-reveal] { opacity: 1; transform: none; transition: none; }
+  .about .member { animation: none; }
+  .aboutModal__card { animation: none; }
+}
+
+/* BEFORE (global – bad) */
+/* [data-reveal] { opacity: 0; transform: translateY(12px); ... }
+   .is-revealed { opacity: 1; transform: none; } */
+
+/* --- Simple Team block (scoped, no globals) --- */
+.teamSimple { padding-top: 14px; }
+.teamSimple__lead { color: var(--muted, #c6cbd6); margin: 4px 0 12px; }
+
+.teamSimple__grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 1fr;
+  margin-top: 10px;
+}
+@media (min-width: 720px) { .teamSimple__grid { grid-template-columns: repeat(3, minmax(0,1fr)); } }
+
+.teamSimple__card {
+  text-align: center;
+  background: #ffe6c8;
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 16px;
+  padding: 16px 14px;
+  box-shadow: 0 12px 24px rgba(0,0,0,.18);
+  transition: transform .16s ease, border-color .16s ease, background .16s ease;
+}
+.teamSimple__card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent, #ff4669);
+  background: rgba(255,255,255,0.045);
+}
+
+.teamSimple__img {
+  width: 112px; height: 112px; object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.15);
+  display: block; margin: 4px auto 10px;
+}
+.teamSimple__name { margin: 0 0 4px; font-size: 1.1rem; color: var(--ink, #000000d4); }
+.teamSimple__role { margin: 0 0 10px; color: var(--muted, #c6cbd6); }
+
+.teamSimple__btn {
+  border: 1px solid rgba(255,255,255,0.10);
+  color: var(--ink, #000000c8);
+  background: color-mix(in oklab, var(--ink, #eef2f7) 2%, transparent);
+  border-radius: 10px; padding: 8px 12px; text-decoration: none; font-weight: 600;
+}
+
+/* prefers-reduced-motion friendly (Framer handles visibility) */
+
+/* ============ About page — spacing & typography ============ */
+
+.about-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 84px 20px 120px;          /* more breathing room overall */
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  
+  .about-container p,
+  .about-container li {
+    line-height: 1.75;                 /* easier reading */
+    font-size: 1.05rem;
+    color: var(--muted);
+  }
+  
+  /* Titles */
+  .about-title {
+    font-size: clamp(44px, 6vw, 64px);   /* bigger than before */
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin: 96px 0 20px;
+    color: var(--ink);
+  }
+  .section-title-2 {
+    font-size: clamp(28px, 3.2vw, 36px);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    margin: 100px 50px 14px;
+    color: var(--ink);
+    position: relative;
+  }
+  
+  .section-title-2::after {            /* underline accent */
+    content: "";
+    display: block;
+    width: 72px;
+    height: 4px;
+    margin-top: 10px;
+    background: var(--accent);
+    border-radius: 999px;
+  }
+  
+  .story-heading {
+    font-size: clamp(60px, 5.5vw, 56px);  /* bigger than the rest */
+  }
+
+  /* Our Story block */
+  .our-story {
+    margin-top: 50px;
+    margin-bottom: 72px;               /* space before “About…” */
+    background: #ffe6c8;
+  }
+  
+  .our-story p {
+    max-width: 900px;
+    margin: 10px 0 0 0;
+  }
+
+  /* Base container */
+.about-container {
+    background: var(--cream-1);
+    color: var(--text);
+  }
+  
+  /* Bands */
+  .about-container > section.band {
+    position: relative;
+    z-index: 0;
+    padding: 72px 0;              /* adjust to your spacing */
+    background: var(--cream-2);   /* default for the first band after "Our Story" */
+  }
+  
+  /* Alternate shades */
+  .about-container > section.band:nth-of-type(even) { background: var(--cream-3); }
+  .about-container > section.band:nth-of-type(odd)  { background: var(--cream-2); }
+  
+
+  
+  /* Keep cards white */
+  .about-container .about-card,
+  .about-container .value-card,
+  .about-container .teamSimple__card {
+    background: #fff !important;
+    border: 1px solid var(--border) !important;
+    box-shadow: var(--shadow);
+    color: var(--text);
+  }
+
+  /* ===== Full-bleed alternating bands on About ===== */
+.about-container { --band-pad: 72px; }
+
+.about-container > section.band {
+  position: relative;
+  padding: var(--band-pad) 0;
+  background: var(--cream-2);        /* default shade */
+  color: var(--text);
+}
+
+/* Alternate the shade */
+.about-container > section.band:nth-of-type(even) { background: var(--cream-3); }
+.about-container > section.band:nth-of-type(odd)  { background: var(--cream-2); }
+
+/* Full-bleed background that ignores the container’s max-width */
+.about-container > section.band::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 50%;
+  width: 100vw;       /* span the whole viewport */
+  height: 100%;
+  transform: translateX(-50%); /* center the strip */
+  background: inherit;         /* use the band's own background color */
+}
+
+/* Keep cards white on top */
+.about-container .about-card,
+.about-container .value-card,
+.about-container .teamSimple__card {
+  background: #fff;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  color: var(--text);
+}
+
+/* ---------- Portfolio ---------- */
+.portfolio {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    margin-top: 1.25rem;
+  }
+  
+  .portfolio-card {
+    background: var(--card-bg, #ffffff);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.25);
+    transition: box-shadow .25s ease;
+  }
+  
+  .portfolio-card:hover {
+    box-shadow: 0 12px 34px rgba(0,0,0,0.32);
+  }
+  
+  .portfolio-img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+  }
+  
+  .portfolio-caption {
+    padding: 12px 14px 14px;
+    font-size: 0.95rem;
+    color: rgba(0, 0, 0, 0.92);
+    letter-spacing: 0.2px;
+  }
+  
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .portfolio-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .portfolio-grid {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    .portfolio-caption {
+      font-size: 0.9rem;
+    }
+  }
+  /* ---------- /Portfolio ---------- */
+
+  

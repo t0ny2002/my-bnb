@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import './About.css';
+import './Portfolio.css';
 
 export default function Portfolio() {
   const portfolio = [
