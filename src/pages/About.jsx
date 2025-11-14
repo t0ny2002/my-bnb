@@ -6,9 +6,9 @@ export default function About() {
   const team = [
     {
       id: 'alex',
-      name: 'Jason Zhang',
+      name: 'Tony Ding',
       role: 'Operations & Guest Experience',
-      img: '/default.jpg',
+      img: '/tony.jpg',
     },
     {
       id: 'jamie',
@@ -91,7 +91,7 @@ export default function About() {
         </motion.h2>
 
         <motion.p variants={storyItem}>
-          Crownstone Quarters began in 2022 when Jason leased out his apartment
+          Crownstone Quarters began in 2022 when Tony leased out his apartment
           in Zetland while travelling overseas. What started as a simple
           handover quickly revealed the real challenges of short-stay
           hosting—late-night guest messages, back-to-back turnovers, and keeping
