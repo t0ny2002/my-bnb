@@ -121,3 +121,22 @@
     margin-bottom: 8px;
   }
   
+
+  @media (max-width: 640px) {
+    .booking-modal {
+      width: 90%;
+      max-width: 420px;
+      height: 80vh;            /* the floating-container */
+      margin-top: 5rem;
+      border-radius: 22px;
+      display: flex;
+      flex-direction: column;  /* IMPORTANT */
+      overflow: hidden;        /* prevent spilling out */
+    }
+  
+    .booking-form {
+      flex: 1;                 /* grow to take remaining height */
+      overflow-y: auto;        /* internal scroll */
+      padding-right: 6px;      /* no cutoff behind scrollbar */
+    }
+  }
