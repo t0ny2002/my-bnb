@@ -26,7 +26,7 @@ export default function About() {
   const portfolio = [
     {
       id: 'pyrmont',
-      img: '/pyrmont-murray-st.jpg', // TODO: replace with your actual path
+      img: '/pyrmont-murray-st.jpeg',
       address: '813/50 Murray St, Pyrmont NSW',
       alt: '',
     },

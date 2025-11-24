@@ -9,7 +9,7 @@ export default function Portfolio() {
   const portfolio = [
     {
       id: 'pyrmont',
-      img: '/pyrmont-murray-st.jpg',
+      img: '/pyrmont-murray-st.jpeg',
       address: '109/50 Murray St, Pyrmont NSW',
       nightlyRate: 320,
       cleaningFee: 140,
