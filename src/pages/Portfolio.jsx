@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import BookingModal from '../components/BookingModal';
 import './Portfolio.css';
+import { FaBed, FaBath, FaCar } from 'react-icons/fa';
 
 export default function Portfolio() {
   const [selectedProperty, setSelectedProperty] = useState(null);
@@ -16,7 +17,7 @@ export default function Portfolio() {
       bedrooms: 2,
       bathrooms: 2,
       carports: 1,
-      nightlyRate: 320,
+      nightlyRate: 350,
       cleaningFee: 140,
       maxGuests: 4,
     },
@@ -27,9 +28,9 @@ export default function Portfolio() {
       address: '50 Murray St, Pyrmont NSW',
       alias: 'Hidden Sanctuary with Waterside View',
       bedrooms: 2,
-      bathrooms: 1.5,
+      bathrooms: 2,
       carports: 1,
-      nightlyRate: 290,
+      nightlyRate: 330,
       cleaningFee: 120,
       maxGuests: 3,
     },
@@ -42,7 +43,7 @@ export default function Portfolio() {
       bedrooms: 1,
       bathrooms: 1,
       carports: 0,
-      nightlyRate: 260,
+      nightlyRate: 390,
       cleaningFee: 110,
       maxGuests: 2,
     },
@@ -93,25 +94,28 @@ export default function Portfolio() {
                 <div className="portfolio-alias">{p.alias}</div>
               </figcaption>
 
-              <dl className="portfolio-amenities" aria-label="Property amenities">
+              <dl
+                className="portfolio-amenities"
+                aria-label="Property amenities"
+              >
                 <div className="amenity">
                   <dt className="amenity-label">Bedrooms</dt>
                   <dd className="amenity-value">
-                    <span aria-hidden="true" className="amenity-icon">🛏️</span>
+                    <FaBed className="amenity-icon" />
                     {p.bedrooms}
                   </dd>
                 </div>
                 <div className="amenity">
                   <dt className="amenity-label">Bathrooms</dt>
                   <dd className="amenity-value">
-                    <span aria-hidden="true" className="amenity-icon">🛁</span>
+                    <FaBath className="amenity-icon" />
                     {p.bathrooms}
                   </dd>
                 </div>
                 <div className="amenity">
                   <dt className="amenity-label">Carports</dt>
                   <dd className="amenity-value">
-                    <span aria-hidden="true" className="amenity-icon">🚗</span>
+                    <FaCar className="amenity-icon" />
                     {p.carports}
                   </dd>
                 </div>
