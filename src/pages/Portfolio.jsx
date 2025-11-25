@@ -29,7 +29,7 @@ export default function Portfolio() {
       alias: 'Hidden Sanctuary with Waterside View',
       bedrooms: 2,
       bathrooms: 2,
-      carports: 1,
+      carports: 0,
       nightlyRate: 330,
       cleaningFee: 120,
       maxGuests: 3,
