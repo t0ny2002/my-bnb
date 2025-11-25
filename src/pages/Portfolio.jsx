@@ -10,7 +10,12 @@ export default function Portfolio() {
     {
       id: 'pyrmont',
       img: '/pyrmont-murray-st.jpeg',
+      alt: 'Sunlit living room with balcony in Pyrmont',
       address: '261 Harris Street, Pyrmont NSW',
+      alias: 'Harbourside Hideaway',
+      bedrooms: 2,
+      bathrooms: 2,
+      carports: 1,
       nightlyRate: 320,
       cleaningFee: 140,
       maxGuests: 4,
@@ -18,7 +23,12 @@ export default function Portfolio() {
     {
       id: 'pyrmont-2',
       img: '/pyrmont-murray-st-2.jpg',
+      alt: 'Modern Pyrmont apartment overlooking Darling Harbour',
       address: '50 Murray St, Pyrmont NSW',
+      alias: 'Hidden Sanctuary with Waterside View',
+      bedrooms: 2,
+      bathrooms: 1.5,
+      carports: 1,
       nightlyRate: 290,
       cleaningFee: 120,
       maxGuests: 3,
@@ -26,7 +36,12 @@ export default function Portfolio() {
     {
       id: 'pyrmont-3',
       img: '/pyrmont-pyrmont-st.jpg',
+      alt: 'Stylish Pyrmont studio with skyline views',
       address: '243 Pyrmont Street, Pyrmont NSW',
+      alias: 'Skyline Retreat',
+      bedrooms: 1,
+      bathrooms: 1,
+      carports: 0,
       nightlyRate: 260,
       cleaningFee: 110,
       maxGuests: 2,
@@ -73,7 +88,34 @@ export default function Portfolio() {
                 loading="lazy"
               />
 
-              <figcaption className="portfolio-caption">{p.address}</figcaption>
+              <figcaption className="portfolio-caption">
+                <div className="portfolio-address">{p.address}</div>
+                <div className="portfolio-alias">{p.alias}</div>
+              </figcaption>
+
+              <dl className="portfolio-amenities" aria-label="Property amenities">
+                <div className="amenity">
+                  <dt className="amenity-label">Bedrooms</dt>
+                  <dd className="amenity-value">
+                    <span aria-hidden="true" className="amenity-icon">🛏️</span>
+                    {p.bedrooms}
+                  </dd>
+                </div>
+                <div className="amenity">
+                  <dt className="amenity-label">Bathrooms</dt>
+                  <dd className="amenity-value">
+                    <span aria-hidden="true" className="amenity-icon">🛁</span>
+                    {p.bathrooms}
+                  </dd>
+                </div>
+                <div className="amenity">
+                  <dt className="amenity-label">Carports</dt>
+                  <dd className="amenity-value">
+                    <span aria-hidden="true" className="amenity-icon">🚗</span>
+                    {p.carports}
+                  </dd>
+                </div>
+              </dl>
 
               <button
                 className="portfolio-book-btn"
