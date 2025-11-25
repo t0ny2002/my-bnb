@@ -6,7 +6,6 @@ import { FaBed, FaBath, FaCar } from 'react-icons/fa';
 
 export default function Portfolio() {
   const [selectedProperty, setSelectedProperty] = useState(null);
-
   const portfolio = [
     {
       id: 'pyrmont',
@@ -17,7 +16,6 @@ export default function Portfolio() {
       bedrooms: 2,
       bathrooms: 2,
       carports: 1,
-      nightlyRate: 350,
       cleaningFee: 140,
       maxGuests: 4,
     },
@@ -30,7 +28,6 @@ export default function Portfolio() {
       bedrooms: 2,
       bathrooms: 2,
       carports: 0,
-      nightlyRate: 330,
       cleaningFee: 120,
       maxGuests: 3,
     },
@@ -43,7 +40,6 @@ export default function Portfolio() {
       bedrooms: 1,
       bathrooms: 1,
       carports: 0,
-      nightlyRate: 390,
       cleaningFee: 110,
       maxGuests: 2,
     },

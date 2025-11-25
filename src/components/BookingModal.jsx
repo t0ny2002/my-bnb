@@ -134,21 +134,6 @@ export default function BookingModal({ property, onClose }) {
                 />
               </label>
 
-              <div className="booking-summary">
-                <div>
-                  <strong>{nights || 0}</strong> night{nights === 1 ? '' : 's'}{' '}
-                  × ${property.nightlyRate} = ${accommodationTotal || 0}
-                </div>
-                {nights > 0 && <div>Cleaning fee: ${property.cleaningFee}</div>}
-                <div className="booking-total">
-                  Estimated total: <strong>${total || 0}</strong>
-                </div>
-                <p className="booking-disclaimer">
-                  * This is a **booking enquiry only**, not a confirmed
-                  reservation. We’ll contact you to finalise your stay.
-                </p>
-              </div>
-
               {error && <p className="booking-error">{error}</p>}
 
               <button type="submit" className="booking-submit">
