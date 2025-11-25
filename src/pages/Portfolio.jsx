@@ -10,7 +10,7 @@ export default function Portfolio() {
     {
       id: 'pyrmont',
       img: '/pyrmont-murray-st.jpeg',
-      address: '216 Harris Street, Pyrmont NSW',
+      address: '261 Harris Street, Pyrmont NSW',
       nightlyRate: 320,
       cleaningFee: 140,
       maxGuests: 4,
