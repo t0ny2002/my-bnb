@@ -18,7 +18,7 @@ export default function Portfolio() {
     {
       id: 'pyrmont-2',
       img: '/pyrmont-murray-st-2.jpg',
-      address: '350/50 Murray St, Pyrmont NSW',
+      address: '50 Murray St, Pyrmont NSW',
       nightlyRate: 290,
       cleaningFee: 120,
       maxGuests: 3,
@@ -26,7 +26,7 @@ export default function Portfolio() {
     {
       id: 'pyrmont-3',
       img: '/pyrmont-pyrmont-st.jpg',
-      address: '1139/243 Pyrmont Street, Pyrmont NSW',
+      address: '243 Pyrmont Street, Pyrmont NSW',
       nightlyRate: 260,
       cleaningFee: 110,
       maxGuests: 2,
