@@ -51,15 +51,6 @@ export default function HowItWorks() {
 
   const handleOpen = (idx) => {
     setOpen(idx);
-    // scroll the card nicely into view (esp. on mobile)
-    const el = refs.current[idx];
-    if (el) {
-      el.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-        inline: 'nearest',
-      });
-    }
   };
 
   const onHeaderKey = (e, idx) => {
