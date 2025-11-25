@@ -157,7 +157,6 @@ export default function HowItWorks() {
           <Link className="btn btn-primary" to="/contact">
             Get an Appraisal
           </Link>
-          <p className="smallNote">Fast reply. Zero obligation.</p>
         </section>
       </div>
     </main>
