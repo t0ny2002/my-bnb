@@ -27,7 +27,7 @@ export default function About() {
     {
       id: 'pyrmont',
       img: '/pyrmont-murray-st.jpeg',
-      address: '813/50 Murray St, Pyrmont NSW',
+      address: '303/318 Harris Street, Pyrmont NSW',
       alt: '',
     },
     {
