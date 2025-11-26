@@ -13,10 +13,21 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const drawerRef = useRef(null);
   const loc = useLocation();
+  const [isLoading, setIsLoading] = useState(false);
+  const isFirstLoad = useRef(true);
 
   // Close drawer on route change
   useEffect(() => {
     setOpen(false);
+    if (isFirstLoad.current) {
+      isFirstLoad.current = false;
+      return;
+    }
+
+    setIsLoading(true);
+    const timer = setTimeout(() => setIsLoading(false), 600);
+
+    return () => clearTimeout(timer);
   }, [loc.pathname]);
 
   // Lock scroll + ESC + outside click
@@ -39,6 +50,13 @@ export default function Navbar() {
 
   return (
     <div>
+      {isLoading && (
+        <div className="loading-overlay" role="status" aria-live="polite">
+          <div className="spinner" aria-hidden="true" />
+          <p className="loading-text">Loading</p>
+        </div>
+      )}
+
       <header className="nav">
         <div className="nav__left">
           <Link to="/" className="logoLink" aria-label="Go to homepage">
