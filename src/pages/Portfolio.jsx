@@ -23,7 +23,7 @@ export default function Portfolio() {
       id: 'pyrmont-2',
       img: '/pyrmont-murray-st-2.jpg',
       alt: 'Modern Pyrmont apartment overlooking Darling Harbour',
-      address: '50 Murray St, Pyrmont NSW',
+      address: '38 York St, Sydney',
       alias: 'Hidden Sanctuary with Waterside View',
       bedrooms: 2,
       bathrooms: 2,
