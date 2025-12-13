@@ -24,7 +24,7 @@ export default function Portfolio() {
       img: '/pyrmont-murray-st-2.jpg',
       alt: 'Modern Pyrmont apartment overlooking Darling Harbour',
       address: '38 York St, Sydney',
-      alias: 'Urban horizon suite',
+      alias: 'Urban Horizon Suite',
       bedrooms: 2,
       bathrooms: 2,
       carports: 0,
