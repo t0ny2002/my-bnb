@@ -35,7 +35,7 @@ export default function Portfolio() {
       id: 'pyrmont-3',
       img: '/pyrmont-pyrmont-st.jpg',
       alt: 'Stylish Pyrmont studio with skyline views',
-      address: '243 Pyrmont Street, Pyrmont NSW',
+      address: '50 Murray Street, Pyrmont NSW',
       alias: 'Skyline Retreat',
       bedrooms: 1,
       bathrooms: 1,
