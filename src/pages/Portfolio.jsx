@@ -11,7 +11,7 @@ export default function Portfolio() {
       id: 'pyrmont',
       img: '/pyrmont-murray-st.jpeg',
       alt: 'Sunlit living room with balcony in Pyrmont',
-      address: '261 Harris Street, Pyrmont NSW',
+      address: '50 Murray Street, Pyrmont NSW',
       alias: 'Harbourside Hideaway',
       bedrooms: 2,
       bathrooms: 2,
