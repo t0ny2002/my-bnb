@@ -39,7 +39,7 @@ export default function About() {
     {
       id: 'pyrmont-3',
       img: '/pyrmont-pyrmont-st.jpg',
-      address: '1139/243 Pyrmont Street, Pyrmont NSW',
+      address: '1139/50 Murray Street, Pyrmont NSW',
       alt: '',
     },
   ];
