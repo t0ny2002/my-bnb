@@ -152,7 +152,7 @@ export default function Portfolio() {
         '/50-murray-st-2.png',
         '/50-murray-st-3.png',
       ],
-      address: '50 Murray Street, Pyrmont NSW',
+      address: '216 Harris St',
       alias: 'Skyline Retreat',
       bedrooms: 1,
       bathrooms: 1,
