@@ -152,7 +152,7 @@ export default function Portfolio() {
         '/50-murray-st-2.png',
         '/50-murray-st-3.png',
       ],
-      address: '216 Harris St',
+      address: '216 Harris St, Pyrmont',
       alias: 'Skyline Retreat',
       bedrooms: 1,
       bathrooms: 1,
