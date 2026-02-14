@@ -9,13 +9,13 @@ export default function Portfolio() {
   const portfolio = [
     {
       id: 'pyrmont',
-      img: '/pyrmont-murray-st.jpeg',
+      img: '/243-Pyrmont-St-pic.png',
       alt: 'Sunlit living room with balcony in Pyrmont',
-      address: '261 Harris Street, Pyrmont NSW',
-      alias: 'Harbourside Hideaway',
-      bedrooms: 2,
-      bathrooms: 2,
-      carports: 1,
+      address: '243 Pyrmont Street, Pyrmont NSW',
+      alias: 'Pyrmont Sunset Oasis',
+      bedrooms: 1,
+      bathrooms: 1,
+      carports: 0,
       cleaningFee: 140,
       maxGuests: 4,
     },
@@ -29,7 +29,7 @@ export default function Portfolio() {
       bathrooms: 2,
       carports: 0,
       cleaningFee: 120,
-      maxGuests: 3,
+      maxGuests: 6,
     },
     {
       id: 'pyrmont-3',
