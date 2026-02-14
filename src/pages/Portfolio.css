@@ -476,11 +476,89 @@
     box-shadow: 0 12px 34px rgba(0,0,0,0.32);
   }
   
-  .portfolio-img {
+  .portfolio-slideshow {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-bottom: 0.2rem;
+  }
+
+  .portfolio-slide-img {
     display: block;
     width: 100%;
     aspect-ratio: 16 / 10;
     object-fit: cover;
+    background: #f3f4f6;
+  }
+
+  .portfolio-slide-controls {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0.65rem;
+    pointer-events: none;
+  }
+
+  .portfolio-slide-btn {
+    pointer-events: auto;
+    border: none;
+    border-radius: 999px;
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    background: rgba(17, 24, 39, 0.65);
+    color: #fff;
+    font-size: 0;
+    line-height: 0;
+    padding: 0;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+
+  .portfolio-slide-btn::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-top: 2.2px solid #fff;
+    border-right: 2.2px solid #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(225deg);
+  }
+
+  .portfolio-slide-btn:last-child::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  .portfolio-slide-btn:hover {
+    transform: scale(1.05);
+    background: rgba(17, 24, 39, 0.8);
+  }
+
+  .portfolio-slide-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.45rem;
+    padding-bottom: 0.2rem;
+  }
+
+  .portfolio-slide-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    border: none;
+    background: rgba(17, 24, 39, 0.2);
+    cursor: pointer;
+  }
+
+  .portfolio-slide-dot.is-active {
+    background: rgba(17, 24, 39, 0.75);
   }
   
   .portfolio-caption {
@@ -533,7 +611,11 @@
   transition: transform 0.25s ease;
 }
 
-.portfolio-img {
+.portfolio-slideshow {
+  position: relative;
+}
+
+.portfolio-slide-img {
   width: 100%;
   height: 230px;
   object-fit: cover;
