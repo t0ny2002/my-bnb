@@ -521,9 +521,14 @@ body.nav-open { overflow: hidden; }
 
 /* Hover override */
 .btn.small.appraisal-button:hover {
-  background: #fff;       /* white background */
-  color: #000;            /* black text */
+  background: #ffffff;       /* white background */
+  color: #ffffff;            /* black text */
   border: 1px solid #000; /* black border */
+}
+
+/* Make text white on hover */
+.btn.small:hover {
+  color: #ffffff;
 }
 
 /* ============================= */
