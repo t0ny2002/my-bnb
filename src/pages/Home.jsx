@@ -207,13 +207,6 @@ export default function Home() {
   const mgmtOwner = Math.round(gross * ((100 - fee) / 100));
   const guaranteed = Math.round(gross * 0.7); // conservative guaranteed rent example
 
-  // at the top of Home.jsx
-  const startDate = new Date('2023-10-31'); // baseline date
-  const perDay = 3; // nights per day growth
-  const today = new Date();
-  const daysElapsed = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
-  const nightsManaged = daysElapsed * perDay;
-
   return (
     <main className="home section home--light" aria-labelledby="hero-title">
       {/* ================ HERO ================= */}
@@ -271,12 +264,6 @@ export default function Home() {
                 <Counter to={96} suffix="%" />
               </strong>
               <span>4.8–5★ stays</span>
-            </div>
-            <div className="stat">
-              <strong>
-                <Counter to={nightsManaged} />
-              </strong>
-              <span>Nights managed</span>
             </div>
             <div className="stat">
               <strong>
