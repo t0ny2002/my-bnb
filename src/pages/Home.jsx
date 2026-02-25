@@ -488,10 +488,6 @@ export default function Home() {
         <div className="faq__list">
           {[
             {
-              q: 'Is this subletting legal?',
-              a: 'We disclose intended short-stay use, respect strata by-laws and NSW 180-night caps for non-hosted stays, and obtain written consent where required.',
-            },
-            {
               q: 'How do you protect the property?',
               a: 'Strict guest verification, security deposits, noise policies, routine inspections, and a no-party stance backed by monitoring.',
             },
