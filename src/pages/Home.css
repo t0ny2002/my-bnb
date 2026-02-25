@@ -94,8 +94,15 @@
     .hero__trust .dot { transform: translateY(.5px); }
   }
   
-  .hero__stats { display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:10px; margin-top: 14px; max-width: 880px; }
-  @media (min-width:860px){ .hero__stats { grid-template-columns: repeat(4, 1fr); } }
+  .hero__stats {
+    display: grid;
+    grid-template-columns: minmax(0, 320px);
+    justify-content: center;
+    gap: 10px;
+    margin: 14px auto 0;
+    max-width: 980px;
+  }
+  @media (min-width:860px){ .hero__stats { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
   .stat { background: color-mix(in oklab, var(--ink) 2%, transparent); border:1px solid var(--line); border-radius:14px; padding:10px 12px; text-align:center; }
   .stat strong { font-size: 1.6rem; display:block; }
   .hero__scroll { position:absolute; left:50%; bottom: 16px; transform: translateX(-50%); opacity:.9; text-decoration:none; color: var(--muted); }
