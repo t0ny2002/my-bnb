@@ -120,7 +120,7 @@ export default function Portfolio() {
       images: [
         '/243-Pyrmont-St-pic.png',
         '/243-Pyrmont-St-pic-2.png',
-        '/243-Pyrmont-St-pic-3.JPG',
+        '/243-Pyrmont-St-pic-3-compressed.jpg',
       ],
       address: '243 Pyrmont Street, Pyrmont NSW',
       alias: 'Harbourside Hideaway',
