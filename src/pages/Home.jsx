@@ -316,7 +316,7 @@ export default function Home() {
             },
             {
               t: 'Damage Protection',
-              d: 'Security deposits, guest screening, and insurer-backed cover.',
+              d: 'Guest screening, and liability/contents insurer-backed cover.',
               icon: '/insurance-icon.png',
             },
           ].map((c) => (
@@ -489,7 +489,7 @@ export default function Home() {
           {[
             {
               q: 'How do you protect the property?',
-              a: 'Strict guest verification, security deposits, noise policies, routine inspections, and a no-party stance backed by monitoring.',
+              a: 'Strict guest verification, noise policies, routine inspections, and a no-party stance backed by monitoring.',
             },
             {
               q: 'Who pays utilities and wear-and-tear?',
