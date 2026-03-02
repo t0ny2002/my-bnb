@@ -205,7 +205,7 @@ export default function About() {
             },
             {
               title: 'Protection',
-              text: 'Screened guests, security deposits, and proactive property care.',
+              text: 'Screened guests, 2 night, and proactive property care.',
             },
           ].map((val, idx) => (
             <motion.div
