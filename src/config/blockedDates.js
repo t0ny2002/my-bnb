@@ -36,7 +36,8 @@ export const BLOCKED_DATE_RANGES = {
       { start: '2026-01-04', end: '2026-01-12' },
       { start: '2026-03-01', end: '2026-03-10' },
       { start: '2026-03-11', end: '2026-03-15' },
-      { start: '2026-03-16', end: '2026-03-29' },
+      { start: '2026-03-17', end: '2026-03-24' },
+      { start: '2026-04-01', end: '2026-04-23' },
     ],
   
     // fallback if a property id isn't listed above
