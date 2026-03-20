@@ -220,10 +220,9 @@ export default function Home() {
 
           <div className="hero__content">
             <h1 id="hero-title">
-              Professional short-stay{' '}
-              <span className="u-underline">management</span>
+              AIRBNB
               <br />
-              for your property
+              MANAGEMENT
             </h1>
             <p className="lead">
               Guaranteed rent options or performance-based management. We handle
