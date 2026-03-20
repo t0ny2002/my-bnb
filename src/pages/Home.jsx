@@ -157,6 +157,21 @@ function Counter({ to = 100, prefix = '', suffix = '', duration = 1200 }) {
   );
 }
 
+function FadeImage({ src, alt = '' }) {
+  const [loaded, setLoaded] = useState(false);
+
+  return (
+    <img
+      src={src}
+      alt={alt}
+      className={loaded ? 'is-loaded' : ''}
+      onLoad={() => setLoaded(true)}
+      loading="eager"
+      decoding="async"
+    />
+  );
+}
+
 export default function Home() {
   useReveal();
   useSmartSnap('.home > section', {
@@ -213,9 +228,9 @@ export default function Home() {
       <section className="hero" data-reveal>
         <div className="hero__layout container">
           <div className="hero__gallery hero__gallery--left" aria-hidden="true">
-            <img src="/243-Pyrmont-St-pic.png" alt="" />
-            <img src="/243-Pyrmont-St-pic-2.png" alt="" />
-            <img src="/50-murray-st-1.png" alt="" />
+            <FadeImage src="/243-Pyrmont-St-pic.png" />
+            <FadeImage src="/243-Pyrmont-St-pic-2.png" />
+            <FadeImage src="/50-murray-st-1.png" />
           </div>
 
           <div className="hero__content">
@@ -276,9 +291,9 @@ export default function Home() {
           </div>
 
           <div className="hero__gallery hero__gallery--right" aria-hidden="true">
-            <img src="/38-york-st-3.png" alt="" />
-            <img src="/50-murray-st-2.png" alt="" />
-            <img src="/50-murray-st-3.png" alt="" />
+            <FadeImage src="/38-york-st-3.png" />
+            <FadeImage src="/50-murray-st-2.png" />
+            <FadeImage src="/50-murray-st-3.png" />
           </div>
         </div>
         <a className="hero__scroll" href="#why" aria-label="Scroll to content">
