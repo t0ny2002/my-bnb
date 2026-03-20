@@ -157,6 +157,21 @@ function Counter({ to = 100, prefix = '', suffix = '', duration = 1200 }) {
   );
 }
 
+function FadeImage({ src, alt = '' }) {
+  const [loaded, setLoaded] = useState(false);
+
+  return (
+    <img
+      src={src}
+      alt={alt}
+      className={loaded ? 'is-loaded' : ''}
+      onLoad={() => setLoaded(true)}
+      loading="eager"
+      decoding="async"
+    />
+  );
+}
+
 export default function Home() {
   useReveal();
   useSmartSnap('.home > section', {
@@ -211,76 +226,75 @@ export default function Home() {
     <main className="home section home--light" aria-labelledby="hero-title">
       {/* ================ HERO ================= */}
       <section className="hero" data-reveal>
-        <div className="hero__media">
-          {/* Replace with your real media files */}
-          <video
-            className="hero__video"
-            src="/media/hero.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
-            poster="/media/hero.jpg"
-          />
-          <div className="hero__scrim" />
-        </div>
-
-        <div className="container hero__content">
-          <h1 id="hero-title">
-            Professional short-stay{' '}
-            <span className="u-underline">management</span>
-            <br />
-            for your property
-          </h1>
-          <p className="lead">
-            Guaranteed rent options or performance-based management. We handle
-            setup, cleaning, pricing, guests, and reporting—end to end.
-          </p>
-
-          <div className="hero__ctas">
-            <Link to="/contact" className="btn btn-primary">
-              Request a Free Appraisal
-            </Link>
-            <a href="#how" className="btn btn-ghost">
-              See How it Works
-            </a>
+        <div className="hero__layout container">
+          <div className="hero__gallery hero__gallery--left" aria-hidden="true">
+            <FadeImage src="/243-Pyrmont-St-pic.png" />
+            <FadeImage src="/243-Pyrmont-St-pic-2.png" />
+            <FadeImage src="/50-murray-st-1.png" />
           </div>
 
-          <ul className="hero__trust">
-            <li>
-              <span className="dot" /> STRA-aware
-            </li>
-            <li>
-              <span className="dot" /> No-party policy
-            </li>
-            <li>
-              <span className="dot" /> Insurer-backed cover*
-            </li>
-          </ul>
+          <div className="hero__content">
+            <h1 id="hero-title">
+              AIRBNB
+              <br />
+              MANAGEMENT
+            </h1>
+            <p className="lead">
+              Guaranteed rent options or performance-based management. We handle
+              setup, cleaning, pricing, guests, and reporting—end to end.
+            </p>
 
-          <div className="hero__stats">
-            <div className="stat">
-              <strong>
-                <Counter to={96} suffix="%" />
-              </strong>
-              <span>4.8–5★ stays</span>
+            <div className="hero__ctas">
+              <Link to="/contact" className="btn btn-primary">
+                Request a Free Appraisal
+              </Link>
+              <a href="#how" className="btn btn-ghost">
+                See How it Works
+              </a>
             </div>
-            <div className="stat">
-              <strong>
-                <Counter to={15} suffix="%" />
-              </strong>
-              <span>Above average long-term rent in area*</span>
+
+            <ul className="hero__trust">
+              <li>
+                <span className="dot" /> STRA-aware
+              </li>
+              <li>
+                <span className="dot" /> No-party policy
+              </li>
+              <li>
+                <span className="dot" /> Insurer-backed cover*
+              </li>
+            </ul>
+
+            <div className="hero__stats">
+              <div className="stat">
+                <strong>
+                  <Counter to={96} suffix="%" />
+                </strong>
+                <span>4.8–5★ stays</span>
+              </div>
+              <div className="stat">
+                <strong>
+                  <Counter to={15} suffix="%" />
+                </strong>
+                <span>Above average long-term rent in area*</span>
+              </div>
+              <div className="stat">
+                <strong>
+                  <Counter to={0} />
+                </strong>
+                <span>Vacancy risk with GR</span>
+              </div>
             </div>
-            <div className="stat">
-              <strong>
-                <Counter to={0} />
-              </strong>
-              <span>Vacancy risk with GR</span>
-            </div>
+            <p className="tiny">
+              *Subject to property, seasonality, and policy terms.
+            </p>
           </div>
-          <p className="tiny">
-            *Subject to property, seasonality, and policy terms.
-          </p>
+
+          <div className="hero__gallery hero__gallery--right" aria-hidden="true">
+            <FadeImage src="/38-york-st-3.png" />
+            <FadeImage src="/50-murray-st-2.png" />
+            <FadeImage src="/50-murray-st-3.png" />
+          </div>
         </div>
         <a className="hero__scroll" href="#why" aria-label="Scroll to content">
           ▼
