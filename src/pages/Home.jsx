@@ -216,7 +216,6 @@ export default function Home() {
             <img src="/243-Pyrmont-St-pic.png" alt="" />
             <img src="/243-Pyrmont-St-pic-2.png" alt="" />
             <img src="/50-murray-st-1.png" alt="" />
-            <img src="/38-york-st-2.png" alt="" />
           </div>
 
           <div className="hero__content">
@@ -281,7 +280,6 @@ export default function Home() {
             <img src="/38-york-st-3.png" alt="" />
             <img src="/50-murray-st-2.png" alt="" />
             <img src="/50-murray-st-3.png" alt="" />
-            <img src="/243-Pyrmont-St-pic-3-compressed.jpg" alt="" />
           </div>
         </div>
         <a className="hero__scroll" href="#why" aria-label="Scroll to content">

@@ -55,7 +55,7 @@
   display: grid;
   grid-template-columns: minmax(170px, 240px) minmax(0, 820px) minmax(170px, 240px);
   align-items: center;
-  gap: clamp(1rem, 2vw, 2rem);
+  gap: clamp(1.75rem, 3vw, 3.25rem);
 }
 
 .hero__content { position:relative; z-index:1; }
@@ -68,7 +68,7 @@
 
 .hero__gallery {
   display: grid;
-  gap: 0.9rem;
+  gap: clamp(1.1rem, 1.8vw, 1.8rem);
 }
 
 .hero__gallery img {
@@ -83,6 +83,11 @@
 .hero__gallery--left img:nth-child(odd),
 .hero__gallery--right img:nth-child(even) {
   transform: translateX(8%);
+}
+
+.hero__gallery--left img:nth-child(2),
+.hero__gallery--right img:nth-child(2) {
+  transform: translateX(0);
 }
   .hero__ctas {
     display: flex;
