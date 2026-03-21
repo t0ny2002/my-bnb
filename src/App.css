@@ -516,14 +516,26 @@ body.nav-open { overflow: hidden; }
 
   /* More horizontal padding on the bar */
   .nav{
-    grid-template-columns: 1fr auto;
-    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    width: 100%;
+    position: fixed;
   }
+  .nav__left{ margin-right: auto; }
 
   /* Keep logo aspect ratio; align in the bar */
   .logoLink{ display:flex; align-items:center; height: var(--nav-h); }
   .logoMark{ height: var(--logo-h); width:auto; object-fit:contain; display:block; }
-  .hamburger{ justify-self:end; margin-left:auto; }
+  .hamburger{
+    display: grid;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 0;
+    justify-self: auto;
+  }
 }
 
 /* ===== Mobile drawer: push first item down under the header ===== */
