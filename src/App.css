@@ -518,17 +518,22 @@ body.nav-open { overflow: hidden; }
   .nav{
     display: flex;
     align-items: center;
-    justify-content: space-between;
     padding: 0 12px;
     width: 100%;
+    position: fixed;
   }
+  .nav__left{ margin-right: auto; }
 
   /* Keep logo aspect ratio; align in the bar */
   .logoLink{ display:flex; align-items:center; height: var(--nav-h); }
   .logoMark{ height: var(--logo-h); width:auto; object-fit:contain; display:block; }
   .hamburger{
     display: grid;
-    margin-left: auto;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 0;
     justify-self: auto;
   }
 }
