@@ -37,7 +37,7 @@
 .hero {
   background: #e8dcc7;
   color: #0f172a;
-  padding: clamp(4rem, 7vw, 6rem) 1.25rem 4.5rem;
+  padding: calc(var(--nav-h) + clamp(1.75rem, 4vw, 3rem)) 1.25rem 4.5rem;
   text-align: center;
   position: relative;
 }
@@ -62,7 +62,7 @@
 .hero h1 {
   font-family: "Montserrat", "Poppins", "Inter", system-ui, sans-serif;
   font-size: clamp(3.1rem, 5.2vw, 6rem);
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.015em;
   line-height: 0.95;
   text-transform: uppercase;
@@ -160,6 +160,39 @@
 
   .hero__gallery {
     display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding: calc(var(--nav-h) + 1.25rem) 1rem 3rem;
+  }
+
+  .hero__layout {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    gap: 1.25rem;
+  }
+
+  .hero__content {
+    width: min(100%, 36rem);
+    margin-inline: auto;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.6rem, 14vw, 3.6rem);
+    line-height: 1.02;
+    letter-spacing: 0.01em;
+  }
+
+  .hero .lead {
+    max-width: 32rem;
+    margin-inline: auto;
+  }
+
+  .hero__ctas,
+  .hero__trust {
+    justify-content: center;
   }
 }
 
