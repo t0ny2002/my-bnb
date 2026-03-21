@@ -509,7 +509,7 @@ body.nav-open { overflow: hidden; }
 @media (max-width: 979px){
   /* Bigger logo + taller bar using your variable-driven system */
   :root{
-    --logo-h-m: 42px;                 /* mobile-only larger logo */
+    --logo-h-m: 47px;                 /* mobile-only larger logo */
     --logo-h: var(--logo-h-m);
     --nav-pad-y: 10px;                /* more vertical breathing room */
   }
