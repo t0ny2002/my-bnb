@@ -228,7 +228,7 @@ export default function Home() {
       <section className="hero" data-reveal>
         <div className="hero__layout container">
           <div className="hero__gallery hero__gallery--left" aria-hidden="true">
-            <FadeImage src="/243-Pyrmont-St-pic.png" />
+            <FadeImage src="/38-york-st-2.png" />
             <FadeImage src="/243-Pyrmont-St-pic-2.png" />
             <FadeImage src="/50-murray-st-1.png" />
           </div>
@@ -290,10 +290,13 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="hero__gallery hero__gallery--right" aria-hidden="true">
+          <div
+            className="hero__gallery hero__gallery--right"
+            aria-hidden="true"
+          >
             <FadeImage src="/38-york-st-3.png" />
             <FadeImage src="/50-murray-st-2.png" />
-            <FadeImage src="/50-murray-st-3.png" />
+            <FadeImage src="/243-Pyrmont-St-pic-3-compressed.jpg" />
           </div>
         </div>
         <a className="hero__scroll" href="#why" aria-label="Scroll to content">
