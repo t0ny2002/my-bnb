@@ -53,8 +53,10 @@ export default function Navbar() {
     <div>
       {isLoading && (
         <div className="loading-overlay" role="status" aria-live="polite">
-          <div className="spinner" aria-hidden="true" />
-          <p className="loading-text">Loading</p>
+          <div className="loading-content">
+            <div className="spinner" aria-hidden="true" />
+            <p className="loading-text">Loading</p>
+          </div>
         </div>
       )}
       <header className="nav">

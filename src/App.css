@@ -577,7 +577,6 @@ body.nav-open { overflow: hidden; }
   inset:0;
   display:grid;
   place-items:center;
-  gap:12px;
   background:rgba(8,8,10,0.78);
   backdrop-filter: blur(8px);
   z-index:1300;
@@ -585,14 +584,21 @@ body.nav-open { overflow: hidden; }
   text-align:center;
 }
 
+.loading-content{
+  display:grid;
+  gap:12px;
+  justify-items:center;
+  align-items:center;
+}
+
 .spinner{
   width:54px;
   height:54px;
   border-radius:50%;
-  border:4px solid rgba(255,255,255,0.18);
-  border-top-color: var(--primary);
+  border:4px solid rgb(255, 255, 255);
+  border-top-color:#000;
   animation: spin 0.9s linear infinite;
-  box-shadow: 0 0 0 1px rgba(0,0,0,0.15);
+  box-shadow: 0 0 0 1px rgb(255, 255, 255);
 }
 
 .loading-text{
@@ -601,6 +607,15 @@ body.nav-open { overflow: hidden; }
   font-weight:700;
   text-transform:uppercase;
   font-size:14px;
+}
+
+@media (min-width: 980px){
+  .loading-content{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+  }
 }
 
 @keyframes spin{
