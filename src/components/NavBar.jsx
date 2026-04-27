@@ -61,23 +61,23 @@ export default function Navbar() {
       )}
       <header className="nav">
         <div className="nav__left">
-          <Link to="/" className="logoLink" aria-label="Go to homepage">
+          <Link reloadDocument to="/" className="logoLink" aria-label="Go to homepage">
             <img src="/logo-mark.png" alt="" className="logoMark" />
           </Link>
         </div>
 
         {/* Desktop center links */}
         <nav className="nav__center">
-          <NavLink to="/about" className="nav__link">
+          <NavLink reloadDocument to="/about" className="nav__link">
             About Us
           </NavLink>
-          <NavLink to="/how" className="nav__link">
+          <NavLink reloadDocument to="/how" className="nav__link">
             How it Works
           </NavLink>
-          <NavLink to="/portfolio" className="nav__link">
+          <NavLink reloadDocument to="/portfolio" className="nav__link">
             Our Portfolio
           </NavLink>
-          <NavLink to="/contact" className="nav__link">
+          <NavLink reloadDocument to="/contact" className="nav__link">
             Contact
           </NavLink>
         </nav>
@@ -88,6 +88,7 @@ export default function Navbar() {
             class="btn small appraisal-button"
             className="btn small"
             to="/contact"
+            reloadDocument
           >
             Get an Appraisal
           </Link>
@@ -119,28 +120,28 @@ export default function Navbar() {
       >
         <ul className="mnav__list">
           <li>
-            <NavLink to="/about" className="mnav__link">
+            <NavLink reloadDocument to="/about" className="mnav__link">
               About Us
             </NavLink>
           </li>
           <li>
-            <NavLink to="/how" className="mnav__link">
+            <NavLink reloadDocument to="/how" className="mnav__link">
               How it Works
             </NavLink>
           </li>
           <li>
-            <NavLink to="/portfolio" className="mnav__link">
+            <NavLink reloadDocument to="/portfolio" className="mnav__link">
               Our Portfolio
             </NavLink>
           </li>
           <li>
-            <NavLink to="/contact" className="mnav__link">
+            <NavLink reloadDocument to="/contact" className="mnav__link">
               Contact
             </NavLink>
           </li>
         </ul>
         <div className="mnav__cta">
-          <Link to="/contact" className="btn btn-primary">
+          <Link reloadDocument to="/contact" className="btn btn-primary">
             Free Appraisal
           </Link>
         </div>
