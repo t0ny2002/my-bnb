@@ -76,6 +76,7 @@ function FadeImage({ src, alt = '' }) {
 
 export default function Home() {
   useReveal();
+  const homeRef = useRef(null);
 
   const testimonials = useMemo(
     () => [
@@ -110,6 +111,58 @@ export default function Home() {
     return () => clearInterval(id);
   }, [testimonials.length]);
 
+  useEffect(() => {
+    const root = homeRef.current;
+    if (!root) return;
+
+    const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
+    const supportsFinePointer = window.matchMedia(
+      '(hover: hover) and (pointer: fine)'
+    ).matches;
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
+
+    if (!isDesktop || !supportsFinePointer || prefersReducedMotion) return;
+
+    const interactiveCards = Array.from(
+      root.querySelectorAll('.card--hover, .timeline__card, .kpi')
+    );
+
+    if (!interactiveCards.length) return;
+
+    const handleMove = (event) => {
+      const target = event.currentTarget;
+      const rect = target.getBoundingClientRect();
+      const px = (event.clientX - rect.left) / rect.width - 0.5;
+      const py = (event.clientY - rect.top) / rect.height - 0.5;
+      target.style.setProperty('--rx', `${(-py * 5).toFixed(2)}deg`);
+      target.style.setProperty('--ry', `${(px * 7).toFixed(2)}deg`);
+      target.style.setProperty('--mx', `${(px * 100).toFixed(2)}%`);
+      target.style.setProperty('--my', `${(py * 100).toFixed(2)}%`);
+    };
+
+    const handleLeave = (event) => {
+      const target = event.currentTarget;
+      target.style.setProperty('--rx', '0deg');
+      target.style.setProperty('--ry', '0deg');
+      target.style.setProperty('--mx', '0%');
+      target.style.setProperty('--my', '0%');
+    };
+
+    interactiveCards.forEach((card) => {
+      card.addEventListener('pointermove', handleMove, { passive: true });
+      card.addEventListener('pointerleave', handleLeave);
+    });
+
+    return () => {
+      interactiveCards.forEach((card) => {
+        card.removeEventListener('pointermove', handleMove);
+        card.removeEventListener('pointerleave', handleLeave);
+      });
+    };
+  }, []);
+
   // ROI mini-calculator
   const [rate, setRate] = useState(240);
   const [occ, setOcc] = useState(72);
@@ -120,7 +173,11 @@ export default function Home() {
   const guaranteed = Math.round(gross * 0.7); // conservative guaranteed rent example
 
   return (
-    <main className="home section home--light" aria-labelledby="hero-title">
+    <main
+      ref={homeRef}
+      className="home section home--light home--cinematic"
+      aria-labelledby="hero-title"
+    >
       {/* ================ HERO ================= */}
       <section className="hero" data-reveal>
         <div className="hero__layout container">
