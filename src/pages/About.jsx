@@ -11,12 +11,6 @@ export default function About() {
       img: '/tony.jpg',
     },
     {
-      id: 'jamie',
-      name: 'Edwin Huang',
-      role: 'Compliance & Reporting',
-      img: '/edwin.jpeg',
-    },
-    {
       id: 'sam',
       name: 'Eden Lin',
       role: 'Owners & Parternships',
@@ -99,10 +93,9 @@ export default function About() {
         </motion.p>
 
         <motion.p variants={storyItem}>
-          Edwin stepped in to bring structure to operations—compliance,
-          screening and clear reporting—while Eden focused on guest care and
-          communications. We learned that with the right systems and a personal
-          touch, hosting becomes seamless for everyone involved.
+          Eden focused on guest care and communications. We learned that with
+          the right systems and a personal touch, hosting becomes seamless for
+          everyone involved.
         </motion.p>
 
         <motion.p variants={storyItem}>
