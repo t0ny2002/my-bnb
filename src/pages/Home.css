@@ -672,3 +672,134 @@
     margin: 0;
     color: var(--muted, #c5cbd6);
   }
+
+/* ========= Desktop cinematic motion layer (optimized) ========= */
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  .home--cinematic .hero {
+    overflow: clip;
+    isolation: isolate;
+  }
+
+  .home--cinematic .hero::before,
+  .home--cinematic .hero::after {
+    content: '';
+    position: absolute;
+    width: clamp(260px, 28vw, 420px);
+    aspect-ratio: 1;
+    border-radius: 999px;
+    filter: blur(2px);
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 0;
+    will-change: transform;
+  }
+
+  .home--cinematic .hero::before {
+    left: -6%;
+    top: 8%;
+    background: radial-gradient(
+      circle at 30% 30%,
+      rgba(255, 126, 95, 0.55),
+      transparent 65%
+    );
+    animation: orbDrift 16s ease-in-out infinite alternate;
+  }
+
+  .home--cinematic .hero::after {
+    right: -8%;
+    bottom: 4%;
+    background: radial-gradient(
+      circle at 50% 50%,
+      rgba(56, 189, 248, 0.38),
+      transparent 68%
+    );
+    animation: orbDrift 20s ease-in-out infinite alternate-reverse;
+  }
+
+  .home--cinematic .hero__content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .home--cinematic .hero__gallery img {
+    animation: floatFrame 9s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  .home--cinematic .hero__gallery img:nth-child(2) {
+    animation-delay: -3s;
+  }
+
+  .home--cinematic .hero__gallery img:nth-child(3) {
+    animation-delay: -6s;
+  }
+
+  .home--cinematic .value .card,
+  .home--cinematic .timeline__card,
+  .home--cinematic .kpi {
+    --rx: 0deg;
+    --ry: 0deg;
+    --mx: 0%;
+    --my: 0%;
+    transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry))
+      translateZ(0);
+    transition: transform 200ms ease, box-shadow 200ms ease,
+      border-color 200ms ease;
+    will-change: transform;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .home--cinematic .value .card::before,
+  .home--cinematic .timeline__card::before,
+  .home--cinematic .kpi::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background: radial-gradient(
+      380px circle at calc(50% + var(--mx)) calc(50% + var(--my)),
+      rgba(255, 255, 255, 0.12),
+      transparent 40%
+    );
+    opacity: 0;
+    transition: opacity 180ms ease;
+  }
+
+  .home--cinematic .value .card:hover::before,
+  .home--cinematic .timeline__card:hover::before,
+  .home--cinematic .kpi:hover::before {
+    opacity: 1;
+  }
+}
+
+@keyframes orbDrift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(1.8vw, -2.4vh, 0) scale(1.05);
+  }
+  100% {
+    transform: translate3d(-1.4vw, 1.6vh, 0) scale(0.96);
+  }
+}
+
+@keyframes floatFrame {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -8px, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home--cinematic .hero::before,
+  .home--cinematic .hero::after,
+  .home--cinematic .hero__gallery img {
+    animation: none !important;
+  }
+}
