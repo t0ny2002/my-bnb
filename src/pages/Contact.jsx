@@ -1,21 +1,70 @@
 // src/pages/Contact.jsx
 import { useState } from 'react';
+import { FiMail, FiMapPin, FiPhone } from 'react-icons/fi';
 import './Contact.css';
 
+const INITIAL_FORM = {
+  name: '',
+  email: '',
+  phone: '',
+  inquiry: 'Appraisal',
+  message: '',
+  company: '',
+};
+
+const TOUCHED_FIELDS = {
+  name: true,
+  email: true,
+  phone: true,
+  message: true,
+};
+
+const INQUIRY_OPTIONS = [
+  'Appraisal',
+  'Guaranteed Rent',
+  'Management',
+  'General',
+];
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const PHONE_RE = /^[\d\s()+-]{6,}$/;
+
+const CONTACT_METHODS = [
+  {
+    label: 'Email',
+    value: 'properties@crownstonequarters.com',
+    href: 'mailto:properties@crownstonequarters.com',
+    note: 'Best for proposals and documents.',
+    icon: <FiMail />,
+  },
+  {
+    label: 'Phone',
+    value: '0449 537 675',
+    href: 'tel:+61449537675',
+    note: 'Mon–Fri, 9am–6pm AEST',
+    icon: <FiPhone />,
+  },
+  {
+    label: 'Location',
+    value: 'Sydney, NSW',
+    note: 'Inspections across Greater Sydney.',
+    icon: <FiMapPin />,
+  },
+];
+
+const TRUST_BADGES = [
+  'Compliance-first',
+  'Transparent reporting',
+  'No-party policy',
+  'Predictable payouts',
+];
+
+const emailOk = (v) => EMAIL_RE.test(v.trim());
+const phoneOk = (v) => v.trim() === '' || PHONE_RE.test(v.trim());
+
 export default function Contact() {
-  const [form, setForm] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    inquiry: 'Appraisal',
-    message: '',
-    company: '', // honeypot
-  });
+  const [form, setForm] = useState(INITIAL_FORM);
   const [touched, setTouched] = useState({});
   const [status, setStatus] = useState({ state: 'idle', msg: '' });
-
-  const emailOk = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
-  const phoneOk = (v) => v.trim() === '' || /^[\d\s()+-]{6,}$/.test(v.trim());
 
   const errors = {
     name: form.name.trim() ? '' : 'Please tell us your name.',
@@ -38,7 +87,7 @@ export default function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setTouched({ name: true, email: true, phone: true, message: true });
+    setTouched(TOUCHED_FIELDS);
 
     if (form.company) return; // honeypot
     if (hasErrors) {
@@ -64,14 +113,7 @@ export default function Contact() {
         state: 'success',
         msg: 'Thanks! We’ll be in touch shortly.',
       });
-      setForm({
-        name: '',
-        email: '',
-        phone: '',
-        inquiry: 'Appraisal',
-        message: '',
-        company: '',
-      });
+      setForm(INITIAL_FORM);
       setTouched({});
     } catch (err) {
       setStatus({
@@ -82,14 +124,12 @@ export default function Contact() {
   };
 
   return (
-    <main className="section contact data-load" aria-labelledby="contact-title">
+    <main className="contact" aria-labelledby="contact-title">
       <div className="container contact__wrap">
-        {/* Left: Info */}
-        <section className="contact__info data-load">
+        <section className="contact__info">
           <header className="contact__header">
-            <h1 id="contact-title" className="section-title-2">
-              Contact
-            </h1>
+            <p className="contact__eyebrow">Crownstone Quarters</p>
+            <h1 id="contact-title">Contact</h1>
             <p className="lead">
               Tell us a little about your property and goals. We’ll reply fast
               with next steps and a clear path to returns.
@@ -97,55 +137,36 @@ export default function Contact() {
           </header>
 
           <ul className="contact__cards" aria-label="Contact methods">
-            <li className="card">
-              <div className="card__icon" aria-hidden>
-                ✉️
-              </div>
-              <div className="card__body">
-                <h3>Email</h3>
-                <a
-                  href="mailto:properties@crownstonequarters.com"
-                  className="link"
-                >
-                  properties@crownstonequarters.com
-                </a>
-                <p className="muted">Best for proposals and documents.</p>
-              </div>
-            </li>
-            <li className="card">
-              <div className="card__icon" aria-hidden>
-                📞
-              </div>
-              <div className="card__body">
-                <h3>Phone</h3>
-                <a href="tel:+61449537675" className="link">
-                  0449 537 675
-                </a>
-                <p className="muted">Mon–Fri, 9am–6pm AEST</p>
-              </div>
-            </li>
-            <li className="card">
-              <div className="card__icon" aria-hidden>
-                📍
-              </div>
-              <div className="card__body">
-                <h3>Location</h3>
-                <p>Sydney, NSW</p>
-                <p className="muted">Inspections across Greater Sydney.</p>
-              </div>
-            </li>
+            {CONTACT_METHODS.map(({ label, value, href, note, icon }) => (
+              <li className="contact-card" key={label}>
+                <div className="contact-card__icon" aria-hidden="true">
+                  {icon}
+                </div>
+                <div className="contact-card__body">
+                  <h2>{label}</h2>
+                  {href ? (
+                    <a href={href} className="contact-link">
+                      {value}
+                    </a>
+                  ) : (
+                    <p className="contact-card__value">{value}</p>
+                  )}
+                  <p>{note}</p>
+                </div>
+              </li>
+            ))}
           </ul>
 
           <div className="contact__badges" aria-label="Trust">
-            <span className="badge">Compliance-first</span>
-            <span className="badge">Transparent reporting</span>
-            <span className="badge">No-party policy</span>
-            <span className="badge">Predictable payouts</span>
+            {TRUST_BADGES.map((badge) => (
+              <span className="contact-badge" key={badge}>
+                {badge}
+              </span>
+            ))}
           </div>
         </section>
 
-        {/* Right: Form */}
-        <section className="contact__form data-load">
+        <section className="contact__form" aria-label="Contact form">
           <form
             noValidate
             aria-describedby="form-status"
@@ -153,7 +174,6 @@ export default function Contact() {
             method="POST"
             onSubmit={handleSubmit}
           >
-            {/* Honeypot */}
             <input
               type="text"
               name="company"
@@ -163,6 +183,11 @@ export default function Contact() {
               tabIndex={-1}
               autoComplete="off"
             />
+
+            <div className="contact-form__header">
+              <h2>Send an enquiry</h2>
+              <p>Share the essentials and we’ll come back with next steps.</p>
+            </div>
 
             <div className="field">
               <label htmlFor="name">Your name *</label>
@@ -236,23 +261,21 @@ export default function Contact() {
                 role="radiogroup"
                 aria-label="Inquiry type"
               >
-                {['Appraisal', 'Guaranteed Rent', 'Management', 'General'].map(
-                  (v) => (
-                    <label
-                      key={v}
-                      className={`chip ${form.inquiry === v ? 'is-active' : ''}`}
-                    >
-                      <input
-                        type="radio"
-                        name="inquiry"
-                        value={v}
-                        checked={form.inquiry === v}
-                        onChange={onChange}
-                      />
-                      {v}
-                    </label>
-                  )
-                )}
+                {INQUIRY_OPTIONS.map((v) => (
+                  <label
+                    key={v}
+                    className={`chip ${form.inquiry === v ? 'is-active' : ''}`}
+                  >
+                    <input
+                      type="radio"
+                      name="inquiry"
+                      value={v}
+                      checked={form.inquiry === v}
+                      onChange={onChange}
+                    />
+                    {v}
+                  </label>
+                ))}
               </div>
             </fieldset>
 
