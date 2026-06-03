@@ -1,198 +1,288 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { FaBed, FaBath, FaCar } from 'react-icons/fa';
+import { memo, useCallback, useState } from 'react';
+import { FaBath, FaBed, FaCar } from 'react-icons/fa';
+import {
+  FiArrowRight,
+  FiChevronLeft,
+  FiChevronRight,
+  FiMapPin,
+  FiUsers,
+} from 'react-icons/fi';
 import BookingModal from '../components/BookingModal';
 import './Portfolio.css';
 
-const listAnim = {
-  hidden: { opacity: 1 },
-  show: { opacity: 1, transition: { staggerChildren: 0.08 } },
+const PORTFOLIO = [
+  {
+    id: 'pyrmont',
+    images: [
+      '/portfolio/243-pyrmont-1.jpg',
+      '/portfolio/243-pyrmont-2.jpg',
+      '/portfolio/243-pyrmont-3.jpg',
+    ],
+    address: '243 Pyrmont Street, Pyrmont NSW',
+    alias: 'Harbourside Hideaway',
+    bedrooms: 1,
+    bathrooms: 1,
+    carports: 0,
+    cleaningFee: 140,
+    maxGuests: 4,
+    profile: 'Harbourside apartment tuned for calm, polished short stays.',
+    highlight: 'Harbour-side',
+  },
+  {
+    id: 'pyrmont-2',
+    images: [
+      '/portfolio/38-york-1.jpg',
+      '/portfolio/38-york-2.jpg',
+      '/portfolio/38-york-3.jpg',
+    ],
+    address: '38 York St, Sydney NSW',
+    alias: 'Urban Horizon Suite',
+    bedrooms: 2,
+    bathrooms: 2,
+    carports: 0,
+    cleaningFee: 120,
+    maxGuests: 6,
+    profile:
+      'CBD-facing suite with amenity-led appeal and strong group demand.',
+    highlight: 'CBD position',
+  },
+  {
+    id: 'pyrmont-3',
+    images: [
+      '/portfolio/261-harris-1.jpg',
+      '/portfolio/261-harris-2.jpg',
+      '/portfolio/261-harris-3.jpg',
+    ],
+    address: '261 Harris St, Pyrmont NSW',
+    alias: 'Skyline Retreat',
+    bedrooms: 1,
+    bathrooms: 1,
+    carports: 0,
+    cleaningFee: 110,
+    maxGuests: 2,
+    profile:
+      'Light-filled stay with city outlooks and an efficient guest setup.',
+    highlight: 'Skyline outlook',
+  },
+];
+
+const SUMMARY = [
+  ['3', 'Managed stays'],
+  ['100%', 'Guest-ready'],
+  ['2', 'Airbnb Hosts'],
+  ['1', 'Superhost'],
+];
+
+const AMENITY_ICONS = {
+  bedrooms: FaBed,
+  bathrooms: FaBath,
+  carports: FaCar,
 };
 
-const itemAnim = {
-  hidden: { y: 14, opacity: 0 },
-  show: { y: 0, opacity: 1 },
-};
-
-function PortfolioCard({ property, onRequestBooking }) {
+const PortfolioCard = memo(function PortfolioCard({
+  property,
+  index,
+  onRequestBooking,
+}) {
   const [activeSlide, setActiveSlide] = useState(0);
   const totalSlides = property.images.length;
+  const activeImage = property.images[activeSlide];
 
-  const goToSlide = (index) => {
-    const nextIndex = (index + totalSlides) % totalSlides;
-    setActiveSlide(nextIndex);
-  };
+  const goToSlide = useCallback(
+    (nextIndex) => {
+      setActiveSlide((nextIndex + totalSlides) % totalSlides);
+    },
+    [totalSlides]
+  );
 
-  const handlePrev = () => goToSlide(activeSlide - 1);
-  const handleNext = () => goToSlide(activeSlide + 1);
+  const handlePrev = useCallback(
+    () => goToSlide(activeSlide - 1),
+    [activeSlide, goToSlide]
+  );
+
+  const handleNext = useCallback(
+    () => goToSlide(activeSlide + 1),
+    [activeSlide, goToSlide]
+  );
+
+  const handleRequest = useCallback(
+    () => onRequestBooking(property),
+    [onRequestBooking, property]
+  );
 
   return (
-    <motion.figure
-      className="portfolio-card"
-      variants={itemAnim}
-      whileHover={{ y: -4 }}
-    >
-      <div className="portfolio-slideshow" aria-live="polite">
+    <article className="portfolio-card">
+      <div className="portfolio-card__media">
         <img
-          className="portfolio-slide-img"
-          src={property.images[activeSlide]}
-          alt={`${property.alias} placeholder slide ${activeSlide + 1}`}
-          loading="lazy"
+          src={activeImage}
+          alt={`${property.alias} at ${property.address}`}
+          className="portfolio-card__image"
+          width="1400"
+          height="875"
+          loading={index === 0 ? 'eager' : 'lazy'}
+          fetchPriority={index === 0 ? 'high' : 'auto'}
+          decoding="async"
         />
-        <div className="portfolio-slide-controls">
+
+        <span className="portfolio-card__badge">{property.highlight}</span>
+
+        <div className="portfolio-card__controls">
           <button
             type="button"
-            className="portfolio-slide-btn"
+            className="portfolio-card__nav"
             onClick={handlePrev}
-            aria-label="View previous slide"
+            aria-label={`Previous image for ${property.alias}`}
           >
-            ‹
+            <FiChevronLeft aria-hidden="true" />
           </button>
           <button
             type="button"
-            className="portfolio-slide-btn"
+            className="portfolio-card__nav"
             onClick={handleNext}
-            aria-label="View next slide"
+            aria-label={`Next image for ${property.alias}`}
           >
-            ›
+            <FiChevronRight aria-hidden="true" />
           </button>
         </div>
-        <div className="portfolio-slide-dots" role="tablist">
-          {property.images.map((_, index) => (
+
+        <div className="portfolio-card__dots" aria-label="Gallery position">
+          {property.images.map((image, dotIndex) => (
             <button
-              key={`${property.id}-slide-${index}`}
+              key={image}
               type="button"
-              className={`portfolio-slide-dot${
-                index === activeSlide ? ' is-active' : ''
+              className={`portfolio-card__dot${
+                dotIndex === activeSlide ? ' is-active' : ''
               }`}
-              onClick={() => goToSlide(index)}
-              aria-label={`Go to slide ${index + 1}`}
-              aria-pressed={index === activeSlide}
+              onClick={() => goToSlide(dotIndex)}
+              aria-label={`Show image ${dotIndex + 1} for ${property.alias}`}
+              aria-pressed={dotIndex === activeSlide}
             />
           ))}
         </div>
       </div>
 
-      <figcaption className="portfolio-caption">
-        <div className="portfolio-address">{property.address}</div>
-        <div className="portfolio-alias">{property.alias}</div>
-      </figcaption>
+      <div className="portfolio-card__body">
+        <div>
+          <p className="portfolio-card__kicker">
+            <FiMapPin aria-hidden="true" />
+            {property.address}
+          </p>
+          <h2>{property.alias}</h2>
+          <p>{property.profile}</p>
+        </div>
 
-      <dl className="portfolio-amenities" aria-label="Property amenities">
-        <div className="amenity">
-          <dt className="amenity-label">Bedrooms</dt>
-          <dd className="amenity-value">
-            <FaBed className="amenity-icon" />
-            {property.bedrooms}
-          </dd>
-        </div>
-        <div className="amenity">
-          <dt className="amenity-label">Bathrooms</dt>
-          <dd className="amenity-value">
-            <FaBath className="amenity-icon" />
-            {property.bathrooms}
-          </dd>
-        </div>
-        <div className="amenity">
-          <dt className="amenity-label">Carports</dt>
-          <dd className="amenity-value">
-            <FaCar className="amenity-icon" />
-            {property.carports}
-          </dd>
-        </div>
-      </dl>
+        <dl className="portfolio-card__amenities" aria-label="Property details">
+          {[
+            ['bedrooms', property.bedrooms, 'Bedrooms'],
+            ['bathrooms', property.bathrooms, 'Bathrooms'],
+            ['carports', property.carports, 'Car spaces'],
+          ].map(([key, value, label]) => {
+            const Icon = AMENITY_ICONS[key];
+            return (
+              <div className="portfolio-card__amenity" key={key}>
+                <dt>{label}</dt>
+                <dd>
+                  <Icon aria-hidden="true" />
+                  {value}
+                </dd>
+              </div>
+            );
+          })}
+        </dl>
 
-      <button
-        className="portfolio-book-btn"
-        onClick={() => onRequestBooking(property)}
-      >
-        Request Booking
-      </button>
-    </motion.figure>
+        <div className="portfolio-card__meta">
+          <span>
+            <FiUsers aria-hidden="true" />
+            Up to {property.maxGuests} guests
+          </span>
+        </div>
+
+        <button
+          type="button"
+          className="portfolio-card__cta"
+          onClick={handleRequest}
+        >
+          Request Booking
+          <FiArrowRight aria-hidden="true" />
+        </button>
+      </div>
+    </article>
   );
-}
+});
 
 export default function Portfolio() {
   const [selectedProperty, setSelectedProperty] = useState(null);
-  const portfolio = [
-    {
-      id: 'pyrmont',
-      images: [
-        '/243-Pyrmont-St-pic.png',
-        '/243-Pyrmont-St-pic-2.png',
-        '/243-Pyrmont-St-pic-3-compressed.jpg',
-      ],
-      address: '243 Pyrmont Street, Pyrmont NSW',
-      alias: 'Harbourside Hideaway',
-      bedrooms: 1,
-      bathrooms: 1,
-      carports: 0,
-      cleaningFee: 140,
-      maxGuests: 4,
-    },
-    {
-      id: 'pyrmont-2',
-      images: [
-        '/38-york-st-2.png',
-        '/pyrmont-murray-st-2.jpg',
-        '/38-york-st-3.png',
-      ],
-      address: '38 York St, Sydney NSW',
-      alias: 'Urban Horizon Suite',
-      bedrooms: 2,
-      bathrooms: 2,
-      carports: 0,
-      cleaningFee: 120,
-      maxGuests: 6,
-    },
-    {
-      id: 'pyrmont-3',
-      images: [
-        '/50-murray-st-1.png',
-        '/50-murray-st-2.png',
-        '/50-murray-st-3.png',
-      ],
-      address: '261 Harris St, Pyrmont NSW',
-      alias: 'Skyline Retreat',
-      bedrooms: 1,
-      bathrooms: 1,
-      carports: 0,
-      cleaningFee: 110,
-      maxGuests: 2,
-    },
-  ];
+  const handleRequestBooking = useCallback((property) => {
+    setSelectedProperty(property);
+  }, []);
+
+  const handleClose = useCallback(() => setSelectedProperty(null), []);
 
   return (
     <>
-      <motion.section
-        id="portfolio"
-        className="portfolio band"
-        aria-labelledby="portfolio-heading"
-        variants={listAnim}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.2 }}
-      >
-        <h2 id="portfolio-heading" className="section-title-2">
-          Our Portfolio
-        </h2>
+      <main className="portfolio-page" aria-labelledby="portfolio-heading">
+        <section className="portfolio-hero">
+          <div className="portfolio-shell portfolio-hero__grid">
+            <div className="portfolio-hero__copy">
+              <p className="portfolio-eyebrow">Crownstone Quarters portfolio</p>
+              <h1 id="portfolio-heading">
+                Managed homes with hotel-grade polish.
+              </h1>
+              <p>
+                A tighter look at the short-stay properties we operate across
+                Sydney, with sharp presentation, practical property facts, and a
+                clear path to enquiry.
+              </p>
+            </div>
 
-        <motion.div className="portfolio-grid" variants={listAnim}>
-          {portfolio.map((p) => (
-            <PortfolioCard
-              key={p.id}
-              property={p}
-              onRequestBooking={setSelectedProperty}
-            />
-          ))}
-        </motion.div>
-      </motion.section>
+            <div
+              className="portfolio-hero__panel"
+              aria-label="Portfolio summary"
+            >
+              {SUMMARY.map(([value, label]) => (
+                <div key={label}>
+                  <strong>{value}</strong>
+                  <span>{label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="portfolio-list" aria-label="Available properties">
+          <div className="portfolio-shell">
+            <div className="portfolio-list__header">
+              <div>
+                <p className="portfolio-eyebrow">Current stays</p>
+                <h2>Our Portfolio</h2>
+              </div>
+              <p>Curated homes and calm guest-ready presentation.</p>
+            </div>
+
+            <div className="portfolio-grid">
+              {PORTFOLIO.map((property, index) => (
+                <PortfolioCard
+                  key={property.id}
+                  property={property}
+                  index={index}
+                  onRequestBooking={handleRequestBooking}
+                />
+              ))}
+            </div>
+
+            <aside className="portfolio-note">
+              <FiArrowRight aria-hidden="true" />
+              <span>
+                Every property is prepared for short-stay comfort, guest
+                screening, and straightforward booking enquiries.
+              </span>
+            </aside>
+          </div>
+        </section>
+      </main>
 
       {selectedProperty && (
-        <BookingModal
-          property={selectedProperty}
-          onClose={() => setSelectedProperty(null)}
-        />
+        <BookingModal property={selectedProperty} onClose={handleClose} />
       )}
     </>
   );

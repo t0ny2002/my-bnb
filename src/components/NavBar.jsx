@@ -8,6 +8,19 @@ import HowItWorks from '../pages/HowItWorks';
 import Contact from '../pages/Contact';
 import Portfolio from '../pages/Portfolio';
 
+function LoadingOverlay() {
+  return (
+    <div className="loading-overlay" role="status" aria-live="polite">
+      <div className="loading-content">
+        <div className="spinner" aria-hidden="true">
+          <span />
+        </div>
+        <p className="loading-text">Loading</p>
+      </div>
+    </div>
+  );
+}
+
 export default function Navbar() {
   // Mobile drawer state
   const [open, setOpen] = useState(false);
@@ -51,17 +64,15 @@ export default function Navbar() {
 
   return (
     <div>
-      {isLoading && (
-        <div className="loading-overlay" role="status" aria-live="polite">
-          <div className="loading-content">
-            <div className="spinner" aria-hidden="true" />
-            <p className="loading-text">Loading</p>
-          </div>
-        </div>
-      )}
+      {isLoading && <LoadingOverlay />}
       <header className="nav">
         <div className="nav__left">
-          <Link reloadDocument to="/" className="logoLink" aria-label="Go to homepage">
+          <Link
+            reloadDocument
+            to="/"
+            className="logoLink"
+            aria-label="Go to homepage"
+          >
             <img src="/logo-mark.png" alt="" className="logoMark" />
           </Link>
         </div>
@@ -85,8 +96,7 @@ export default function Navbar() {
         {/* Desktop CTA */}
         <div className="nav__right">
           <Link
-            class="btn small appraisal-button"
-            className="btn small"
+            className="btn small appraisal-button"
             to="/contact"
             reloadDocument
           >

@@ -261,6 +261,7 @@
 /* Title + lead: subtle rise-in on load */
 .howPage .section-title-2 {
   animation: how-rise 520ms cubic-bezier(.22,.9,.24,1) both;
+  color: var(--text, #0f1216) !important;
 }
 .howPage .lead {
   animation: how-rise 520ms cubic-bezier(.22,.9,.24,1) 80ms both;
