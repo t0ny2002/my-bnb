@@ -560,7 +560,7 @@ body.nav-open { overflow: hidden; }
 /* Hover override */
 .btn.small.appraisal-button:hover {
   background: #ffffff;       /* white background */
-  color: #ffffff;            /* black text */
+  color: #000000;            /* black text */
   border: 1px solid #000; /* black border */
 }
 
