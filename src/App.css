@@ -557,6 +557,182 @@ body.nav-open { overflow: hidden; }
 .mnav__drawer{ z-index: 999; }
 .nav{ z-index: 997; }
 
+@media (max-width: 979px) {
+  .mnav__scrim {
+    background:
+      radial-gradient(circle at 82% 10%, rgba(255, 255, 255, 0.2), transparent 30%),
+      rgba(17, 19, 23, 0.48);
+    backdrop-filter: blur(10px);
+    transition: opacity 0.24s ease;
+  }
+
+  .mnav__drawer {
+    top: max(10px, env(safe-area-inset-top, 0));
+    right: 10px;
+    bottom: 10px;
+    inline-size: min(90vw, 390px);
+    block-size: auto;
+    padding: 18px;
+    border: 1px solid rgba(185, 167, 148, 0.74);
+    border-radius: 28px 0 0 28px;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(255, 249, 240, 0.98)),
+      #ffffff;
+    box-shadow: none !important;
+    pointer-events: none;
+    transform: translateX(calc(100% + 18px));
+    transition:
+      transform 0.32s cubic-bezier(.22, 1, .36, 1),
+      box-shadow 0.2s ease;
+  }
+
+  .mnav__drawer.is-open {
+    box-shadow: -24px 24px 70px rgba(34, 24, 14, 0.22) !important;
+    pointer-events: auto;
+    transform: translateX(0);
+  }
+
+  .mnav__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    min-height: 68px;
+    padding: 6px 4px 18px;
+    border-bottom: 1px solid rgba(222, 208, 191, 0.9);
+  }
+
+  .mnav__brand {
+    display: inline-flex;
+    align-items: center;
+    min-width: 0;
+  }
+
+  .mnav__logo {
+    width: auto;
+    height: 48px;
+    max-width: 190px;
+    object-fit: contain;
+  }
+
+  .mnav__close {
+    position: relative;
+    display: grid;
+    place-items: center;
+    flex: 0 0 42px;
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(17, 19, 23, 0.12);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.84);
+    color: #111317;
+    cursor: pointer;
+  }
+
+  .mnav__close span {
+    position: absolute;
+    width: 17px;
+    height: 2px;
+    border-radius: 999px;
+    background: currentColor;
+  }
+
+  .mnav__close span:first-child {
+    transform: rotate(45deg);
+  }
+
+  .mnav__close span:last-child {
+    transform: rotate(-45deg);
+  }
+
+  .mnav__close:focus-visible,
+  .mnav__link:focus-visible {
+    outline: 2px solid #ff4669;
+    outline-offset: 3px;
+  }
+
+  .mnav__nav {
+    padding-top: 18px;
+  }
+
+  .mnav__list {
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .mnav__link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 58px;
+    padding: 0 46px 0 18px;
+    border: 1px solid rgba(17, 19, 23, 0.1);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.7);
+    color: #111317;
+    font-family: var(--menu-font-family);
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: 0;
+    box-shadow: 0 12px 28px rgba(68, 48, 28, 0.06) !important;
+    transition:
+      transform 0.18s ease,
+      border-color 0.18s ease,
+      background 0.18s ease,
+      color 0.18s ease;
+  }
+
+  .mnav__link::after {
+    content: '';
+    position: absolute;
+    right: 18px;
+    width: 8px;
+    height: 8px;
+    border-top: 2px solid currentColor;
+    border-right: 2px solid currentColor;
+    opacity: 0.46;
+    transform: rotate(45deg);
+  }
+
+  .mnav__link:hover,
+  .mnav__link[aria-current='page'] {
+    transform: translateY(-1px);
+    border-color: rgba(255, 70, 105, 0.48);
+    background: #111317;
+    color: #ffffff;
+    box-shadow: 0 16px 34px rgba(17, 19, 23, 0.16) !important;
+  }
+
+  .mnav__cta {
+    margin-top: auto;
+    padding: 18px 0 0;
+    border-top: 1px solid rgba(222, 208, 191, 0.9);
+  }
+
+  .mnav__cta .btn.btn-primary {
+    display: flex;
+    width: 100%;
+    min-height: 54px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #111317 !important;
+    border-radius: 18px;
+    background: #111317 !important;
+    color: #ffffff !important;
+    font-weight: 900;
+    box-shadow: 0 16px 36px rgba(17, 19, 23, 0.18) !important;
+  }
+
+  .mnav__cta .btn.btn-primary:hover,
+  .mnav__cta .btn.btn-primary:focus-visible {
+    transform: translateY(-1px);
+    border-color: #d93555 !important;
+    background: #d93555 !important;
+  }
+}
+
 /* Hover override */
 .btn.small.appraisal-button:hover {
   background: #ffffff;       /* white background */

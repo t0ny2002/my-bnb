@@ -128,28 +128,51 @@ export default function Navbar() {
         aria-modal="true"
         aria-label="Mobile menu"
       >
-        <ul className="mnav__list">
-          <li>
-            <NavLink reloadDocument to="/about" className="mnav__link">
-              About Us
-            </NavLink>
-          </li>
-          <li>
-            <NavLink reloadDocument to="/how" className="mnav__link">
-              How it Works
-            </NavLink>
-          </li>
-          <li>
-            <NavLink reloadDocument to="/portfolio" className="mnav__link">
-              Our Portfolio
-            </NavLink>
-          </li>
-          <li>
-            <NavLink reloadDocument to="/contact" className="mnav__link">
-              Contact
-            </NavLink>
-          </li>
-        </ul>
+        <div className="mnav__header">
+          <Link
+            reloadDocument
+            to="/"
+            className="mnav__brand"
+            aria-label="Go to homepage"
+          >
+            <img src="/logo-mark.png" alt="" className="mnav__logo" />
+          </Link>
+          <button
+            type="button"
+            className="mnav__close"
+            aria-label="Close menu"
+            onClick={() => setOpen(false)}
+          >
+            <span />
+            <span />
+          </button>
+        </div>
+
+        <nav className="mnav__nav" aria-label="Mobile navigation">
+          <ul className="mnav__list">
+            <li>
+              <NavLink reloadDocument to="/about" className="mnav__link">
+                About Us
+              </NavLink>
+            </li>
+            <li>
+              <NavLink reloadDocument to="/how" className="mnav__link">
+                How it Works
+              </NavLink>
+            </li>
+            <li>
+              <NavLink reloadDocument to="/portfolio" className="mnav__link">
+                Our Portfolio
+              </NavLink>
+            </li>
+            <li>
+              <NavLink reloadDocument to="/contact" className="mnav__link">
+                Contact
+              </NavLink>
+            </li>
+          </ul>
+        </nav>
+
         <div className="mnav__cta">
           <Link reloadDocument to="/contact" className="btn btn-primary">
             Free Appraisal

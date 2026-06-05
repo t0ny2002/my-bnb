@@ -468,16 +468,52 @@
 }
 
 @media (max-width: 760px) {
+  .how-page {
+    overflow-x: hidden;
+  }
+
   .how-page .how-shell {
     width: min(100% - 24px, 560px);
+    box-sizing: border-box;
   }
 
   .how-page .how-hero {
-    padding: calc(var(--nav-h, 72px) + 48px) 0 58px;
+    padding: calc(var(--nav-h, 72px) + 48px) 10px 58px;
   }
 
   .how-page .how-hero h1 {
-    font-size: clamp(3.3rem, 16vw, 5rem);
+    font-size: clamp(2.7rem, 13vw, 4.25rem);
+    overflow-wrap: anywhere;
+  }
+
+  .how-page .how-process,
+  .how-page .how-final {
+    padding-inline: 10px;
+  }
+
+  .how-page .how-process > .how-shell {
+    width: min(100%, 560px);
+    padding: clamp(22px, 6vw, 30px);
+    border: 1px solid var(--how-line);
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.34);
+    overflow: hidden;
+  }
+
+  .how-page .how-hero__grid,
+  .how-page .how-process__grid,
+  .how-page .how-detail,
+  .how-page .how-card-grid,
+  .how-page .how-feature-card,
+  .how-page .how-final__panel {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .how-page .how-feature-card h2,
+  .how-page .how-final h2 {
+    font-size: clamp(2rem, 10vw, 3rem);
+    overflow-wrap: anywhere;
   }
 
   .how-page .how-hero__actions,

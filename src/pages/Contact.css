@@ -415,15 +415,18 @@ fieldset.field {
 
 @media (max-width: 640px) {
   .contact {
-    padding: calc(var(--nav-h, 72px) + 26px) 0 48px;
+    padding: calc(var(--nav-h, 72px) + 26px) 10px 48px;
+    overflow-x: hidden;
   }
 
   .contact__wrap {
-    width: min(100% - 24px, 560px);
+    width: min(100%, 560px);
+    box-sizing: border-box;
   }
 
   .contact__header h1 {
-    font-size: clamp(2.6rem, 18vw, 4.1rem);
+    font-size: clamp(2.25rem, 12vw, 3.45rem);
+    overflow-wrap: anywhere;
   }
 
   .contact__header h1::after {
@@ -454,6 +457,15 @@ fieldset.field {
   .contact__form form {
     padding: 20px;
     border-radius: 22px;
+  }
+
+  .contact__info,
+  .contact__cards,
+  .contact-card,
+  .contact__form,
+  .contact__form form {
+    min-width: 0;
+    max-width: 100%;
   }
 
   .fieldGrid,
