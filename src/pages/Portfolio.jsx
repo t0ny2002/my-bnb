@@ -44,7 +44,7 @@ const PORTFOLIO = [
     maxGuests: 6,
     profile:
       'CBD-facing suite with amenity-led appeal and strong group demand.',
-    highlight: 'CBD position',
+    highlight: 'CBD location',
   },
   {
     id: 'pyrmont-3',
