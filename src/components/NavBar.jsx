@@ -7,6 +7,7 @@ import About from '../pages/About';
 import HowItWorks from '../pages/HowItWorks';
 import Contact from '../pages/Contact';
 import Portfolio from '../pages/Portfolio';
+import SiteFooter from './SiteFooter';
 
 function LoadingOverlay() {
   return (
@@ -188,6 +189,7 @@ export default function Navbar() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/portfolio" element={<Portfolio />} />
       </Routes>
+      <SiteFooter />
     </div>
   );
 }
