@@ -1,5 +1,6 @@
 // src/components/BookingModal.jsx
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { motion as Motion } from 'framer-motion';
 import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
@@ -12,44 +13,6 @@ function addDays(date, days) {
   const d = new Date(date);
   d.setDate(d.getDate() + days);
   return d;
-}
-
-function daysInMonth(year, monthIndex) {
-  return new Date(year, monthIndex + 1, 0).getDate();
-}
-
-// generate random 3/4/5-night blocks over the next N months
-function generateRandomBlockedRanges({
-  startDate = new Date(),
-  monthsAhead = 3,
-  blocksPerMonth = 4,
-  groupSizes = [3, 4, 5],
-}) {
-  const ranges = [];
-  const startMonth = startDate.getMonth();
-  const startYear = startDate.getFullYear();
-
-  for (let m = 0; m < monthsAhead; m++) {
-    const monthIndex = (startMonth + m) % 12;
-    const year = startYear + Math.floor((startMonth + m) / 12);
-    const totalDays = daysInMonth(year, monthIndex);
-
-    for (let b = 0; b < blocksPerMonth; b++) {
-      const size = groupSizes[Math.floor(Math.random() * groupSizes.length)]; // 3/4/5
-      const maxStartDay = totalDays - size + 1;
-      const day = 1 + Math.floor(Math.random() * maxStartDay);
-
-      const start = new Date(year, monthIndex, day);
-      const end = addDays(start, size - 1);
-
-      // ignore blocks fully in the past
-      if (end < startDate) continue;
-
-      ranges.push({ startDate: start, endDate: end });
-    }
-  }
-
-  return ranges;
 }
 
 function expandRangesToDates(ranges) {
@@ -67,6 +30,9 @@ function expandRangesToDates(ranges) {
 /* ==================== component ==================== */
 
 export default function BookingModal({ property, onClose }) {
+  const closeButtonRef = useRef(null);
+  const modalRef = useRef(null);
+  const previousFocusRef = useRef(null);
   const [checkIn, setCheckIn] = useState('');
   const [checkOut, setCheckOut] = useState('');
   const [guests, setGuests] = useState(1);
@@ -109,6 +75,42 @@ export default function BookingModal({ property, onClose }) {
     return diff > 0 ? diff : 0;
   }, [checkIn, checkOut]);
 
+  useEffect(() => {
+    const previousOverflow = document.body.style.overflow;
+    previousFocusRef.current = document.activeElement;
+    document.body.style.overflow = 'hidden';
+    closeButtonRef.current?.focus();
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') onClose();
+      if (event.key !== 'Tab' || !modalRef.current) return;
+
+      const focusable = Array.from(
+        modalRef.current.querySelectorAll(
+          'button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), a[href]'
+        )
+      );
+      if (!focusable.length) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+      previousFocusRef.current?.focus?.();
+    };
+  }, [onClose]);
+
   function handleSubmit(e) {
     e.preventDefault();
     setError('');
@@ -144,15 +146,47 @@ export default function BookingModal({ property, onClose }) {
   if (!property) return null;
 
   return (
-    <div className="booking-backdrop" onClick={onClose}>
-      <div className="booking-modal" onClick={(e) => e.stopPropagation()}>
-        <button className="booking-close" onClick={onClose}>
+    <Motion.div
+      className="booking-backdrop"
+      onClick={onClose}
+      initial={{ opacity: 0, backdropFilter: 'blur(0px)' }}
+      animate={{ opacity: 1, backdropFilter: 'blur(12px)' }}
+      exit={{ opacity: 0, backdropFilter: 'blur(0px)' }}
+      transition={{ duration: 0.24, ease: 'easeOut' }}
+    >
+      <Motion.div
+        ref={modalRef}
+        className="booking-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="booking-modal-title"
+        onClick={(e) => e.stopPropagation()}
+        initial={{ opacity: 0, y: 48, scale: 0.94, rotateX: -8 }}
+        animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
+        exit={{ opacity: 0, y: 28, scale: 0.97, rotateX: 4 }}
+        transition={{
+          type: 'spring',
+          stiffness: 330,
+          damping: 30,
+          mass: 0.8,
+        }}
+      >
+        <div className="booking-modal__accent" aria-hidden="true" />
+        <button
+          ref={closeButtonRef}
+          type="button"
+          className="booking-close"
+          aria-label="Close booking request"
+          onClick={onClose}
+        >
           ×
         </button>
 
         {!submitted ? (
           <>
-            <h2 className="booking-title">Request a Stay</h2>
+            <h2 id="booking-modal-title" className="booking-title">
+              Request a Stay
+            </h2>
             <p className="booking-subtitle">
               {property.title || property.alias || property.address}
             </p>
@@ -263,7 +297,7 @@ export default function BookingModal({ property, onClose }) {
             </button>
           </div>
         )}
-      </div>
-    </div>
+      </Motion.div>
+    </Motion.div>
   );
 }

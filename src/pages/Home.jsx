@@ -198,6 +198,7 @@ export default function Home() {
   const [rate, setRate] = useState(240);
   const [occ, setOcc] = useState(72);
   const [fee, setFee] = useState(18);
+  const [openFaq, setOpenFaq] = useState(0);
 
   const nights = Math.round((occ / 100) * 30);
   const gross = Math.round(rate * nights);
@@ -434,12 +435,42 @@ export default function Home() {
             <h2>FAQs</h2>
           </header>
           <div className="faq__list">
-            {FAQS.map((item) => (
-              <details key={item.question} className="faq__item">
-                <summary>{item.question}</summary>
-                <p>{item.answer}</p>
-              </details>
-            ))}
+            {FAQS.map((item, index) => {
+              const isOpen = openFaq === index;
+              const panelId = `faq-panel-${index}`;
+              const triggerId = `faq-trigger-${index}`;
+
+              return (
+                <article
+                  key={item.question}
+                  className={`faq__item${isOpen ? ' is-open' : ''}`}
+                >
+                  <h3>
+                    <button
+                      id={triggerId}
+                      type="button"
+                      aria-expanded={isOpen}
+                      aria-controls={panelId}
+                      onClick={() => setOpenFaq(isOpen ? -1 : index)}
+                    >
+                      <span>{item.question}</span>
+                      <span className="faq__toggle" aria-hidden="true" />
+                    </button>
+                  </h3>
+                  <div
+                    id={panelId}
+                    className="faq__answer"
+                    role="region"
+                    aria-labelledby={triggerId}
+                    aria-hidden={!isOpen}
+                  >
+                    <div>
+                      <p>{item.answer}</p>
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>

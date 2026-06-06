@@ -1,4 +1,5 @@
 import { memo, useCallback, useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import { FaBath, FaBed, FaCar } from 'react-icons/fa';
 import {
   FiArrowRight,
@@ -281,9 +282,15 @@ export default function Portfolio() {
         </section>
       </main>
 
-      {selectedProperty && (
-        <BookingModal property={selectedProperty} onClose={handleClose} />
-      )}
+      <AnimatePresence>
+        {selectedProperty && (
+          <BookingModal
+            key={selectedProperty.id}
+            property={selectedProperty}
+            onClose={handleClose}
+          />
+        )}
+      </AnimatePresence>
     </>
   );
 }
