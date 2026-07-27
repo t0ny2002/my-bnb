@@ -66,7 +66,7 @@ const STEPS = [
     key: 'managed',
     title: 'Fully Managed',
     blurb:
-      'Cleaning, linen, amenities, check-ins, maintenance triage, and 24/7 guest support—handled by us.',
+      'Cleaning, linen, amenities, check-ins, maintenance triage, and 24/7 guest support-handled by us.',
     bullets: ['Cleaning and linen', 'Maintenance triage', '24/7 guest support'],
     icon: <FiHeadphones />,
   },

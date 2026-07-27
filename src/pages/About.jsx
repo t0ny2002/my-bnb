@@ -136,12 +136,12 @@ export default function About() {
               Crownstone Quarters began in 2022 when Tony leased out his
               apartment in Zetland while travelling overseas. What started as a
               simple handover quickly revealed the real challenges of short-stay
-              hosting—late-night guest messages, back-to-back turnovers, and
+              hosting-late-night guest messages, back-to-back turnovers, and
               keeping a home in top condition.
             </p>
             <p>
-              Tony stepped in to bring structure to operations—compliance,
-              screening and clear reporting—while Eden focused on guest care and
+              Tony stepped in to bring structure to operations-compliance,
+              screening and clear reporting-while Eden focused on guest care and
               communications. We learned that with the right systems and a
               personal touch, hosting becomes seamless for everyone involved.
             </p>
@@ -187,7 +187,7 @@ export default function About() {
                       {icon}
                     </span>
                     <p>
-                      <strong>{title}</strong> — {text}
+                      <strong>{title}</strong> - {text}
                     </p>
                   </div>
                 ))}

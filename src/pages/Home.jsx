@@ -29,7 +29,7 @@ const TRUST_ITEMS = ['STRA-aware', 'No-party policy', 'Insurer-backed cover*'];
 const VALUE_CARDS = [
   {
     title: 'Guaranteed Rent',
-    text: 'Fixed, on-time payments under a head-lease—no vacancy risk for you.',
+    text: 'Fixed, on-time payments under a head-lease-no vacancy risk for you.',
     icon: '/rent.png',
   },
   {
@@ -56,7 +56,7 @@ const HOW_STEPS = [
   },
   {
     title: 'Simple Agreement',
-    text: 'Choose Guaranteed Rent (head-lease) or Management—clear inclusions.',
+    text: 'Choose Guaranteed Rent (head-lease) or Management-clear inclusions.',
   },
   {
     title: 'Setup & Styling',
@@ -90,7 +90,7 @@ const FAQS = [
   {
     question: 'Do I get paid if occupancy is low?',
     answer:
-      'With Guaranteed Rent, yes—your payout is fixed for the term. With Management, payouts vary with performance.',
+      'With Guaranteed Rent, yes-your payout is fixed for the term. With Management, payouts vary with performance.',
   },
 ];
 
@@ -235,7 +235,7 @@ export default function Home() {
             </h1>
             <p className="lead">
               Guaranteed rent options or performance-based management. We handle
-              setup, cleaning, pricing, guests, and reporting—end to end.
+              setup, cleaning, pricing, guests, and reporting-end to end.
             </p>
 
             <div className="hero__ctas">
@@ -354,7 +354,7 @@ export default function Home() {
               <h2 id="calc-h">Estimate your monthly payout</h2>
             </div>
             <p className="muted">
-              Quick, directional numbers—final figures depend on property,
+              Quick, directional numbers-final figures depend on property,
               seasonality and local caps.
             </p>
           </header>

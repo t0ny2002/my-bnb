@@ -1,6 +1,6 @@
 
 /* ============================================
-   LIGHT THEME (Cream/White) — drop in src/theme-light.css
+   LIGHT THEME (Cream/White) - drop in src/theme-light.css
    Make sure it's imported AFTER App.css.
    ============================================ */
 
@@ -82,7 +82,7 @@ header.nav, .nav{
   color:var(--text) !important;
   box-shadow: var(--shadow);
 }
-/* value & calc had hard-coded darks — neutralize */
+/* value & calc had hard-coded darks - neutralize */
 .value .card:nth-child(odd),
 .value .card:nth-child(even),
 .calc .kpi:nth-child(even){
