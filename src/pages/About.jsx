@@ -10,21 +10,6 @@ import {
 } from 'react-icons/fi';
 import './About.css';
 
-const TEAM = [
-  {
-    id: 'alex',
-    name: 'Tony Ding',
-    role: 'Operations & Guest Experience',
-    img: '/tony.jpg',
-  },
-  {
-    id: 'sam',
-    name: 'Eden Lin',
-    role: 'Owners & Partnerships',
-    img: '/eden.jpg',
-  },
-];
-
 const SERVICES = [
   {
     title: 'Guaranteed Rent (Head-Lease)',
@@ -84,7 +69,7 @@ const VALUES = [
   },
 ];
 
-const STORY_WRAP = {
+const SECTION_WRAP = {
   hidden: { opacity: 1 },
   show: {
     opacity: 1,
@@ -92,7 +77,7 @@ const STORY_WRAP = {
   },
 };
 
-const STORY_ITEM = {
+const SECTION_ITEM = {
   hidden: { opacity: 0, y: 18 },
   show: {
     opacity: 1,
@@ -101,63 +86,14 @@ const STORY_ITEM = {
   },
 };
 
-const LIST_ANIM = {
-  hidden: { opacity: 1 },
-  show: { opacity: 1, transition: { staggerChildren: 0.08 } },
-};
-
-const ITEM_ANIM = {
-  hidden: { y: 14, opacity: 0 },
-  show: { y: 0, opacity: 1 },
-};
-
 export default function About() {
   return (
     <main className="about-page" aria-labelledby="about-title">
-      <Motion.section
-        className="about-hero"
-        variants={STORY_WRAP}
-        initial="hidden"
-        animate="show"
-      >
-        <div className="about-shell about-hero__grid">
-          <div className="about-hero__intro">
-            <Motion.p className="about-eyebrow" variants={STORY_ITEM}>
-              About Crownstone Quarters
-            </Motion.p>
-            <Motion.h1 id="about-title" variants={STORY_ITEM}>
-              Calm operations for short-stay homes.
-            </Motion.h1>
-          </div>
-
-          <Motion.div className="about-story-card" variants={STORY_ITEM}>
-            <h2>Our Story</h2>
-            <p>
-              Crownstone Quarters began in 2022 when Tony leased out his
-              apartment in Zetland while travelling overseas. What started as a
-              simple handover quickly revealed the real challenges of short-stay
-              hosting-late-night guest messages, back-to-back turnovers, and
-              keeping a home in top condition.
-            </p>
-            <p>
-              Tony stepped in to bring structure to operations-compliance,
-              screening and clear reporting-while Eden focused on guest care and
-              communications. We learned that with the right systems and a
-              personal touch, hosting becomes seamless for everyone involved.
-            </p>
-            <p>
-              That’s the approach we carry into every property today: calm
-              operations, clear communication and consistently great stays.
-            </p>
-          </Motion.div>
-        </div>
-      </Motion.section>
-
-      <section className="about-band about-band--light">
+      <section className="about-band about-band--light about-band--top">
         <div className="about-shell">
           <div className="about-section-head">
             <p className="about-eyebrow">Where We Are Today</p>
-            <h2>Professional hosting, owner-first reporting.</h2>
+            <h1 id="about-title">Professional hosting, owner-first reporting.</h1>
             <p>
               We’re a Sydney-based short-stay operator focused on{' '}
               <strong>clean</strong>, <strong>reliable</strong>, and{' '}
@@ -244,47 +180,43 @@ export default function About() {
         </div>
       </section>
 
-      <section
-        className="about-band about-band--team"
-        id="team"
-        aria-labelledby="team-heading"
+      <Motion.section
+        className="about-hero"
+        variants={SECTION_WRAP}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
       >
-        <div className="about-shell">
-          <div className="about-section-head about-section-head--team">
-            <p className="about-eyebrow">Our Team</p>
-            <h2 id="team-heading">
-              Accommodation operations are all run by our crew.
-            </h2>
+        <div className="about-shell about-hero__grid">
+          <div className="about-hero__intro">
+            <Motion.p className="about-eyebrow" variants={SECTION_ITEM}>
+              Built for Property Owners
+            </Motion.p>
+            <Motion.h2 variants={SECTION_ITEM}>
+              More visibility. Less day-to-day work.
+            </Motion.h2>
           </div>
 
-          <Motion.div
-            className="about-team-grid"
-            variants={LIST_ANIM}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.2 }}
-          >
-            {TEAM.map((member) => (
-              <Motion.article
-                key={member.id}
-                className="about-team-card"
-                variants={ITEM_ANIM}
-              >
-                <img
-                  src={member.img}
-                  alt={member.name}
-                  className="about-team-card__img"
-                  loading="lazy"
-                />
-                <div>
-                  <h3>{member.name}</h3>
-                  <p>{member.role}</p>
-                </div>
-              </Motion.article>
-            ))}
+          <Motion.div className="about-owner-card" variants={SECTION_ITEM}>
+            <h2>What You Can Expect</h2>
+            <p>
+              We handle guest communication, pricing, cleaning coordination and
+              property checks, so you are not pulled into the daily demands of
+              short-stay hosting.
+            </p>
+            <p>
+              You receive clear statements and straightforward updates, giving
+              you an accurate view of performance without having to chase for
+              information.
+            </p>
+            <p>
+              Your property is supported by consistent operating standards,
+              proactive issue management and a team accountable for protecting
+              its condition and long-term value.
+            </p>
           </Motion.div>
         </div>
-      </section>
+      </Motion.section>
     </main>
   );
 }
