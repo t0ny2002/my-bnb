@@ -38,7 +38,7 @@ const CONTACT_METHODS = [
   },
   {
     label: 'Phone',
-    value: '0449 537 675',
+    value: '0431 851 428',
     href: 'tel:+61449537675',
     note: 'Mon–Fri, 9am–6pm AEST',
     icon: <FiPhone />,
