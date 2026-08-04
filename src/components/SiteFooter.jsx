@@ -27,8 +27,7 @@ export default function SiteFooter() {
             <img src="/footer-logo.png" alt="" />
           </Link>
           <p id="footer-title">
-            Calm, compliance-first Airbnb management for Sydney property
-            owners.
+            Calm, compliance-first Airbnb management for Sydney property owners.
           </p>
           <Link className="site-footer__primary" to="/contact">
             Get an Appraisal
@@ -62,7 +61,7 @@ export default function SiteFooter() {
           <h2>Contact Us</h2>
           <a href="tel:+61449537675">
             <FiPhone aria-hidden="true" />
-            <span>0449 537 675</span>
+            <span>0431 851 428</span>
           </a>
           <a href="mailto:properties@crownstonequarters.com">
             <FiMail aria-hidden="true" />
