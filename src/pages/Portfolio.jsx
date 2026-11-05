@@ -13,6 +13,22 @@ import './Portfolio.css';
 
 const PORTFOLIO = [
   {
+    id: 'clarence-1201',
+    images: [
+      '/portfolio/1201-clarence-1.avif',
+      '/portfolio/1201-clarence-2.avif',
+      '/portfolio/1201-clarence-3.avif',
+    ],
+    address: '1201/161 Clarence St',
+    alias: 'Luxe CBD Sanctuary',
+    bedrooms: 2,
+    bathrooms: 2,
+    carports: 0,
+    maxGuests: 6,
+    profile: 'Two-bedroom, two-bathroom apartment for up to six guests.',
+    highlight: 'Photos coming soon',
+  },
+  {
     id: 'pyrmont',
     images: [
       '/portfolio/243-pyrmont-1.jpg',
@@ -86,7 +102,7 @@ const PORTFOLIO = [
 ];
 
 const SUMMARY = [
-  ['3', 'Managed stays'],
+  [String(PORTFOLIO.length), 'Managed stays'],
   ['100%', 'Guest-ready'],
   ['2', 'Airbnb Hosts'],
   ['1', 'Superhost'],
